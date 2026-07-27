@@ -42,7 +42,11 @@ final class ProgressStore: ObservableObject {
         return store
     }
 
-    static func defaultFileURL() -> URL? {
+    /// `nonisolated` because it is used as a default argument to `init`, and
+    /// default-argument expressions are evaluated in the caller's context
+    /// rather than the initialiser's. Touches nothing but `FileManager`, so
+    /// there is no actor state to protect.
+    nonisolated static func defaultFileURL() -> URL? {
         let manager = FileManager.default
         guard let directory = try? manager.url(
             for: .applicationSupportDirectory,
