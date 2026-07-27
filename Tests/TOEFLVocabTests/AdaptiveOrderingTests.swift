@@ -85,16 +85,40 @@ final class AdaptiveOrderingTests: XCTestCase {
         )
     }
 
-    func testARecentMistakeOutweighsAGoodLongTermRecord() {
-        // Nine right then one wrong is a good record, but the app should still
-        // put it in front of a word with no history at all.
+    func testARecentMistakeOutweighsACleanRecord() {
+        let slipped = stats(correct: 9, incorrect: 0, endingWrong: true)
+        let spotless = stats(correct: 10, incorrect: 0)
+
+        let ordered = AdaptiveOrdering.order(sample) { id in
+            switch id.term {
+            case "delta": return slipped
+            case "alpha": return spotless
+            default: return nil
+            }
+        }
+        let terms = ordered.map(\.term)
+
+        XCTAssertLessThan(
+            terms.firstIndex(of: "delta") ?? .max,
+            terms.firstIndex(of: "alpha") ?? .max,
+            "A word missed on the last attempt should come before one never missed"
+        )
+    }
+
+    func testAnUnseenWordOutranksAWordYouNearlyAlwaysGetRight() {
+        // Deliberate consequence of the Laplace prior: "never tested" scores a
+        // flat 0.5, so a word answered right 9 times out of 10 does not jump
+        // ahead of words that have never come up at all, even right after a
+        // slip (0.41 vs 0.50). Showing brand-new words first is the more useful
+        // behaviour; the recency bonus still lifts it above better-known words.
         let slipped = stats(correct: 9, incorrect: 0, endingWrong: true)
 
         let ordered = AdaptiveOrdering.order(sample) { id in
             id.term == "delta" ? slipped : nil
         }
 
-        XCTAssertEqual(ordered.first?.term, "delta")
+        XCTAssertEqual(ordered.last?.term, "delta")
+        XCTAssertLessThan(AdaptiveOrdering.weakness(slipped), AdaptiveOrdering.unseenScore)
     }
 
     func testOrderingIsDeterministic() {

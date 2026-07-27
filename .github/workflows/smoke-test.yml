@@ -141,11 +141,21 @@ jobs:
             echo "::error::Assets.car is missing — the asset catalog did not compile in. Check the 'Resources/Assets.xcassets' entry in project.yml."
             exit 1
           fi
-          if ! /usr/libexec/PlistBuddy -c "Print :CFBundleIconName" "$APP_PATH/Info.plist" >/dev/null 2>&1; then
-            echo "::error::CFBundleIconName is missing from Info.plist — check ASSETCATALOG_COMPILER_APPICON_NAME in project.yml."
+
+          # The rendered PNGs at the bundle root are what iOS actually draws on
+          # the home screen, so their presence is the real signal. A single-size
+          # asset catalog makes actool write CFBundleIcons/CFBundleIconFiles
+          # rather than CFBundleIconName, so keying the check on the latter is a
+          # false alarm.
+          ICONS=$(find "$APP_PATH" -maxdepth 1 -name "AppIcon*.png" -exec basename {} \; | tr '\n' ' ')
+          if [ -z "$ICONS" ]; then
+            echo "::error::No AppIcon*.png in the app bundle — check ASSETCATALOG_COMPILER_APPICON_NAME in project.yml."
             exit 1
           fi
-          echo "found app icon: $(/usr/libexec/PlistBuddy -c 'Print :CFBundleIconName' "$APP_PATH/Info.plist")"
+          echo "found app icons: $ICONS"
+
+          echo "icon keys in Info.plist:"
+          /usr/libexec/PlistBuddy -c "Print" "$APP_PATH/Info.plist" | grep -i -B1 -A6 "icon" || echo "  (none)"
 
       - name: Install & launch on Simulator
         run: |
