@@ -69,6 +69,9 @@ final class Router: ObservableObject {
 
     @Published var tab: Tab = .study
     @Published var studyPath: [Route] = []
+    /// Separate stack: Settings pushes About, and the two tabs must not share
+    /// a path or navigating one would move the other.
+    @Published var settingsPath: [Route] = []
     @Published var activePractice: PracticeConfiguration?
 
     func open(_ route: Route) {

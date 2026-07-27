@@ -57,7 +57,12 @@ struct PracticeView: View {
                 sessionBody
             }
         }
-        .onAppear(perform: autoSpeakIfEnabled)
+        .onAppear {
+            #if DEBUG
+            ScreenshotHarness.advance(viewModel)
+            #endif
+            autoSpeakIfEnabled()
+        }
         .onChange(of: viewModel.index) { _ in autoSpeakIfEnabled() }
         .onChange(of: viewModel.dismissRequested) { requested in
             if requested {

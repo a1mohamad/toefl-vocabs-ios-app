@@ -157,27 +157,51 @@ jobs:
           echo "icon keys in Info.plist:"
           /usr/libexec/PlistBuddy -c "Print" "$APP_PATH/Info.plist" | grep -i -B1 -A6 "icon" || echo "  (none)"
 
-      - name: Install & launch on Simulator
+      - name: Install on Simulator
         run: |
           APP_PATH=$(find build/Build/Products -maxdepth 2 -name "*.app" | head -n 1)
           xcrun simctl install "${{ steps.sim.outputs.udid }}" "$APP_PATH"
-          xcrun simctl launch "${{ steps.sim.outputs.udid }}" io.github.a1mohamad.toeflvocab
-          sleep 4
 
-      - name: Screenshot the running app (light)
-        run: xcrun simctl io "${{ steps.sim.outputs.udid }}" screenshot screenshot-light.png
-
-      - name: Screenshot the running app (dark)
+      # Every screen, in both appearances. The app is relaunched once per screen
+      # with a `screenshot:<name>` argument that seeds deterministic progress
+      # and opens straight to that page — no UI automation to go stale, and the
+      # seeded data means Reports and the checklists are never photographed
+      # empty. See Sources/TOEFLVocab/App/ScreenshotHarness.swift.
+      - name: Capture every screen
         run: |
-          xcrun simctl ui "${{ steps.sim.outputs.udid }}" appearance dark
-          sleep 2
-          xcrun simctl io "${{ steps.sim.outputs.udid }}" screenshot screenshot-dark.png
+          set -e
+          UDID="${{ steps.sim.outputs.udid }}"
+          BUNDLE=io.github.a1mohamad.toeflvocab
+          SCREENS="library book section practice practice-revealed summary reports settings about"
+          mkdir -p screenshots
+
+          for appearance in light dark; do
+            xcrun simctl ui "$UDID" appearance "$appearance"
+            sleep 1
+            for screen in $SCREENS; do
+              xcrun simctl terminate "$UDID" "$BUNDLE" >/dev/null 2>&1 || true
+              xcrun simctl launch "$UDID" "$BUNDLE" "screenshot:$screen" >/dev/null
+              sleep 3
+              xcrun simctl io "$UDID" screenshot "screenshots/${screen}-${appearance}.png" >/dev/null
+              echo "captured ${screen}-${appearance}"
+            done
+          done
+
+          COUNT=$(ls -1 screenshots | wc -l | tr -d ' ')
+          echo "captured $COUNT screenshots"
+          # A crash on launch still yields a screenshot — of the home screen —
+          # so a plausible file count is not proof, but a short count is proof
+          # of failure.
+          if [ "$COUNT" -lt 18 ]; then
+            echo "::error::expected 18 screenshots, got $COUNT"
+            exit 1
+          fi
 
       - name: Upload screenshots
         uses: actions/upload-artifact@v4
         with:
           name: simulator-screenshots
-          path: screenshot-*.png
+          path: screenshots/
 
   # ---------------------------------------------------------------------------
   # Job 3: unsigned .ipa for Sideloadly. Tags only (v1.1, v1.2, ...).

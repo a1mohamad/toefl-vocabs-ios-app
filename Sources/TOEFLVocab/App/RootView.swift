@@ -3,6 +3,8 @@ import SwiftUI
 struct RootView: View {
 
     @EnvironmentObject private var router: Router
+    @EnvironmentObject private var progress: ProgressStore
+    @EnvironmentObject private var content: ContentProvider
     @Environment(\.strings) private var strings
 
     var body: some View {
@@ -14,6 +16,15 @@ struct RootView: View {
         .tint(Palette.accent)
         .fullScreenCover(item: $router.activePractice) { configuration in
             PracticeContainerView(configuration: configuration)
+        }
+        .onAppear {
+            #if DEBUG
+            ScreenshotHarness.prepare(
+                progress: progress,
+                catalog: content.catalog,
+                router: router
+            )
+            #endif
         }
     }
 
@@ -41,7 +52,7 @@ struct RootView: View {
     }
 
     private var settingsTab: some View {
-        NavigationStack {
+        NavigationStack(path: $router.settingsPath) {
             SettingsView()
                 // Settings pushes `Route.about`, so this stack needs the same
                 // destination table the study stack has.
