@@ -1,0 +1,106 @@
+name: Hello World Smoke Test
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  # Job 1: proves the project builds and actually runs, with zero signing involved.
+  # This is your fast, free, unlimited feedback loop for UI/layout work.
+  simulator-check:
+    name: Build & screenshot in Simulator (no signing needed)
+    runs-on: macos-14
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project from project.yml
+        run: xcodegen generate
+
+      - name: Pick an available iPhone simulator
+        id: sim
+        run: |
+          UDID=$(xcrun simctl list devices available | grep -m 1 "iPhone" | grep -Eo '[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}')
+          echo "Using simulator UDID: $UDID"
+          echo "udid=$UDID" >> "$GITHUB_OUTPUT"
+
+      - name: Boot the simulator
+        run: |
+          xcrun simctl boot "${{ steps.sim.outputs.udid }}"
+          xcrun simctl bootstatus "${{ steps.sim.outputs.udid }}" -b
+
+      - name: Build for Simulator
+        run: |
+          xcodebuild build \
+            -project HelloWorldApp.xcodeproj \
+            -scheme HelloWorldApp \
+            -destination "id=${{ steps.sim.outputs.udid }}" \
+            -derivedDataPath build
+
+      - name: Install & launch on Simulator
+        run: |
+          APP_PATH=$(find build/Build/Products -maxdepth 2 -name "*.app" | head -n 1)
+          xcrun simctl install "${{ steps.sim.outputs.udid }}" "$APP_PATH"
+          xcrun simctl launch "${{ steps.sim.outputs.udid }}" io.github.a1mohamad.helloworldapp
+          sleep 3
+
+      - name: Screenshot the running app
+        run: xcrun simctl io "${{ steps.sim.outputs.udid }}" screenshot screenshot.png
+
+      - name: Upload screenshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: simulator-screenshot
+          path: screenshot.png
+
+  # Job 2: proves the whole device-install path (Sideloadly/AltStore leg).
+  # Produces an unsigned .ipa — download it and sign+install with Sideloadly.
+  device-build:
+    name: Build unsigned .ipa for Sideloadly
+    runs-on: macos-14
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project from project.yml
+        run: xcodegen generate
+
+      - name: Build for a real iPhone, signing disabled
+        run: |
+          xcodebuild build \
+            -project HelloWorldApp.xcodeproj \
+            -scheme HelloWorldApp \
+            -sdk iphoneos \
+            -configuration Release \
+            CODE_SIGNING_ALLOWED=NO \
+            -derivedDataPath buildDevice
+
+      - name: Package as an unsigned .ipa
+        run: |
+          APP_PATH=$(find buildDevice/Build/Products -maxdepth 2 -name "*.app" | head -n 1)
+          mkdir -p Payload
+          cp -R "$APP_PATH" Payload/
+          zip -r HelloWorldApp.ipa Payload
+
+      - name: Upload .ipa
+        uses: actions/upload-artifact@v4
+        with:
+          name: HelloWorldApp-unsigned-ipa
+          path: HelloWorldApp.ipa
