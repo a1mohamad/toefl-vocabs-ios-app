@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "_comment": [
+    "This file is the ORDER + PRESENTATION layer for vocabs.json.",
+    "vocabs.json is a JSON object, and JSON objects have no guaranteed key order once",
+    "decoded, so section order can never be derived from it reliably (note that 504's",
+    "'review_1' belongs between day_6 and day_7 — no sort function would guess that).",
+    "This file supplies the order, the display titles, and the intro/preview copy.",
+    "",
+    "Adding a new day: append the words to vocabs.json, then add one line here.",
+    "If you forget, the app still works — unlisted sections are appended at the end",
+    "with an auto-generated title ('day_9' -> 'Day 9') and a default intro."
+  ],
+
+  "books": [
+    {
+      "id": "504",
+      "title": "504 Absolutely Essential Words",
+      "shortTitle": "504 Essential",
+      "author": "Barron's",
+      "theme": "indigo",
+      "intro": "The classic vocabulary builder. Twelve words a day, each one chosen because it shows up again and again in academic reading. Work through a day, let it settle, then come back — the checklist below every word tracks how well it is actually sticking.",
+      "sections": [
+        {
+          "id": "day_1",
+          "title": "Day 1",
+          "kind": "lesson",
+          "intro": "Your first twelve. Words about character and promises — 'oath', 'tact', 'gallant' — plus a few that look easier than they are."
+        },
+        {
+          "id": "day_2",
+          "title": "Day 2",
+          "kind": "lesson",
+          "intro": "A darker set: cold, danger, and things hidden. Useful in narrative and descriptive passages."
+        },
+        {
+          "id": "day_3",
+          "title": "Day 3",
+          "kind": "lesson",
+          "intro": "Measurement and judgement — 'minimum', 'scarce', 'essential'. These turn up constantly in test questions themselves, not just the passages."
+        },
+        {
+          "id": "day_4",
+          "title": "Day 4",
+          "kind": "lesson",
+          "intro": "Words for effort and obligation. Several are close cousins in meaning, so read the definitions carefully before you self-grade."
+        },
+        {
+          "id": "day_5",
+          "title": "Day 5",
+          "kind": "lesson",
+          "intro": "Abstract nouns and verbs of change. This is where vocabulary starts feeling academic rather than everyday."
+        },
+        {
+          "id": "day_6",
+          "title": "Day 6",
+          "kind": "lesson",
+          "intro": "The last set before your first review. If a word here feels shaky, mark it wrong — it will come back sooner."
+        },
+        {
+          "id": "review_1",
+          "title": "Review 1",
+          "kind": "review",
+          "intro": "A consolidation round pulling together the ground covered so far. Eighteen words, no new extras — this one is purely about retention."
+        },
+        {
+          "id": "day_7",
+          "title": "Day 7",
+          "kind": "lesson",
+          "intro": "Back to new material. Watch for words with a formal register — these are the ones that lift a writing score."
+        },
+        {
+          "id": "day_8",
+          "title": "Day 8",
+          "kind": "lesson",
+          "intro": "Precision words. Several have a near-synonym you already know, and the difference between them is the whole point."
+        }
+      ]
+    },
+    {
+      "id": "400",
+      "title": "400 Must-Have Words for the TOEFL",
+      "shortTitle": "400 Must-Have",
+      "author": "McGraw-Hill",
+      "theme": "teal",
+      "intro": "Built specifically around what the TOEFL actually tests. Ten words a day, weighted toward academic lectures and campus conversations. Shorter days than the 504 — good for a second pass later in a study session.",
+      "sections": [
+        {
+          "id": "day_1",
+          "title": "Day 1",
+          "kind": "lesson",
+          "intro": "Opening set. Academic verbs that carry a lot of weight in listening sections."
+        },
+        {
+          "id": "day_2",
+          "title": "Day 2",
+          "kind": "lesson",
+          "intro": "Words for cause and consequence — the connective tissue of every argument passage."
+        },
+        {
+          "id": "day_3",
+          "title": "Day 3",
+          "kind": "lesson",
+          "intro": "Description and comparison. Expect these in questions that ask how two things differ."
+        },
+        {
+          "id": "day_4",
+          "title": "Day 4",
+          "kind": "lesson",
+          "intro": "Process and method vocabulary, common in science lectures."
+        },
+        {
+          "id": "day_5",
+          "title": "Day 5",
+          "kind": "lesson",
+          "intro": "Halfway. A mix of formal verbs and the noun forms that go with them."
+        },
+        {
+          "id": "day_6",
+          "title": "Day 6",
+          "kind": "lesson",
+          "intro": "Words about limits, conditions, and exceptions — precise meanings matter here."
+        },
+        {
+          "id": "day_7",
+          "title": "Day 7",
+          "kind": "lesson",
+          "intro": "Research and evidence vocabulary. Heavy overlap with academic writing prompts."
+        },
+        {
+          "id": "day_8",
+          "title": "Day 8",
+          "kind": "lesson",
+          "intro": "Final set. If your accuracy holds here, run an Extra Practice pass across both books."
+        }
+      ]
+    }
+  ]
+}

@@ -1,17 +1,88 @@
-name: Hello World Smoke Test
+name: TOEFL Vocab CI
 
 on:
   push:
     branches: [main]
     tags: ['v*']       # push a tag like v1.1, v1.2, ... to trigger a real .ipa build
+  pull_request:
+    branches: [main]
   workflow_dispatch: {}
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  # Job 1: proves the project builds and actually runs, with zero signing involved.
-  # This is your fast, free, unlimited feedback loop for UI/layout work.
+  # ---------------------------------------------------------------------------
+  # Job 0: content lint. Runs on Ubuntu (free, ~15s) BEFORE any macOS runner is
+  # touched. Catches the most likely breakage — a hand-edited vocabs.json or a
+  # catalog.json that references a section that doesn't exist. Failing here
+  # costs seconds instead of a 6-minute macOS build.
+  # ---------------------------------------------------------------------------
+  content-lint:
+    name: Validate vocab JSON
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate content files
+        run: python Scripts/validate_content.py --strict
+
+  # ---------------------------------------------------------------------------
+  # Job 1: unit tests. The ONLY fast way to verify the practice engine
+  # (adaptive ordering, the 5-slot cycle rule, stats aggregation) given there is
+  # no local Simulator. Kept in its own job so a test failure still lets the
+  # screenshot job produce a picture of the UI.
+  # ---------------------------------------------------------------------------
+  unit-tests:
+    name: Run unit tests
+    runs-on: macos-14
+    needs: content-lint
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Select Xcode version
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project from project.yml
+        run: xcodegen generate
+
+      - name: Pick an available iPhone simulator
+        id: sim
+        run: |
+          UDID=$(xcrun simctl list devices available | grep -m 1 "iPhone" | grep -Eo '[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}')
+          echo "Using simulator UDID: $UDID"
+          echo "udid=$UDID" >> "$GITHUB_OUTPUT"
+
+      - name: Test
+        run: |
+          set -o pipefail
+          xcodebuild test \
+            -project TOEFLVocab.xcodeproj \
+            -scheme TOEFLVocab \
+            -destination "id=${{ steps.sim.outputs.udid }}" \
+            -derivedDataPath buildTests \
+            CODE_SIGNING_ALLOWED=NO
+
+  # ---------------------------------------------------------------------------
+  # Job 2: build + screenshot. The everyday visual feedback loop. No signing.
+  # ---------------------------------------------------------------------------
   simulator-check:
     name: Build & screenshot in Simulator (no signing needed)
     runs-on: macos-14
+    needs: content-lint
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -42,33 +113,70 @@ jobs:
       - name: Build for Simulator
         run: |
           xcodebuild build \
-            -project HelloWorldApp.xcodeproj \
-            -scheme HelloWorldApp \
+            -project TOEFLVocab.xcodeproj \
+            -scheme TOEFLVocab \
             -destination "id=${{ steps.sim.outputs.udid }}" \
             -derivedDataPath build
+
+      # Guard: XcodeGen silently produces a working app with NO vocab data if the
+      # `buildPhase: resources` entry in project.yml is ever dropped. The app
+      # would launch to an empty library and the screenshot would look "fine".
+      # Fail loudly instead.
+      - name: Verify content and icon were bundled into the .app
+        run: |
+          APP_PATH=$(find build/Build/Products -maxdepth 2 -name "*.app" | head -n 1)
+          echo "App bundle: $APP_PATH"
+
+          for f in vocabs.json catalog.json; do
+            if ! find "$APP_PATH" -name "$f" | grep -q .; then
+              echo "::error::$f is missing from the app bundle. Check the 'Resources/VocabData' entry in project.yml."
+              exit 1
+            fi
+            echo "found $f"
+          done
+
+          # A missing icon is invisible until the app is on a home screen, which
+          # on this project means a tag, a download and a Sideloadly run.
+          if [ ! -f "$APP_PATH/Assets.car" ]; then
+            echo "::error::Assets.car is missing — the asset catalog did not compile in. Check the 'Resources/Assets.xcassets' entry in project.yml."
+            exit 1
+          fi
+          if ! /usr/libexec/PlistBuddy -c "Print :CFBundleIconName" "$APP_PATH/Info.plist" >/dev/null 2>&1; then
+            echo "::error::CFBundleIconName is missing from Info.plist — check ASSETCATALOG_COMPILER_APPICON_NAME in project.yml."
+            exit 1
+          fi
+          echo "found app icon: $(/usr/libexec/PlistBuddy -c 'Print :CFBundleIconName' "$APP_PATH/Info.plist")"
 
       - name: Install & launch on Simulator
         run: |
           APP_PATH=$(find build/Build/Products -maxdepth 2 -name "*.app" | head -n 1)
           xcrun simctl install "${{ steps.sim.outputs.udid }}" "$APP_PATH"
-          xcrun simctl launch "${{ steps.sim.outputs.udid }}" io.github.a1mohamad.helloworldapp
-          sleep 3
+          xcrun simctl launch "${{ steps.sim.outputs.udid }}" io.github.a1mohamad.toeflvocab
+          sleep 4
 
-      - name: Screenshot the running app
-        run: xcrun simctl io "${{ steps.sim.outputs.udid }}" screenshot screenshot.png
+      - name: Screenshot the running app (light)
+        run: xcrun simctl io "${{ steps.sim.outputs.udid }}" screenshot screenshot-light.png
 
-      - name: Upload screenshot
+      - name: Screenshot the running app (dark)
+        run: |
+          xcrun simctl ui "${{ steps.sim.outputs.udid }}" appearance dark
+          sleep 2
+          xcrun simctl io "${{ steps.sim.outputs.udid }}" screenshot screenshot-dark.png
+
+      - name: Upload screenshots
         uses: actions/upload-artifact@v4
         with:
-          name: simulator-screenshot
-          path: screenshot.png
+          name: simulator-screenshots
+          path: screenshot-*.png
 
-  # Job 2: proves the whole device-install path (Sideloadly/AltStore leg).
-  # Produces an unsigned .ipa — download it and sign+install with Sideloadly.
+  # ---------------------------------------------------------------------------
+  # Job 3: unsigned .ipa for Sideloadly. Tags only (v1.1, v1.2, ...).
+  # ---------------------------------------------------------------------------
   device-build:
     name: Build unsigned .ipa for Sideloadly
-    if: startsWith(github.ref, 'refs/tags/v')   # only runs for tags like v1.1, v1.2, ...
+    if: startsWith(github.ref, 'refs/tags/v')
     runs-on: macos-14
+    needs: [content-lint, simulator-check]
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -87,8 +195,8 @@ jobs:
       - name: Build for a real iPhone, signing disabled
         run: |
           xcodebuild build \
-            -project HelloWorldApp.xcodeproj \
-            -scheme HelloWorldApp \
+            -project TOEFLVocab.xcodeproj \
+            -scheme TOEFLVocab \
             -sdk iphoneos \
             -configuration Release \
             CODE_SIGNING_ALLOWED=NO \
@@ -99,10 +207,11 @@ jobs:
           APP_PATH=$(find buildDevice/Build/Products -maxdepth 2 -name "*.app" | head -n 1)
           mkdir -p Payload
           cp -R "$APP_PATH" Payload/
-          zip -r HelloWorldApp.ipa Payload
+          zip -qr TOEFLVocab.ipa Payload
+          ls -lh TOEFLVocab.ipa
 
       - name: Upload .ipa
         uses: actions/upload-artifact@v4
         with:
-          name: HelloWorldApp-unsigned-ipa
-          path: HelloWorldApp.ipa
+          name: TOEFLVocab-unsigned-ipa-${{ github.ref_name }}
+          path: TOEFLVocab.ipa
