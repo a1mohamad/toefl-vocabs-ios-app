@@ -3,6 +3,7 @@ name: Hello World Smoke Test
 on:
   push:
     branches: [main]
+    tags: ['v*']       # push a tag like v1.1, v1.2, ... to trigger a real .ipa build
   workflow_dispatch: {}
 
 jobs:
@@ -66,6 +67,7 @@ jobs:
   # Produces an unsigned .ipa — download it and sign+install with Sideloadly.
   device-build:
     name: Build unsigned .ipa for Sideloadly
+    if: startsWith(github.ref, 'refs/tags/v')   # only runs for tags like v1.1, v1.2, ...
     runs-on: macos-14
     steps:
       - name: Checkout repo
