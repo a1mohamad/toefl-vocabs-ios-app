@@ -181,6 +181,9 @@ private struct BookCard: View {
                     .font(AppFont.title)
                     .foregroundStyle(Palette.textPrimary)
                     .multilineTextAlignment(.leading)
+                    // Without this the HStack hands the title a single line and
+                    // truncates it to "504 Absolutely Esse…".
+                    .fixedSize(horizontal: false, vertical: true)
                 if !book.author.isEmpty {
                     Text(book.author)
                         .font(AppFont.caption)
