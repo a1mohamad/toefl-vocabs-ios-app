@@ -83,11 +83,20 @@ struct PracticeView: View {
     private var sessionBody: some View {
         VStack(spacing: 0) {
             topBar
-            ScrollView {
-                wordCard
+            GeometryReader { proxy in
+                ScrollView {
+                    VStack(spacing: 0) {
+                        Spacer(minLength: 0)
+                        wordCard
+                        Spacer(minLength: 0)
+                    }
                     .padding(.horizontal, Metrics.screenPadding)
-                    .padding(.top, 18)
-                    .padding(.bottom, 12)
+                    .padding(.vertical, 18)
+                    // Centres the card in the available space, but still
+                    // scrolls once a long definition at a large Dynamic Type
+                    // size makes it taller than the screen.
+                    .frame(minHeight: proxy.size.height, alignment: .center)
+                }
             }
             controls
                 .padding(.horizontal, Metrics.screenPadding)

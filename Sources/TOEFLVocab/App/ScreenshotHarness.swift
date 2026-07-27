@@ -35,7 +35,24 @@ enum ScreenshotHarness {
         guard let screen = requestedScreen, !catalog.isEmpty else { return }
 
         seed(progress: progress, catalog: catalog)
-        navigate(to: screen, catalog: catalog, router: router)
+
+        // Select the tab immediately so its NavigationStack gets built.
+        switch screen {
+        case "reports": router.tab = .reports
+        case "settings", "about": router.tab = .settings
+        default: router.tab = .study
+        }
+
+        // Then defer the push by a tick. `navigationDestination(for:)` is
+        // registered by the stack's content the first time it renders, so a
+        // path set during the TabView's own onAppear resolves against an empty
+        // destination table and pushes a blank screen. This only affects
+        // launch-time navigation — by the time a user can tap anything, the
+        // destinations are long since registered.
+        Task { @MainActor in
+            try? await Task.sleep(nanoseconds: 500_000_000)
+            navigate(to: screen, catalog: catalog, router: router)
+        }
     }
 
     // MARK: Data
@@ -97,14 +114,7 @@ enum ScreenshotHarness {
                 .section(bookID: book.id, sectionID: section.id, category: .main)
             )
 
-        case "reports":
-            router.tab = .reports
-
-        case "settings":
-            router.tab = .settings
-
         case "about":
-            router.tab = .settings
             router.settingsPath = [.about]
 
         default:
