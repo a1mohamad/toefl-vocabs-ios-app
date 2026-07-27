@@ -1,21 +1,77 @@
-name: HelloWorldApp
+name: TOEFLVocab
+
 options:
   bundleIdPrefix: io.github.a1mohamad
+  deploymentTarget:
+    iOS: "16.0"
+  developmentLanguage: en
+  createIntermediateGroups: true
+  generateEmptyDirectories: false
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.1"
+    CURRENT_PROJECT_VERSION: "1"
+
 targets:
-  HelloWorldApp:
+  TOEFLVocab:
     type: application
     platform: iOS
     deploymentTarget: "16.0"
     sources:
-      - Sources/HelloWorldApp
+      # Swift code — compiled.
+      - path: Sources/TOEFLVocab
+      # Bundled content — copied, NOT compiled. Without buildPhase: resources
+      # XcodeGen would try to hand the .json files to the Swift compiler.
+      - path: Resources/VocabData
+        buildPhase: resources
+      # App icon. Compiled by actool into Assets.car; the icon name below is
+      # what makes Xcode write CFBundleIconName into the generated Info.plist.
+      - path: Resources/Assets.xcassets
+        buildPhase: resources
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: io.github.a1mohamad.helloworldapp
-        MARKETING_VERSION: "1.0"
-        CURRENT_PROJECT_VERSION: "1"
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.a1mohamad.toeflvocab
+        PRODUCT_NAME: TOEFLVocab
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         SWIFT_VERSION: "5.0"
-        TARGETED_DEVICE_FAMILY: "1"
+        TARGETED_DEVICE_FAMILY: "1"          # iPhone only
         GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: "TOEFL Vocab"
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
+        INFOPLIST_KEY_UIRequiresFullScreen: YES
         CODE_SIGN_STYLE: Automatic
+        ENABLE_USER_SCRIPT_SANDBOXING: NO
+
+  TOEFLVocabTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: Tests/TOEFLVocabTests
+    dependencies:
+      - target: TOEFLVocab
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.a1mohamad.toeflvocab.tests
+        SWIFT_VERSION: "5.0"
+
+schemes:
+  TOEFLVocab:
+    build:
+      targets:
+        TOEFLVocab: all
+        TOEFLVocabTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      gatherCoverageData: true
+      targets:
+        - TOEFLVocabTests
+    archive:
+      config: Release

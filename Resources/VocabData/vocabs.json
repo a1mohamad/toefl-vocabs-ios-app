@@ -1,0 +1,1538 @@
+{
+  "504": {
+    "day_1": {
+      "main": [
+        {
+          "term": "abandon",
+          "definition": "desert;leave without planning to come back, quit"
+        },
+        {
+          "term": "keen",
+          "definition": "sharp; eager; intense; sensitive"
+        },
+        {
+          "term": "jealous",
+          "definition": "afraid that the one you love might prefer someone else"
+        },
+        {
+          "term": "tact",
+          "definition": "ability to say the right thing"
+        },
+        {
+          "term": "oath",
+          "definition": "a promise that something is true, a curse"
+        },
+        {
+          "term": "vacant",
+          "definition": "empty; not filled"
+        },
+        {
+          "term": "hardship",
+          "definition": "smoething that is hard to bear; difficulty"
+        },
+        {
+          "term": "gallant",
+          "definition": "brave; showing respect for women"
+        },
+        {
+          "term": "data",
+          "definition": "facts, information"
+        },
+        {
+          "term": "unaccustomed",
+          "definition": "not used to something"
+        },
+        {
+          "term": "bachelor",
+          "definition": "a man who has not married"
+        },
+        {
+          "term": "qualify",
+          "definition": "become fit; show that you are able"
+        }
+      ],
+      "extras": [
+        {
+          "term": "disobey",
+          "definition": "fail to obey"
+        },
+        {
+          "term": "cloak",
+          "definition": "some kind of coat"
+        },
+        {
+          "term": "spread",
+          "definition": "deploy, expansion"
+        },
+        {
+          "term": "muddy",
+          "definition": "with mud and dust"
+        },
+        {
+          "term": "puddle",
+          "definition": "a small pool of liquid"
+        },
+        {
+          "term": "nobleman",
+          "definition": "a man who belongs to noble class; honorable man"
+        },
+        {
+          "term": "anecdote",
+          "definition": "story"
+        },
+        {
+          "term": "demonstrate",
+          "definition": "show"
+        },
+        {
+          "term": "breeding",
+          "definition": "upbringing"
+        },
+        {
+          "term": "upbringing",
+          "definition": "the treatment and instruction received by child from its parents"
+        }
+      ]
+    },
+    "day_2": {
+      "main": [
+        {
+          "term": "corpse",
+          "definition": "a dead body; usually of a person"
+        },
+        {
+          "term": "conceal",
+          "definition": "hide"
+        },
+        {
+          "term": "dismal",
+          "definition": "dark and depressing"
+        },
+        {
+          "term": "frigid",
+          "definition": "very cold"
+        },
+        {
+          "term": "inhabit",
+          "definition": "live in"
+        },
+        {
+          "term": "numb",
+          "definition": "without the power of feeling; deadended"
+        },
+        {
+          "term": "peril",
+          "definition": "danger"
+        },
+        {
+          "term": "recline",
+          "definition": "lie down; stretch out; lean back"
+        },
+        {
+          "term": "shriek",
+          "definition": "scream"
+        },
+        {
+          "term": "sinister",
+          "definition": "evil; wicked; dishonest; frightening"
+        },
+        {
+          "term": "tempt",
+          "definition": "try to get someone to do something; test; invite"
+        },
+        {
+          "term": "wager",
+          "definition": "bet"
+        }
+      ],
+      "extras": [
+        {
+          "term": "slum",
+          "definition": "poor"
+        },
+        {
+          "term": "cemetery",
+          "definition": "grave"
+        }
+      ]
+    },
+    "day_3": {
+      "main": [
+        {
+          "term": "typical",
+          "definition": "usual; of a kind"
+        },
+        {
+          "term": "minimum",
+          "definition": "the least possible amount; the loswest amount"
+        },
+        {
+          "term": "scarce",
+          "definition": "hard to get; rare"
+        },
+        {
+          "term": "annual",
+          "definition": "once a year; something that appears yearly or lasts for a year"
+        },
+        {
+          "term": "persuade",
+          "definition": "win over to do or believe; make willing"
+        },
+        {
+          "term": "essential",
+          "definition": "necessary; very imporment"
+        },
+        {
+          "term": "blend",
+          "definition": "mix together thoroughly; a mixture"
+        },
+        {
+          "term": "visible",
+          "definition": "able to be seen"
+        },
+        {
+          "term": "expensive",
+          "definition": "costly; high-priced"
+        },
+        {
+          "term": "talent",
+          "definition": "natural ability"
+        },
+        {
+          "term": "devise",
+          "definition": "think out; plan; invent"
+        },
+        {
+          "term": "wholesale",
+          "definition": "in large quantity; less than retail in price"
+        }
+      ],
+      "extras": [
+        {
+          "term": "annoint",
+          "definition": "smear or rub with oil"
+        },
+        {
+          "term": "costume",
+          "definition": "a set clothes in a style"
+        },
+        {
+          "term": "wage",
+          "definition": "a fixed regular payment"
+        },
+        {
+          "term": "moisture",
+          "definition": "water or other liquid diffused in a small quantity a vapor; witness"
+        },
+        {
+          "term": "convention",
+          "definition": "a large meeting or conference; agreement; protocol"
+        },
+        {
+          "term": "encyclopedia",
+          "definition": "a book or set of books giving information on many subjects or on aspects of one subject and typically arranged alphabetically"
+        },
+        {
+          "term": "flour",
+          "definition": "wheat flour; rice flour, a crumbled grain for using in cake or bread"
+        },
+        {
+          "term": "sink",
+          "definition": "go down below the surface of sth, esp. of a liquiad like water, become submerged"
+        },
+        {
+          "term": "shortening",
+          "definition": "baking oil"
+        },
+        {
+          "term": "consumption",
+          "definition": "the using up of a resource; use up"
+        },
+        {
+          "term": "burglar",
+          "definition": "thief"
+        },
+        {
+          "term": "retail",
+          "definition": "the sale of goods to the public in relatively small quantities for use"
+        },
+        {
+          "term": "salughter",
+          "definition": "the killing animals for food"
+        },
+        {
+          "term": "execute",
+          "definition": "catty out; put into effect"
+        },
+        {
+          "term": "strike",
+          "definition": "a refusal to work organized by a body of employees as a form of protest"
+        },
+        {
+          "term": "retail price",
+          "definition": "!= wholesale price"
+        },
+        {
+          "term": "labor",
+          "definition": "work; action"
+        },
+        {
+          "term": "dispute",
+          "definition": "argue about sth.; debate; discuss; compute to win; strive to win"
+        },
+        {
+          "term": "grant",
+          "definition": "agree to give or allow(sth requested) to; contribute"
+        },
+        {
+          "term": "contrary",
+          "definition": "opposite"
+        },
+        {
+          "term": "withheld",
+          "definition": "refuse to give (sth that is due to); hold back; keep back"
+        },
+        {
+          "term": "quarrel",
+          "definition": "an angray argument or disagreement; dispute; noisy fight"
+        },
+        {
+          "term": "executive",
+          "definition": "chief; head; having the power to put plans or actions into effect"
+        },
+        {
+          "term": "corporation",
+          "definition": "a big company"
+        },
+        {
+          "term": "corporate",
+          "definition": "ralated to corporation"
+        },
+        {
+          "term": "demanding",
+          "definition": "ask authoritatively; order"
+        },
+        {
+          "term": "appeal",
+          "definition": "attract; ask seriously for sth that you need very much"
+        }
+      ]
+    },
+    "day_4": {
+      "main": [
+        {
+          "term": "vapor",
+          "definition": "moisture in the air that can be seen;fog;mist"
+        },
+        {
+          "term": "eliminate",
+          "definition": "get rid of; remove; omit"
+        },
+        {
+          "term": "villain",
+          "definition": "a very wicked person"
+        },
+        {
+          "term": "dense",
+          "definition": "closely packed together; thick"
+        },
+        {
+          "term": "utilize",
+          "definition": "make use of"
+        },
+        {
+          "term": "humid",
+          "definition": "moist; damp"
+        },
+        {
+          "term": "theory",
+          "definition": "explanation baased on thought, observation, or reasoning"
+        },
+        {
+          "term": "descend",
+          "definition": "go or come down from higher place to a lower level"
+        },
+        {
+          "term": "circulate",
+          "definition": "go around; go from place to place or person to person"
+        },
+        {
+          "term": "enormous",
+          "definition": "extremely large; huge"
+        },
+        {
+          "term": "predict",
+          "definition": "tell beforehand"
+        },
+        {
+          "term": "vanish",
+          "definition": "disappear; disappear suddenly"
+        }
+      ],
+      "extras": [
+        {
+          "term": "swamp",
+          "definition": "an area of low-lying ground where water collects; a marsh or bog; overhelm or flood with water"
+        },
+        {
+          "term": "trail",
+          "definition": "a mark or a series of signs or objects left behind by the passage of someone or something"
+        },
+        {
+          "term": "cellar",
+          "definition": "a room below ground level in a house, typically one used for storing wine or coal, basement"
+        },
+        {
+          "term": "well",
+          "definition": "a shaft into the ground to obtain water, oil, gas, or brine"
+        },
+        {
+          "term": "eager",
+          "definition": "wanting very much; keen; enthusiastic"
+        },
+        {
+          "term": "border",
+          "definition": "boundary"
+        },
+        {
+          "term": "complain",
+          "definition": "express dissatisfaction or annoyance about sth"
+        },
+        {
+          "term": "batters",
+          "definition": "baseball player who hits the ball with a bat"
+        },
+        {
+          "term": "advance",
+          "definition": "move forward; make progress"
+        },
+        {
+          "term": "beau",
+          "definition": "a boyfriend or male admirer"
+        },
+        {
+          "term": "barely",
+          "definition": "hardly; in a simple and sparse way; only just"
+        },
+        {
+          "term": "blanket",
+          "definition": "a large piece of woolen or similar material used as a covering for warmth, especially on a bed"
+        },
+        {
+          "term": "evaporate",
+          "definition": "turn from liquid into vapor; disappear; vanish"
+        },
+        {
+          "term": "interpret",
+          "definition": "explain the meaning of; understand in a particular way"
+        },
+        {
+          "term": "wipe out",
+          "definition": "destroy completely; remove; eliminate, clean; erase; obliterate"
+        },
+        {
+          "term": "aggrevate",
+          "definition": "make (a problem, injury, or offense) worse or more serious; intensify; worsen"
+        },
+        {
+          "term": "percieve",
+          "definition": "become aware or conscious of (something); come to realize or understand"
+        },
+        {
+          "term": "extravagant",
+          "definition": "lacking restraint in spending money or using resources; costing too much; excessive; over the top"
+        },
+        {
+          "term": "fortify",
+          "definition": "strengthen (a place) with defensive works so as to protect it against attack; strengthen; secure; reinforce"
+        },
+        {
+          "term": "slip on",
+          "definition": "put on quickly and easily; put on without much care or attention"
+        },
+        {
+          "term": "gossip",
+          "definition": "casual or unconstrained conversation or reports about other people, typically involving details that are not confirmed as true; rumor; talk"
+        },
+        {
+          "term": "crumble",
+          "definition": "break or fall apart into small fragments;break down; collapse"
+        },
+        {
+          "term": "sleet",
+          "definition": "a form of precipitation consisting of ice pellets, often mixed with rain or snow; frozen rain"
+        },
+        {
+          "term": "vacate",
+          "definition": "leave (a place that one previously occupied); give up; abandon"
+        },
+        {
+          "term": "attitude",
+          "definition": "views and feelings about someone or something; a settled way of thinking or feeling about someone or something, typically one that is reflected in a person's behavior; mindset; outlook"
+        }
+      ]
+    },
+    "day_5": {
+      "main": [
+        {
+          "term": "tradition",
+          "definition": "beliefs, opinions, and customs handed down from one genration to another"
+        },
+        {
+          "term": "rural",
+          "definition": "in the country"
+        },
+        {
+          "term": "burden",
+          "definition": "what is carried; a load"
+        },
+        {
+          "term": "campus",
+          "definition": "grounds of a college, university, or school"
+        },
+        {
+          "term": "majority",
+          "definition": "the larger number; greater part; more than half"
+        },
+        {
+          "term": "assemble",
+          "definition": "gather together; bring together"
+        },
+        {
+          "term": "explore",
+          "definition": "go over carefully; look into closely; examine"
+        },
+        {
+          "term": "topic",
+          "definition": "subject that people think, write or talk about"
+        },
+        {
+          "term": "debate",
+          "definition": "a discussion in which reasons for and against something are brought out"
+        },
+        {
+          "term": "evade",
+          "definition": "get away from by trickery or cleverness"
+        },
+        {
+          "term": "probe",
+          "definition": "search into; examine thoroughly; investigate"
+        },
+        {
+          "term": "reform",
+          "definition": "make better; improve by removing faults"
+        }
+      ],
+      "extras": [
+        {
+          "term": "riot",
+          "definition": "take part in a violent public disturbance; a violent disturbance of the peace by a crowd"
+        },
+        {
+          "term": "bill",
+          "definition": "a draft of a proposed law presented to a legislature for enactment; a statement of money owed for goods or services supplied"
+        },
+        {
+          "term": "bureau",
+          "definition": "an office or department for transacting particular business; a government department; agency; serivce"
+        },
+        {
+          "term": "depection",
+          "definition": "trickery; deceit; fraud; dishonesty"
+        }
+      ]
+    },
+    "day_6": {
+      "main": [
+        {
+          "term": "approach",
+          "definition": "come near or nearer to"
+        },
+        {
+          "term": "detect",
+          "definition": "find out; discover"
+        },
+        {
+          "term": "defect",
+          "definition": "fault; that which is wrong"
+        },
+        {
+          "term": "employee",
+          "definition": "a person who works for pay"
+        },
+        {
+          "term": "neglect",
+          "definition": "give too little care or attention to"
+        },
+        {
+          "term": "deceive",
+          "definition": "make someone believe as true something that is false; mislead"
+        },
+        {
+          "term": "undoubtedly",
+          "definition": "certainly; beyond doubt"
+        },
+        {
+          "term": "popular",
+          "definition": "liked by most people"
+        },
+        {
+          "term": "thorough",
+          "definition": "being all that is needed; complete"
+        },
+        {
+          "term": "client",
+          "definition": "person for whom a lawyer acts; customer"
+        },
+        {
+          "term": "comprehensive",
+          "definition": "including much; covering completely"
+        },
+        {
+          "term": "defraud",
+          "definition": "take money, right, etc., away by cheating"
+        }
+      ],
+      "extras": [
+        {
+          "term": "trial",
+          "definition": "the time when a person is in a court of law so that people(the judge and jury) can decide if he or she is guilty of a crime or not; a test of the performance, qualities, or suitability of someone or something"
+        },
+        {
+          "term": "spirit",
+          "definition": "motivating force"
+        },
+        {
+          "term": "pilgrim",
+          "definition": "a person who journeys to a sacred place for religious reasons"
+        },
+        {
+          "term": "praise",
+          "definition": "express warm approval or admiration of; commend; acclaim"
+        },
+        {
+          "term": "ruin",
+          "definition": "destroy or spoil completely; damage; wreck"
+        },
+        {
+          "term": "choir",
+          "definition": "an organized group of singers, typically one that takes part in church services or performs in public"
+        },
+        {
+          "term": "appealing",
+          "definition": "attractive or interesting; inviting"
+        },
+        {
+          "term": "hint",
+          "definition": "indirect indication or suggestion; clue; tip"
+        },
+        {
+          "term": "seemingly",
+          "definition": "appearing to be true, real, or important but not necessarily so; apparently; outwardly"
+        },
+        {
+          "term": "clerk",
+          "definition": "a person employed in an office or bank to keep records and accounts and to undertake other routine administrative duties; a person who performs the routine work of an office"
+        },
+        {
+          "term": "appliance",
+          "definition": "a device or piece of equipment designed to perform a specific task, typically a domestic one; a machine or tool used to do a household job; instrument; device"
+        },
+        {
+          "term": "unjustly",
+          "definition": "unfairly; in a way that is not morally right or fair; wrongfully; illegally"
+        },
+        {
+          "term": "accused",
+          "definition": "a person or group of people who are charged with or on trial for a crime; defendant; suspect"
+        },
+        {
+          "term": "bracelet",
+          "definition": "a piece of jewelry worn around the wrist; a band or chain that encircles the wrist or arm"
+        },
+        {
+          "term": "livelihood",
+          "definition": "a means of securing the necessities of life; a person's job or occupation; a means of earning money in order to live; income; employment"
+        },
+        {
+          "term": "pleasing",
+          "definition": "make happy or satisfied; agreeable; enjoyable; delightful"
+        }
+      ]
+    },
+    "review_1": {
+      "main": [
+        {
+          "term": "remark",
+          "definition": "say something as a comment; mention; notice"
+        },
+        {
+          "term": "plentiful",
+          "definition": "abundant; existing in or yielding great quantities"
+        },
+        {
+          "term": "sent chills up and down my spine",
+          "definition": "feeling cold; frightened so hard"
+        },
+        {
+          "term": "bay",
+          "definition": "a small lake; a small body of water; a lake; little gulf"
+        },
+        {
+          "term": "convict",
+          "definition": "an offender who has been found guilty of a crime and sentenced by a court; prisoner"
+        },
+        {
+          "term": "poll",
+          "definition": "the process of voting in an election; record opinion or vote of"
+        },
+        {
+          "term": "comprehend",
+          "definition": "understand"
+        },
+        {
+          "term": "deprive",
+          "definition": "deny (a person of place) posession or use of something"
+        },
+        {
+          "term": "expel",
+          "definition": "deprive someone of membership of involvement; throw out; eject"
+        },
+        {
+          "term": "enclose",
+          "definition": "attach; put in an envelope; surround; include"
+        },
+        {
+          "term": "clearance",
+          "definition": "the act of removing or getting rid of something; official authorization to do something; official authorization for something to proceed or take place"
+        },
+        {
+          "term": "clearance sale",
+          "definition": "sale on last things had stayed"
+        },
+        {
+          "term": "feature",
+          "definition": "present"
+        },
+        {
+          "term": "entitle",
+          "definition": "give a name to; give a title to; qualify; give someone legal right or a just claim to recieve or do something"
+        },
+        {
+          "term": "allowance",
+          "definition": "money supply; an amount of money given regularly or for a specific purpose; money that get specially from parents to make livlihood"
+        },
+        {
+          "term": "merchandise",
+          "definition": "goods that are bought and sold; goods; products; wares; trading goods"
+        },
+        {
+          "term": "apperciate",
+          "definition": "recognize the full worth of; be grateful for; understand fully; recognize the value of; value"
+        },
+        {
+          "term": "ship",
+          "definition": "send; transform"
+        }
+      ]
+    },
+    "day_7": {
+      "main": [
+        {
+          "term": "postpone",
+          "definition": "putt off to a later time; delay"
+        },
+        {
+          "term": "consent",
+          "definition": "agree; give permission or approval"
+        },
+        {
+          "term": "massive",
+          "definition": "big and heavy; large and solid; bulky"
+        },
+        {
+          "term": "capsule",
+          "definition": "a small case or covering"
+        },
+        {
+          "term": "preserve",
+          "definition": "keep from hurt or change; keep safe; protect"
+        },
+        {
+          "term": "denounce",
+          "definition": "condemn in public; express strong disapproval of"
+        },
+        {
+          "term": "unique",
+          "definition": "having no like or equal; being the only one of its kind"
+        },
+        {
+          "term": "torrent",
+          "definition": "any violent, rushing stream; flood"
+        },
+        {
+          "term": "resent",
+          "definition": "feel injured and angered at (something)"
+        },
+        {
+          "term": "molest",
+          "definition": "interfere with and trouble; disturb"
+        },
+        {
+          "term": "gloomy",
+          "definition": "dark; dim; in low spirits"
+        },
+        {
+          "term": "unforeseen",
+          "definition": "not known beforehand; unexpected"
+        }
+      ],
+      "extras": [
+        {
+          "term": "due",
+          "definition": "sufficient; time of happening something; payment; fee"
+        },
+        {
+          "term": "condemn",
+          "definition": "say that something must be published in a certain way; say strongly something or somebody is bad or wrong"
+        },
+        {
+          "term": "advocate",
+          "definition": "publicly recommend or support; supporter"
+        },
+        {
+          "term": "district",
+          "definition": "an area of a city or country"
+        },
+        {
+          "term": "attorney",
+          "definition": "some kind of lawyer"
+        },
+        {
+          "term": "interfere",
+          "definition": "try to do something with or for somebody when they don’t want your help; stop something from being well done"
+        },
+        {
+          "term": "dim",
+          "definition": "not bright or clear"
+        },
+        {
+          "term": "constitution",
+          "definition": "the principles and laws of a country"
+        },
+        {
+          "term": "attic",
+          "definition": "a space or room just below the roof of a building"
+        }
+      ]
+    },
+    "day_8": {
+      "main": [
+        {
+          "term": "exaggerate",
+          "definition": "make something greater than it is; overstate"
+        },
+        {
+          "term": "amateur",
+          "definition": "a person do something for pleasure,not for money or a profession"
+        },
+        {
+          "term": "mediocre",
+          "definition": "neither good or bad; average; ordinary"
+        },
+        {
+          "term": "variety",
+          "definition": "lack of sameness; a number of different things"
+        },
+        {
+          "term": "valid",
+          "definition": "supported by facts or authority; sound; true"
+        },
+        {
+          "term": "survive",
+          "definition": "live longer than; remain alive after"
+        },
+        {
+          "term": "weird",
+          "definition": "mysterious; unearthly"
+        },
+        {
+          "term": "prominent",
+          "definition": "well-known; important"
+        },
+        {
+          "term": "security",
+          "definition": "freedom from danger, care, or fear; feeling or condition of being safe"
+        },
+        {
+          "term": "bulky",
+          "definition": "taking up too much space; large"
+        },
+        {
+          "term": "reluctant",
+          "definition": "unwilling"
+        },
+        {
+          "term": "obvious",
+          "definition": "easily seen or understood; clear to the eye or mind; not to be doubted; plain"
+        }
+      ],
+      "extras": [
+        {
+          "term": "foreman",
+          "definition": "head of workers"
+        },
+        {
+          "term": "janitor",
+          "definition": "caretaker"
+        },
+        {
+          "term": "strict",
+          "definition": "demanding that concerning rules are obeyed or observed"
+        },
+        {
+          "term": "tight",
+          "definition": "hard; intense"
+        }
+      ]
+    }
+  },
+  "400": {
+    "day_1": {
+      "main": [
+        {
+          "term": "abandon",
+          "definition": "to leave; to give up"
+        },
+        {
+          "term": "adversely",
+          "definition": "in a harmful way; negatively --- followed by affect"
+        },
+        {
+          "term": "aggregate",
+          "definition": "gathered into or amounting to a whole --- followed by a term like sum, total or numbers"
+        },
+        {
+          "term": "cultivation",
+          "definition": "preparing the land to grow crops; improvment for agricultural purposes"
+        },
+        {
+          "term": "fertilize",
+          "definition": "to supply nourishment for plants by adding helpful substances to the soil"
+        },
+        {
+          "term": "irrigation",
+          "definition": "to supplying of water to dry land"
+        },
+        {
+          "term": "obtain",
+          "definition": "to gain possession; to get"
+        },
+        {
+          "term": "photosynthesis",
+          "definition": "the process by which green plants make their own food by combining water, salts, and carbon dioxide in the presence of light"
+        },
+        {
+          "term": "precipitation",
+          "definition": "water that falls to the earth's surface"
+        },
+        {
+          "term": "intensify",
+          "definition": "to increase in power; to act with increased strength"
+        }
+      ],
+      "extras": [
+        {
+          "term": "settle",
+          "definition": "go to live in a new place and stay there"
+        },
+        {
+          "term": "ditch",
+          "definition": "dig; a narrow channel dug in the ground"
+        },
+        {
+          "term": "hull",
+          "definition": "ship skeleton or frame"
+        },
+        {
+          "term": "crack",
+          "definition": "a thin line on something where it's nearly broken"
+        },
+        {
+          "term": "as a result",
+          "definition": "therefore; for this reason"
+        },
+        {
+          "term": "ample",
+          "definition": "sufficient; plentiful; abundant"
+        },
+        {
+          "term": "sustain",
+          "definition": "miantain; keep; preserve"
+        },
+        {
+          "term": "sustainable",
+          "definition": "stable; renewable"
+        },
+        {
+          "term": "incompetence",
+          "definition": "lack of competence, without qualification"
+        },
+        {
+          "term": "convince",
+          "definition": "persuade"
+        },
+        {
+          "term": "cooperation",
+          "definition": "assistant; help"
+        },
+        {
+          "term": "revitalize",
+          "definition": "revive; bring back something to life or make it to work"
+        },
+        {
+          "term": "hurdle",
+          "definition": "difficult; obstcale in the way"
+        },
+        {
+          "term": "corruption",
+          "definition": "dishonesty; decay; destruction"
+        },
+        {
+          "term": "infrastructure",
+          "definition": "the basic physical and organizational structures and facilities"
+        }
+      ]
+    },
+    "day_2": {
+      "main": [
+        {
+          "term": "anticipate",
+          "definition": "to expect; to sense something before it happens"
+        },
+        {
+          "term": "catastrophic",
+          "definition": "extremely harmful; cuasing financial or physical ruin"
+        },
+        {
+          "term": "collide",
+          "definition": "to come together with great or violent force"
+        },
+        {
+          "term": "eruption",
+          "definition": "a sudden, often violent, outburst --- followed by of"
+        },
+        {
+          "term": "famine",
+          "definition": "severe hunger; a drastic food shortage"
+        },
+        {
+          "term": "flood",
+          "definition": "an overhelming of water; an excessive amount"
+        },
+        {
+          "term": "impact",
+          "definition": "a strong influence --- followed by on or of"
+        },
+        {
+          "term": "persevere",
+          "definition": "to keep going, despite obstcales or discouragments; to maintain a purpose; persist"
+        },
+        {
+          "term": "plunge",
+          "definition": "to go down suddenly; to decrease by a great amount in short time --- followed by into"
+        },
+        {
+          "term": "unleash",
+          "definition": "to release a thing or an emotion"
+        }
+      ],
+      "extras": [
+        {
+          "term": "tremor",
+          "definition": "involuntary shake"
+        },
+        {
+          "term": "earth tremor",
+          "definition": "earthquake"
+        },
+        {
+          "term": "in-laws",
+          "definition": "wife's family, housband of wife's sister"
+        },
+        {
+          "term": "outburst",
+          "definition": "explosion"
+        },
+        {
+          "term": "severe",
+          "definition": "very hard and with intense and power"
+        },
+        {
+          "term": "drastic",
+          "definition": "serious"
+        },
+        {
+          "term": "excessive",
+          "definition": "more than necessary, nromal and desirable"
+        },
+        {
+          "term": "essay",
+          "definition": "a short piece of writing about a subject"
+        },
+        {
+          "term": "phenomenon",
+          "definition": "unusual occurance"
+        },
+        {
+          "term": "disturbance",
+          "definition": "a thing that stops you doing something, for example thinking, working, or sleeping"
+        },
+        {
+          "term": "implusive",
+          "definition": "sudddn and without thinking"
+        },
+        {
+          "term": "meteorite",
+          "definition": "a stone that have dropped and plunged from sky"
+        },
+        {
+          "term": "tremendous",
+          "definition": "spectacular; enormous and large"
+        },
+        {
+          "term": "erosion",
+          "definition": "the process of erode; wearing away and ruin"
+        },
+        {
+          "term": "devastation",
+          "definition": "destruction effect"
+        },
+        {
+          "term": "despite this",
+          "definition": "even so; regardless"
+        }
+      ]
+    },
+    "day_3": {
+      "main": [
+        {
+          "term": "adapt",
+          "definition": "to adjust to the circumstances; to make suitable --- followed by to"
+        },
+        {
+          "term": "diverse",
+          "definition": "various; showing a lot of differences within a group --- an ly adverb often comes before diverse"
+        },
+        {
+          "term": "evovle",
+          "definition": "to develop; to come forth --- followed by into or from"
+        },
+        {
+          "term": "feature",
+          "definition": "part; characteristic"
+        },
+        {
+          "term": "generation",
+          "definition": "a group of people born at about the same time --- before generation, an adjective like next, new, older, earlier and followed by of"
+        },
+        {
+          "term": "inhernt",
+          "definition": "naturally characteristic; always found within something, because it's a basic part of that thing --- followed by in"
+        },
+        {
+          "term": "migration",
+          "definition": "movement from once place to another by a group of people or animals --- followed by to or from"
+        },
+        {
+          "term": "physical",
+          "definition": "related to the body; related to materials that can be seen or felt --- usually comes before the noun it describes"
+        },
+        {
+          "term": "process",
+          "definition": "a series steps leading to a result --- often followed by of plus the -ing form of a verb"
+        },
+        {
+          "term": "survive",
+          "definition": "to continue living(despite some danger or illness) --- often followed by a phrase with by"
+        }
+      ],
+      "extras": [
+        {
+          "term": "circumstance",
+          "definition": "a fact or condition connected with or relavent to an event or action"
+        },
+        {
+          "term": "ape",
+          "definition": "typical strain of monkeys"
+        },
+        {
+          "term": "barrier",
+          "definition": "gate; boundary"
+        },
+        {
+          "term": "integral",
+          "definition": "essential; fundamental"
+        },
+        {
+          "term": "monumental",
+          "definition": "great in importance, size or extent"
+        },
+        {
+          "term": "strait",
+          "definition": "a narrow of water connecting two sees"
+        },
+        {
+          "term": "further tought",
+          "definition": "looking deeper; thinking more"
+        },
+        {
+          "term": "nomad",
+          "definition": "a memeber of people having no permanent houseand who travel from place to place"
+        },
+        {
+          "term": "ensure",
+          "definition": "make certain that sth shall occur to be the case; make sure; make certain"
+        }
+      ]
+    },
+    "day_4": {
+      "main": [
+        {
+          "term": "constraint",
+          "definition": "something that restricts thought or action"
+        },
+        {
+          "term": "contamination",
+          "definition": "being made less clean by a germ or hazardous substance"
+        },
+        {
+          "term": "deplete",
+          "definition": "to greatly decrease the supply of a resource or material"
+        },
+        {
+          "term": "dispose of",
+          "definition": "to throw away; to kill; to get rid of --- should be learned as a unit"
+        },
+        {
+          "term": "elementally",
+          "definition": "in terms of elements; basically"
+        },
+        {
+          "term": "emission",
+          "definition": "sending out from a small space into the general environment; a substance discharged into the air --- followed by of"
+        },
+        {
+          "term": "extinction",
+          "definition": "the complete disappearance; the end of existence --- extiction implies the absolute end, an extinct speicies is gone and will not reappear"
+        },
+        {
+          "term": "resorvoir",
+          "definition": "a place where a liquid is collected and stored"
+        },
+        {
+          "term": "shrink",
+          "definition": "to become reduce in size, amount or value"
+        },
+        {
+          "term": "stable",
+          "definition": "firm and dependable; showinf little change"
+        }
+      ],
+      "extras": [
+        {
+          "term": "hazardous",
+          "definition": "dangerous"
+        },
+        {
+          "term": "prolonged",
+          "definition": "extended; continued; long-lasting"
+        },
+        {
+          "term": "tryant",
+          "definition": "a ruler who uses power oppressively or unjustly; dictator"
+        },
+        {
+          "term": "regulate",
+          "definition": "to control with rules; direct according to rule; adjust to a certain level; control"
+        },
+        {
+          "term": "dependable",
+          "definition": "trustworthy; reliable; able to be counted on"
+        },
+        {
+          "term": "one promsising source",
+          "definition": "signals the point of a paragraph that will be developed in the following sentences"
+        },
+        {
+          "term": "occupy",
+          "definition": "to take the space of; to fill up; to live in; to take control of by force"
+        },
+        {
+          "term": "crude",
+          "definition": "not carefully or expertly made; simple and basic; not refined"
+        }
+      ]
+    },
+    "day_5": {
+      "main": [
+        {
+          "term": "adjust",
+          "definition": "to change; to get accustomed to something"
+        },
+        {
+          "term": "arbitary",
+          "definition": "chosen simply by whim or chance, not for any specific reason"
+        },
+        {
+          "term": "denominator",
+          "definition": "the number written below the line in a fraction --- lowest common denominator means the most basic and unsophisticated things that most people share"
+        },
+        {
+          "term": "exponentially",
+          "definition": "at a very fast rate"
+        },
+        {
+          "term": "infinitesimal",
+          "definition": "immeasurably small"
+        },
+        {
+          "term": "maximize",
+          "definition": "to increase or make as great as possible"
+        },
+        {
+          "term": "parallel",
+          "definition": "being an equal distance apart everywhere --- followed by to"
+        },
+        {
+          "term": "proportion",
+          "definition": "a part in relation to the whole --- followed by of"
+        },
+        {
+          "term": "rate",
+          "definition": "the cost per unit of a good or service; the motion or change that happens in a certain time"
+        },
+        {
+          "term": "sequence",
+          "definition": "to organize or arrange in succession"
+        }
+      ],
+      "extras": [
+        {
+          "term": "whim",
+          "definition": "impulse; short thought or feeling or desire; sudden change of mind"
+        },
+        {
+          "term": "unsophisticated",
+          "definition": "not complex or refined; simple; basic; absurd; foolish"
+        },
+        {
+          "term": "contaminant",
+          "definition": "something that causes impurity; something that pollutes"
+        },
+        {
+          "term": "succession",
+          "definition": "a number of people or things that follow one after another; a sequence; orderly series"
+        },
+        {
+          "term": "afford",
+          "definition": "to be able to pay for; to be able to do without serious consequences"
+        }
+      ]
+    },
+    "day_6": {
+      "main": [
+        {
+          "term": "accuracy",
+          "definition": "precision; exactness --- followed by of"
+        },
+        {
+          "term": "adjacent",
+          "definition": "next to --- followed by to"
+        },
+        {
+          "term": "compress",
+          "definition": "to press together"
+        },
+        {
+          "term": "feasibly",
+          "definition": "practically; in a way that can work"
+        },
+        {
+          "term": "gut",
+          "definition": "to empty; to hollow out --- the stomach of an animal"
+        },
+        {
+          "term": "integrally",
+          "definition": "completely; in a way that is necessary to make a whole; in a whole or complete way"
+        },
+        {
+          "term": "overlap",
+          "definition": "to lie over part of something; to have elements in common"
+        },
+        {
+          "term": "retain",
+          "definition": "to keep or hold"
+        },
+        {
+          "term": "seep",
+          "definition": "to pass slowly for a long time as a liquid or gas might --- followed by into or through"
+        },
+        {
+          "term": "structure",
+          "definition": "something constructed, such as a building"
+        }
+      ],
+      "extras": [
+        {
+          "term": "pouring",
+          "definition": "flowing in a steady stream"
+        },
+        {
+          "term": "rust",
+          "definition": "to corrode; a chemical process that causes iron to turn reddish-brown and flake off"
+        },
+        {
+          "term": "submerged in",
+          "definition": "completely covered by water or other liquid"
+        },
+        {
+          "term": "excrement",
+          "definition": "waste matter discharged from the body; a formal word for feces and shit"
+        }
+      ]
+    },
+    "day_7": {
+      "main": [
+        {
+          "term": "circulate",
+          "definition": "to move throughout an area or group;  to move along somewhat circular route —- followed by of"
+        },
+        {
+          "term": "corrode",
+          "definition": "to be slowly weakened by chemical reactions —- a familiar corrosion produces rust, the reddish coating on iron or steel that has been exposed to air and water"
+        },
+        {
+          "term": "derive",
+          "definition": "to come from, usually through slow, long process —- followed by from"
+        },
+        {
+          "term": "detection",
+          "definition": "discovering something that cannot easily be found —- followed by of"
+        },
+        {
+          "term": "expeditiously",
+          "definition": "quickly and efficiently"
+        },
+        {
+          "term": "implement",
+          "definition": "to make use of; to carry out"
+        },
+        {
+          "term": "innovative",
+          "definition": "ahead of times; novel"
+        },
+        {
+          "term": "installation",
+          "definition": "setting something into position for use"
+        },
+        {
+          "term": "maintenance",
+          "definition": "the act of keeping something in good condition"
+        },
+        {
+          "term": "simulation",
+          "definition": "an imitation or representation"
+        }
+      ],
+      "extras": [
+        {
+          "term": "expose",
+          "definition": "make reveal; put at the risk of"
+        },
+        {
+          "term": "prop",
+          "definition": "scene stuff"
+        },
+        {
+          "term": "pigeon",
+          "definition": "some small bird that is kinda domestic for human"
+        },
+        {
+          "term": "imprison",
+          "definition": "locked in a prison"
+        },
+        {
+          "term": "smuggler",
+          "definition": "some vicious and sinister gangster who transfer illegal goods in a country"
+        },
+        {
+          "term": "buff",
+          "definition": "fan"
+        },
+        {
+          "term": "vigilance",
+          "definition": "alertness; need to handle"
+        },
+        {
+          "term": "inventory",
+          "definition": "list"
+        },
+        {
+          "term": "appoint",
+          "definition": "name; fix; set"
+        }
+      ]
+    },
+    "day_8": {
+      "main": [
+        {
+          "term": "combustion",
+          "definition": "the process of burning —- followed by of"
+        },
+        {
+          "term": "component",
+          "definition": "one part of a system or whole —- followed or preceded by of"
+        },
+        {
+          "term": "convey",
+          "definition": "to transport from one place to another; to transmit or make known"
+        },
+        {
+          "term": "discretely",
+          "definition": "separately; distinctly"
+        },
+        {
+          "term": "nucleus",
+          "definition": "a central o essential part around which other parts are gathered; a core —-followed by of"
+        },
+        {
+          "term": "permeate",
+          "definition": "to spread of flow throughout; to pass through or penetrate"
+        },
+        {
+          "term": "rotate",
+          "definition": "to take around; to take turns in sequence"
+        },
+        {
+          "term": "solar",
+          "definition": "of, or relating to the sun"
+        },
+        {
+          "term": "source",
+          "definition": "the point of origin or creation"
+        },
+        {
+          "term": "trigger",
+          "definition": "to set off or initiate"
+        }
+      ],
+      "extras": [
+        {
+          "term": "harness",
+          "definition": "utilize; to make use of"
+        }
+      ]
+    }
+  }
+}
