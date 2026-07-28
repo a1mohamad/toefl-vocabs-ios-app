@@ -451,4 +451,5 @@ This project is licensed under the MIT License.
 See the [LICENSE](LICENSE) file for details. The license covers the source code,
 build configuration and tooling. It does not cover the vocabulary word lists,
 whose selections derive from the two published books and remain the property of
-their publishers — the definitions here are the author's own study notes.
+their publishers — the definitions here are the author's own study notes. See
+[NOTICE](NOTICE) for the full wording.

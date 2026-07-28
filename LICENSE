@@ -19,19 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-Note on vocabulary content
-
-This license covers the source code, build configuration and tooling in this
-repository.
-
-It does not cover the vocabulary word lists themselves. Those selections derive
-from "504 Absolutely Essential Words" (Barron's) and "400 Must-Have Words for
-the TOEFL" (McGraw-Hill), which remain the property of their respective
-publishers. The definitions in this repository are the author's own study notes
-rather than the publishers' text.
-
-Anyone reusing this project is free to take the code and replace the contents of
-Resources/VocabData/ with their own material.
