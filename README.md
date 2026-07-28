@@ -9,18 +9,27 @@
 [![Swift](https://img.shields.io/badge/Swift-5.0-F05138?logo=swift&logoColor=white)](https://swift.org/)
 [![SwiftUI](https://img.shields.io/badge/SwiftUI-iOS%2016%2B-F05138?logo=swift&logoColor=white)](https://developer.apple.com/xcode/swiftui/)
 [![XcodeGen](https://img.shields.io/badge/XcodeGen-Project%20Generation-147EFB?logo=xcode&logoColor=white)](https://github.com/yonaskolb/XcodeGen)
+[![AVFoundation](https://img.shields.io/badge/AVFoundation-On--Device%20Speech-1D9BF0?logo=apple&logoColor=white)](https://developer.apple.com/documentation/avfoundation)
 [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-CI%2FCD-2088FF?logo=githubactions&logoColor=white)](.github/workflows/smoke-test.yml)
 [![Platform](https://img.shields.io/badge/Platform-iPhone-lightgrey?logo=apple&logoColor=white)](https://www.apple.com/ios/)
 [![CI](https://img.shields.io/github/actions/workflow/status/a1mohamad/toefl-vocabs-ios-app/smoke-test.yml?branch=main&label=CI)](https://github.com/a1mohamad/toefl-vocabs-ios-app/actions)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
+**Research and Data**
+
+[![Dataset](https://img.shields.io/badge/Dataset-Bundled%20JSON-1A73E8?logo=json&logoColor=white)](Resources/VocabData/vocabs.json)
+[![Design Notes](https://img.shields.io/badge/Design%20Notes-Project%20Plan-6E56CF?logo=markdown&logoColor=white)](docs/PROJECT_PLAN.md)
+[![Research Lab](https://img.shields.io/badge/Research%20Lab-Project%20Page-222222?logo=githubpages&logoColor=white)](https://a1mohamad.github.io/research/toefl-vocabs-ios-app/index.html)
+
 **Contact and Profiles**
 
 [![Gmail](https://img.shields.io/badge/Gmail-a1mohamad.askari%40gmail.com-EA4335?logo=gmail&logoColor=white)](mailto:a1mohamad.askari@gmail.com)
 [![iCloud](https://img.shields.io/badge/iCloud-amirmohmdaskari%40icloud.com-3693F3?logo=icloud&logoColor=white)](mailto:amirmohmdaskari@icloud.com)
+[![Phone](https://img.shields.io/badge/Phone-%2B98%20901%20222%203122-25D366?logo=whatsapp&logoColor=white)](tel:+989012223122)
 [![Website](https://img.shields.io/badge/Website-a1mohamad.github.io-4285F4?logo=googlechrome&logoColor=white)](https://a1mohamad.github.io)
 [![GitHub](https://img.shields.io/badge/GitHub-a1mohamad-181717?logo=github&logoColor=white)](https://github.com/a1mohamad)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Amir%20Mohammad%20Askari-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/amirmohammad-askari/)
+[![Kaggle](https://img.shields.io/badge/Kaggle-amirmohamadaskari-20BEFF?logo=kaggle&logoColor=white)](https://www.kaggle.com/amirmohamadaskari)
 
 <br>
 
@@ -29,10 +38,9 @@
 </div>
 
 **TOEFL Vocab** is an offline vocabulary trainer built on two classic word
-lists — **504 Absolutely Essential Words** (Barron's) and **400 Must-Have
-Words for the TOEFL** (McGraw-Hill), 358 words across 17 sections. No account,
-no server, no subscription: the content ships inside the app and progress is a
-single file on the device.
+lists — **504 Absolutely Essential Words** (Barron's) and **400 Must-Have Words
+for the TOEFL** (McGraw-Hill). No account, no server, no subscription: the
+content ships inside the app and progress is a single file on the device.
 
 The unusual part is how it is built. Every commit is compiled, tested and
 screenshotted by **GitHub Actions' free macOS runners**, because the developer
@@ -69,7 +77,7 @@ Every screen below is captured automatically by CI on each push — see
 | Library | Section |
 |:---:|:---:|
 | <img src="assets/screenshots/library-dark.png" alt="Library screen listing both vocabulary books with progress meters" width="270"> | <img src="assets/screenshots/section-dark.png" alt="Section screen with Main and Extra list pickers and a preview of the first queued words" width="270"> |
-| Both books, word counts and progress | Main / Extra picker, with the adaptive queue previewed |
+| Both books, with progress at a glance | Main / Extra picker, with the adaptive queue previewed |
 
 | Meaning Revealed | Section Complete |
 |:---:|:---:|
@@ -174,8 +182,9 @@ fast feedback that exists before a full CI round trip.
 ## Content Model
 
 All vocabulary lives in `Resources/VocabData/vocabs.json`, bundled into the app
-— nothing is fetched from a server. Word order is stored explicitly as an
-array, because a JSON *object* has no guaranteed key order:
+— nothing is fetched from a server. The file is keyed book → section → category,
+and word order is stored explicitly as an array, because a JSON *object* has no
+guaranteed key order:
 
 ```json
 {
@@ -192,17 +201,18 @@ array, because a JSON *object* has no guaranteed key order:
 }
 ```
 
-A second file, `Resources/VocabData/catalog.json`, supplies **book and section
-order**, titles and intro copy — the same ordering problem one level up.
-Without it, no sort function would know that `504/review_1` belongs between
-`day_6` and `day_7`. A section missing from the catalog still works: it is
-appended at the end with a generated title rather than hidden.
+Each section carries two lists: **main**, the book's own words, and **extras**,
+additional words collected alongside them. Either may be absent — a review
+section with no extras simply does not offer that list.
 
-| Book | Sections | Words |
-|---|---:|---:|
-| 504 Absolutely Essential Words | 9 | 211 |
-| 400 Must-Have Words for the TOEFL | 8 | 147 |
-| **Total** | **17** | **358** |
+A second file, `Resources/VocabData/catalog.json`, supplies **book and section
+order**, titles and intro copy — the same ordering problem one level up. Without
+it, no sort function would know that a review section belongs between two
+numbered days rather than after all of them. A section missing from the catalog
+still works: it is appended at the end with a generated title rather than hidden.
+
+The app reads whatever is present at launch. Adding vocabulary is a data change
+with no code change — see [Adding Vocabulary](#adding-vocabulary).
 
 ---
 
@@ -228,8 +238,7 @@ Sources/TOEFLVocab/
 Five observable stores are injected once at the root — `ContentProvider`,
 `ProgressStore`, `SettingsStore`, `PronunciationService`, `Router`. Only the
 practice screen has a dedicated view model; everything else is a pure function
-of the stores, recomputed on render since the whole library is a few hundred
-words.
+of the stores, recomputed on render.
 
 Progress persists as a single `Codable` file rather than SwiftData: SwiftData
 requires iOS 17, and with no local Simulator a schema bug would cost a full CI
@@ -323,7 +332,7 @@ unit-tests                  simulator-check
 (macOS, xcodebuild test)    (macOS, build + verify bundle + screenshot)
                                       |
                                       v
-                             9 screens x light/dark
+                             every screen x light/dark
 
 tag matching v*
         |
@@ -356,15 +365,15 @@ and cost a full round trip to diagnose.
 
 ## Testing
 
-57 unit tests across four files, since they are the only verification available
-before a CI round trip:
+With no local Simulator, the unit tests are the only verification available
+before a CI round trip, so they target the logic that a screenshot cannot show:
 
 | File | Covers |
 |---|---|
 | `WordStatsCycleTests.swift` | The five-answer cycle rule, recap display, and persistence resilience against a hand-edited or truncated save file |
 | `AdaptiveOrderingTests.swift` | The weakness-scoring formula, ordering determinism, and the Extra Practice queue |
 | `VocabCatalogLoaderTests.swift` | Book/section ordering against `catalog.json`, legacy word-format fallback, and graceful degradation on missing content |
-| `ReportingAndStringsTests.swift` | Stats aggregation, run-completion logic, and full bilingual string-table coverage |
+| `ReportingAndStringsTests.swift` | Stats aggregation, run-completion logic, and bilingual string-table coverage |
 
 ```bash
 xcodebuild test -project TOEFLVocab.xcodeproj -scheme TOEFLVocab \
@@ -418,7 +427,7 @@ install it with **Sideloadly** using a free Apple ID.
 Current scope:
 
 - Offline, single-device vocabulary practice
-- Two bundled word lists, English content, English/Persian UI
+- Bundled word lists, English content, English/Persian UI
 - Sideloaded distribution via Sideloadly, not the App Store
 
 Current limitations:
