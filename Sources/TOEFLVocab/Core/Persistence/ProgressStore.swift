@@ -104,6 +104,17 @@ final class ProgressStore: ObservableObject {
         saveNow()
     }
 
+    /// Wholesale replacement, used when restoring a backup.
+    ///
+    /// Lives here rather than in the backup extension because `state` is
+    /// `private(set)` and that access level is scoped to this file. Writes
+    /// through immediately: a restore the user has just confirmed should
+    /// survive the app being killed a second later.
+    func replaceState(with newState: ProgressState) {
+        state = newState
+        saveNow()
+    }
+
     // MARK: Persistence
 
     private func scheduleSave() {
