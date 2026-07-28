@@ -154,7 +154,11 @@ extension ProgressStore {
         }
     }
 
-    static var bundleVersion: String {
+    /// `nonisolated` for the same reason as `defaultFileURL()`: it is used as a
+    /// default argument, and those are evaluated in the caller's context rather
+    /// than the method's. Reads only `Bundle.main`, so there is no actor state
+    /// to protect.
+    nonisolated static var bundleVersion: String {
         (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? "unknown"
     }
 }
