@@ -1,4 +1,5 @@
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct SettingsView: View {
 
@@ -9,12 +10,22 @@ struct SettingsView: View {
 
     @State private var showResetConfirmation = false
 
+    @State private var showExporter = false
+    @State private var showImporter = false
+    @State private var exportDocument: ProgressBackupDocument?
+    @State private var pendingBackup: ProgressBackup?
+    @State private var showRestoreConfirmation = false
+    @State private var showResultAlert = false
+    @State private var resultTitle = ""
+    @State private var resultMessage = ""
+
     var body: some View {
         Form {
             appearanceSection
             pronunciationSection
             feedbackSection
             dataSection
+            privacySection
             aboutSection
         }
         .scrollContentBackground(.hidden)
@@ -28,6 +39,35 @@ struct SettingsView: View {
         } message: {
             Text(strings[.settingsResetMessage])
         }
+        .alert(strings[.backupRestoreTitle], isPresented: $showRestoreConfirmation) {
+            Button(strings[.backupRestoreAction], role: .destructive) {
+                applyPendingBackup()
+            }
+            Button(strings[.commonCancel], role: .cancel) { pendingBackup = nil }
+        } message: {
+            Text("\(strings[.backupRestoreMessage])\n\n\(pendingBackup?.summary ?? "")")
+        }
+        .alert(resultTitle, isPresented: $showResultAlert) {
+            Button(strings[.commonOK], role: .cancel) {}
+        } message: {
+            Text(resultMessage)
+        }
+        .fileExporter(
+            isPresented: $showExporter,
+            document: exportDocument,
+            contentType: .json,
+            defaultFilename: exportFilename
+        ) { result in
+            if case .failure(let error) = result {
+                present(title: strings[.backupExportFailed], message: error.localizedDescription)
+            }
+        }
+        .fileImporter(
+            isPresented: $showImporter,
+            allowedContentTypes: [.json],
+            allowsMultipleSelection: false,
+            onCompletion: handleImport
+        )
     }
 
     // MARK: Appearance
@@ -123,6 +163,18 @@ struct SettingsView: View {
 
     private var dataSection: some View {
         Section {
+            Button {
+                beginExport()
+            } label: {
+                Label(strings[.settingsExportProgress], systemImage: "square.and.arrow.up")
+            }
+
+            Button {
+                showImporter = true
+            } label: {
+                Label(strings[.settingsImportProgress], systemImage: "square.and.arrow.down")
+            }
+
             Button(role: .destructive) {
                 showResetConfirmation = true
             } label: {
@@ -131,8 +183,71 @@ struct SettingsView: View {
         } header: {
             Text(strings[.settingsData])
         } footer: {
-            Text(strings[.settingsPrivacyBody])
+            Text(strings[.settingsBackupHint])
         }
+    }
+
+    private var privacySection: some View {
+        Section {
+            Text(strings[.settingsPrivacyBody])
+                .font(AppFont.caption)
+                .foregroundStyle(Palette.textSecondary)
+        } header: {
+            Text(strings[.settingsPrivacy])
+        }
+    }
+
+    // MARK: Backup
+
+    /// Encodes first, then presents. Building the document up front means an
+    /// encoding failure surfaces as an error here rather than as an empty file
+    /// the user only discovers is broken when they try to restore it.
+    private func beginExport() {
+        do {
+            exportDocument = ProgressBackupDocument(data: try progress.exportBackup())
+            showExporter = true
+        } catch {
+            present(title: strings[.backupExportFailed], message: error.localizedDescription)
+        }
+    }
+
+    private func handleImport(_ result: Result<[URL], Error>) {
+        switch result {
+        case .failure(let error):
+            present(title: strings[.backupImportFailed], message: error.localizedDescription)
+        case .success(let urls):
+            guard let url = urls.first else { return }
+            do {
+                // Decode before prompting, so an unusable file is rejected
+                // without the user first agreeing to overwrite their history.
+                let data = try ProgressStore.readBackupFile(at: url)
+                pendingBackup = try ProgressBackup.decode(from: data)
+                showRestoreConfirmation = true
+            } catch {
+                present(title: strings[.backupImportFailed], message: error.localizedDescription)
+            }
+        }
+    }
+
+    private func applyPendingBackup() {
+        guard let backup = pendingBackup else { return }
+        progress.replaceState(with: backup.progress)
+        pendingBackup = nil
+        present(title: strings[.backupRestoredTitle], message: backup.summary)
+    }
+
+    private func present(title: String, message: String) {
+        resultTitle = title
+        resultMessage = message
+        showResultAlert = true
+    }
+
+    /// Dated so successive backups do not overwrite each other in Files.
+    private var exportFilename: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "yyyy-MM-dd"
+        return "toefl-vocab-progress-\(formatter.string(from: Date()))"
     }
 
     // MARK: About

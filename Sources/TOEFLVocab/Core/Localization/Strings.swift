@@ -91,6 +91,9 @@ enum StringKey: String, CaseIterable {
     case settingsSpeed, speedSlow, speedNormal, speedFast
     case settingsAutoSpeak, settingsAutoSpeakHint, settingsHaptics
     case settingsData, settingsResetProgress, settingsResetMessage
+    case settingsExportProgress, settingsImportProgress, settingsBackupHint
+    case backupRestoreTitle, backupRestoreMessage, backupRestoreAction
+    case backupRestoredTitle, backupExportFailed, backupImportFailed, commonOK
     case settingsPrivacy, settingsPrivacyBody, settingsAbout, settingsVersion
     case aboutTitle, aboutBody, aboutContentTitle, aboutContentBody
 }
@@ -234,6 +237,16 @@ struct Strings {
         .settingsData: "Data",
         .settingsResetProgress: "Reset all progress",
         .settingsResetMessage: "This erases every checklist, counter and session record. It cannot be undone.",
+        .settingsExportProgress: "Export progress",
+        .settingsImportProgress: "Import progress",
+        .settingsBackupHint: "Save your practice history to a file before reinstalling, and restore it afterwards.",
+        .backupRestoreTitle: "Replace current progress?",
+        .backupRestoreMessage: "Restoring overwrites everything currently saved on this device with the contents of the backup.",
+        .backupRestoreAction: "Restore",
+        .backupRestoredTitle: "Progress restored",
+        .backupExportFailed: "Could not export progress",
+        .backupImportFailed: "Could not import progress",
+        .commonOK: "OK",
         .settingsPrivacy: "Privacy",
         .settingsPrivacyBody: "Everything stays on this device. There is no account, no analytics, no network access of any kind — the word lists are bundled inside the app and your progress is a single file in the app's own storage. Deleting the app deletes all of it.",
         .settingsAbout: "About",
@@ -364,6 +377,16 @@ struct Strings {
         .settingsData: "داده‌ها",
         .settingsResetProgress: "بازنشانی همه پیشرفت‌ها",
         .settingsResetMessage: "همه چک‌لیست‌ها، شمارنده‌ها و تاریخچه پاک می‌شود. قابل بازگشت نیست.",
+        .settingsExportProgress: "خروجی گرفتن از پیشرفت",
+        .settingsImportProgress: "بازیابی پیشرفت",
+        .settingsBackupHint: "پیش از نصب دوباره برنامه، تاریخچه تمرین را در یک فایل ذخیره کنید و بعد آن را برگردانید.",
+        .backupRestoreTitle: "پیشرفت فعلی جایگزین شود؟",
+        .backupRestoreMessage: "بازیابی، همه چیزی که اکنون روی این دستگاه ذخیره شده را با محتوای فایل پشتیبان جایگزین می‌کند.",
+        .backupRestoreAction: "بازیابی",
+        .backupRestoredTitle: "پیشرفت بازیابی شد",
+        .backupExportFailed: "خروجی گرفتن انجام نشد",
+        .backupImportFailed: "بازیابی انجام نشد",
+        .commonOK: "باشه",
         .settingsPrivacy: "حریم خصوصی",
         .settingsPrivacyBody: "همه چیز روی همین دستگاه می‌ماند. نه حسابی هست، نه آماری، نه هیچ ارتباط شبکه‌ای — واژه‌ها داخل خود برنامه هستند و پیشرفت شما یک فایل در حافظه اختصاصی برنامه است. با حذف برنامه همه‌اش پاک می‌شود.",
         .settingsAbout: "درباره",
