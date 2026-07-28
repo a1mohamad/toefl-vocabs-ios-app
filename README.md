@@ -13,7 +13,7 @@
 [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-CI%2FCD-2088FF?logo=githubactions&logoColor=white)](.github/workflows/smoke-test.yml)
 [![Platform](https://img.shields.io/badge/Platform-iPhone-lightgrey?logo=apple&logoColor=white)](https://www.apple.com/ios/)
 [![CI](https://img.shields.io/github/actions/workflow/status/a1mohamad/toefl-vocabs-ios-app/smoke-test.yml?branch=main&label=CI)](https://github.com/a1mohamad/toefl-vocabs-ios-app/actions)
-![License](https://img.shields.io/badge/License-MIT-blue)
+[![License](https://img.shields.io/github/license/a1mohamad/toefl-vocabs-ios-app)](LICENSE)
 
 **Research and Data**
 
@@ -446,4 +446,9 @@ deliberately does not use.
 
 ## License
 
-Released under the MIT License.
+This project is licensed under the MIT License.
+
+See the [LICENSE](LICENSE) file for details. The license covers the source code,
+build configuration and tooling. It does not cover the vocabulary word lists,
+whose selections derive from the two published books and remain the property of
+their publishers — the definitions here are the author's own study notes.
