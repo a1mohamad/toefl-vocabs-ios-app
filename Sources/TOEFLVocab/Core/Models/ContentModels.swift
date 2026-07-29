@@ -115,9 +115,27 @@ struct VocabItem: Identifiable, Hashable {
     let id: VocabID
     let term: String
     let definition: String
+    /// Usage note that the source data appends to the definition after ` --- `,
+    /// e.g. "followed by in". Not part of the meaning, so it is carried
+    /// separately and presented as a hint rather than as dictionary text.
+    let usageTip: String?
     /// Position within its category, straight from the source array. This is
     /// what makes a never-practised section play back in book order.
     let orderIndex: Int
+
+    init(
+        id: VocabID,
+        term: String,
+        definition: String,
+        usageTip: String? = nil,
+        orderIndex: Int
+    ) {
+        self.id = id
+        self.term = term
+        self.definition = definition
+        self.usageTip = usageTip
+        self.orderIndex = orderIndex
+    }
 
     var bookID: String { id.bookID }
     var sectionID: String { id.sectionID }
