@@ -339,6 +339,54 @@ struct PronunciationControl: View {
     }
 }
 
+// MARK: - Usage tip
+
+/// The grammar note that some words carry after the `---` marker in the source
+/// data — "followed by in", "usually comes before the noun it describes".
+///
+/// Deliberately styled as an aside rather than as more definition text: it is
+/// advice about *using* the word, and a learner who reads it as part of the
+/// meaning is memorising the wrong thing. The lightbulb and the warm tint are
+/// the conventional "tip" pairing, and the label repeats what the icon says so
+/// the emoji is never the only cue.
+struct UsageTipView: View {
+    let tip: String
+
+    @Environment(\.strings) private var strings
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 10) {
+            Text(verbatim: "💡")
+                .font(.system(size: 18))
+                .accessibilityHidden(true)
+
+            VStack(alignment: .leading, spacing: 3) {
+                Text(strings[.practiceTip].uppercased())
+                    .font(AppFont.badge)
+                    .tracking(0.6)
+                    .foregroundStyle(Palette.warning)
+                Text(tip)
+                    .font(AppFont.body)
+                    .foregroundStyle(Palette.textSecondary)
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+
+            Spacer(minLength: 0)
+        }
+        .padding(.horizontal, 13)
+        .padding(.vertical, 11)
+        .background(Palette.warningSoft)
+        .clipShape(RoundedRectangle(cornerRadius: Metrics.controlRadius, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: Metrics.controlRadius, style: .continuous)
+                .strokeBorder(Palette.warning.opacity(0.28), lineWidth: 1)
+        )
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(strings[.practiceTip]): \(tip)")
+    }
+}
+
 // MARK: - Empty state
 
 struct EmptyStateView: View {
