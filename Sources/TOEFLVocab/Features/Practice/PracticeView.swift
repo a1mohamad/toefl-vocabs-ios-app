@@ -275,6 +275,10 @@ struct PracticeView: View {
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
                 }
+
+                if let tip = item.usageTip {
+                    UsageTipView(tip: tip)
+                }
             }
             .transition(.opacity)
         }
