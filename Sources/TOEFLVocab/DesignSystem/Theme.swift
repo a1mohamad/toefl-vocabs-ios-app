@@ -40,6 +40,7 @@ enum Palette {
 
     static let successSoft = dynamic(light: 0xE3F5EC, dark: 0x14312A)
     static let dangerSoft = dynamic(light: 0xFCE9EC, dark: 0x36181F)
+    static let warningSoft = dynamic(light: 0xFDF2E0, dark: 0x342612)
 }
 
 extension UIColor {
