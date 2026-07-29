@@ -202,6 +202,62 @@ final class VocabCatalogLoaderTests: XCTestCase {
         }
     }
 
+    // MARK: Usage tips
+
+    func testUsageNoteAfterTheMarkerIsLiftedOutOfTheDefinition() throws {
+        let tipped = Data("""
+        {
+          "504": {
+            "day_1": {
+              "main": [
+                { "term": "inherent", "definition": "naturally characteristic --- followed by in" },
+                { "term": "corpse", "definition": "a dead body" }
+              ]
+            }
+          }
+        }
+        """.utf8)
+
+        let result = try VocabCatalogLoader.build(vocabsData: tipped, catalogData: nil)
+        let items = try XCTUnwrap(result.section(bookID: "504", sectionID: "day_1")).items(in: .main)
+
+        XCTAssertEqual(items[0].definition, "naturally characteristic", "The marker and everything after it is not the meaning")
+        XCTAssertEqual(items[0].usageTip, "followed by in")
+        XCTAssertNil(items[1].usageTip, "A plain definition must not grow an empty tip")
+    }
+
+    func testSplittingUsageTips() {
+        XCTAssertEqual(
+            VocabCatalogLoader.splitUsageTip(from: "a strong influence --- followed by on or of").definition,
+            "a strong influence"
+        )
+        XCTAssertEqual(
+            VocabCatalogLoader.splitUsageTip(from: "a strong influence --- followed by on or of").usageTip,
+            "followed by on or of"
+        )
+
+        // No marker at all — the whole string is the meaning.
+        let plain = VocabCatalogLoader.splitUsageTip(from: "  a dead body  ")
+        XCTAssertEqual(plain.definition, "a dead body")
+        XCTAssertNil(plain.usageTip)
+
+        // A second marker belongs to the note, not to a third field.
+        let doubled = VocabCatalogLoader.splitUsageTip(from: "meaning --- first --- second")
+        XCTAssertEqual(doubled.definition, "meaning")
+        XCTAssertEqual(doubled.usageTip, "first --- second")
+
+        // Nothing before the marker: keep the row readable rather than blanking
+        // the meaning and getting the whole word skipped on load.
+        let headless = VocabCatalogLoader.splitUsageTip(from: "--- followed by to")
+        XCTAssertEqual(headless.definition, "--- followed by to")
+        XCTAssertNil(headless.usageTip)
+
+        // Nothing after it either.
+        let empty = VocabCatalogLoader.splitUsageTip(from: "a dead body ---")
+        XCTAssertEqual(empty.definition, "a dead body")
+        XCTAssertNil(empty.usageTip)
+    }
+
     // MARK: Identity
 
     func testTheSameTermInTwoBooksGetsTwoIndependentRecords() throws {
