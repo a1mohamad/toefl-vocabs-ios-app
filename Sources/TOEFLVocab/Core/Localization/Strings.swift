@@ -66,7 +66,7 @@ enum StringKey: String, CaseIterable {
     case practiceFinish, practiceProgress, practiceLastFive, practiceThisCycle
     case practiceCycleComplete, practiceQuitTitle, practiceQuitMessage
     case practiceTapToHear, practiceNewWord, practiceCorrectTally, practiceWrongTally
-    case practiceSpeakLabel, practiceChecklistLabel
+    case practiceSpeakLabel, practiceChecklistLabel, practiceTip
 
     // Summary
     case summaryTitle, summaryAccuracy, summaryAnswered, summaryNextSection
@@ -176,6 +176,7 @@ struct Strings {
         .practiceWrongTally: "%d wrong",
         .practiceSpeakLabel: "Pronounce %@",
         .practiceChecklistLabel: "%d of %d answered, %d correct",
+        .practiceTip: "Tip",
 
         .summaryTitle: "Section complete",
         .summaryAccuracy: "Accuracy",
@@ -316,6 +317,7 @@ struct Strings {
         .practiceWrongTally: "%d غلط",
         .practiceSpeakLabel: "تلفظ %@",
         .practiceChecklistLabel: "%d از %d پاسخ، %d درست",
+        .practiceTip: "نکته",
 
         .summaryTitle: "بخش کامل شد",
         .summaryAccuracy: "دقت",
