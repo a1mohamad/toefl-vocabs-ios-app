@@ -11,6 +11,9 @@ struct TOEFLVocabApp: App {
 
     @Environment(\.scenePhase) private var scenePhase
 
+    private var language: AppLanguage { settings.settings.language.resolved }
+    private var layoutDirection: LayoutDirection { language.layoutDirection }
+
     var body: some Scene {
         WindowGroup {
             RootView()
@@ -22,8 +25,17 @@ struct TOEFLVocabApp: App {
                 // Language and theme are app-level choices, so they are applied
                 // once here rather than threaded through every screen.
                 .environment(\.strings, settings.strings)
-                .environment(\.layoutDirection, settings.settings.language.layoutDirection)
+                .environment(\.layoutDirection, layoutDirection)
+                // Switching language rebuilds the tree instead of re-laying out
+                // the existing one. SwiftUI otherwise reuses scroll views that
+                // were built for the other direction, and a reused container
+                // keeps the mirroring transform its new contents do not expect.
+                .id(language)
                 .preferredColorScheme(settings.settings.theme.colorScheme)
+                // Keeps the UIKit layer pointing the same way as the SwiftUI
+                // one; see LayoutDirectionBridge for why that is not automatic.
+                .onAppear { LayoutDirectionBridge.apply(layoutDirection) }
+                .onChange(of: layoutDirection) { LayoutDirectionBridge.apply($0) }
         }
         .onChange(of: scenePhase) { phase in
             // Debounced writes are pending for up to ~0.6s; flush them before
