@@ -33,6 +33,9 @@ enum ContentError: LocalizedError, Equatable {
 ///   array. Legacy `{term: definition}` objects still load, sorted
 ///   alphabetically, with a console warning.
 ///
+/// Definitions are also split here: everything after a `---` marker is a usage
+/// note rather than part of the meaning, and is lifted into `usageTip`.
+///
 /// Anything present in `vocabs.json` but missing from `catalog.json` is still
 /// shown — appended at the end with a generated title — so adding a day and
 /// forgetting the catalog entry degrades instead of hiding words.
@@ -177,7 +180,7 @@ enum VocabCatalogLoader {
 
             for word in list.words {
                 let term = word.term.trimmingCharacters(in: .whitespacesAndNewlines)
-                let definition = word.definition.trimmingCharacters(in: .whitespacesAndNewlines)
+                let (definition, usageTip) = splitUsageTip(from: word.definition)
 
                 // Skip rather than throw: one bad row should never cost the user
                 // the whole library.
@@ -196,6 +199,7 @@ enum VocabCatalogLoader {
                         id: VocabID(bookID: bookID, sectionID: sectionID, category: category, term: term),
                         term: term,
                         definition: definition,
+                        usageTip: usageTip,
                         orderIndex: items.count
                     )
                 )
@@ -220,6 +224,35 @@ enum VocabCatalogLoader {
     }
 
     // MARK: Helpers
+
+    /// The marker the source data uses to append a usage note to a definition.
+    static let usageTipSeparator = "---"
+
+    /// Splits `"meaning --- usage note"` into its two halves.
+    ///
+    /// The note is grammar advice ("followed by in", "usually comes before the
+    /// noun it describes"), not part of what the word means, so it must not be
+    /// read as the answer during practice.
+    ///
+    /// A row that is *only* a note, or only whitespace either side of the
+    /// marker, keeps its original text and reports no tip — losing the meaning
+    /// would be a far worse outcome than showing an unsplit line.
+    static func splitUsageTip(from raw: String) -> (definition: String, usageTip: String?) {
+        let whole = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        let parts = whole.components(separatedBy: usageTipSeparator)
+        guard parts.count > 1 else { return (whole, nil) }
+
+        let definition = parts[0].trimmingCharacters(in: .whitespacesAndNewlines)
+        // Any further markers belong to the note, not to another field.
+        let tip = parts
+            .dropFirst()
+            .joined(separator: usageTipSeparator)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+
+        guard !definition.isEmpty else { return (whole, nil) }
+        return (definition, tip.isEmpty ? nil : tip)
+    }
 
     /// `day_9` -> `Day 9`, `review_1` -> `Review 1`, `504` -> `504`.
     static func humanReadableTitle(from identifier: String) -> String {
