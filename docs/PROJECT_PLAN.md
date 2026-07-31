@@ -328,7 +328,7 @@ Download the `.ipa` artifact, sign and install with Sideloadly.
 
 ## 10. CI
 
-`.github/workflows/smoke-test.yml`, four jobs:
+`.github/workflows/ci.yml`, four jobs:
 
 | Job | Runs on | When | Does |
 |---|---|---|---|
