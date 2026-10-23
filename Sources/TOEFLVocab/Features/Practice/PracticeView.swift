@@ -265,23 +265,22 @@ struct PracticeView: View {
                 }
 
                 VStack(spacing: 6) {
-                    Text(strings[.practiceMeaning].uppercased())
+                    Text(strings[meaningHeaderKey(for: item)].uppercased())
                         .font(AppFont.badge)
                         .tracking(0.6)
                         .foregroundStyle(Palette.textTertiary)
-                    Text(item.definition)
-                        .font(AppFont.definition)
-                        .foregroundStyle(Palette.textPrimary)
-                        .multilineTextAlignment(.center)
-                        .fixedSize(horizontal: false, vertical: true)
+                    MeaningListView(meanings: item.meanings)
                 }
 
-                if let tip = item.usageTip {
-                    UsageTipView(tip: tip)
-                }
+                UsageTipsView(tips: item.usageTips)
             }
             .transition(.opacity)
         }
+    }
+
+    /// "Meaning" for one sense, "Meanings" for a word the book gives several.
+    private func meaningHeaderKey(for item: VocabItem) -> StringKey {
+        item.meanings.count > 1 ? .practiceMeanings : .practiceMeaning
     }
 
     // MARK: Controls
