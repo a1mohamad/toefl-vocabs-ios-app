@@ -1,8 +1,9 @@
 # TOEFL Vocab — Project Plan
 
-Offline iOS vocabulary trainer built around two word lists: **504 Absolutely
-Essential Words** (Barron's) and **400 Must-Have Words for the TOEFL**
-(McGraw-Hill). No account, no network, no subscription.
+Offline vocabulary trainer built around three word lists: **504 Absolutely
+Essential Words** (Barron's), its **125 Hard but Essential Words** appendix,
+and **400 Must-Have Words for the TOEFL** (McGraw-Hill) — 1,762 words across
+95 sections. No account, no network, no subscription.
 
 Built under fixed constraints: Windows-only development, no Xcode GUI, no local
 Simulator, no paid Apple Developer Program, public GitHub repo, `.xcodeproj`
@@ -36,8 +37,29 @@ VocabCatalog
 └── Book            id, title, shortTitle, author, intro, theme, order
     └── VocabSection  id, title, intro, kind (.lesson/.review), order
         └── [VocabCategory: [VocabItem]]     .main / .extra
-            └── VocabItem   id, term, definition, orderIndex
+            └── VocabItem   id, term, definition, usageTips, orderIndex
 ```
+
+`definition` holds only the meaning. Two markers in the source string are read at
+load time rather than shown raw:
+
+| In the data | Becomes | Shown as |
+|---|---|---|
+| `;` inside the definition | `meanings`, derived on read | a numbered list, one meaning per line |
+| ` --- ` | one `usageTips` entry per marker | a lightbulb row under the meaning |
+| `'word'` inside a tip | a `TipMarkup.Segment` with a highlight index | coloured and bolded inline |
+
+`meanings` is derived rather than stored so it can never disagree with
+`definition`, and the split lives on the model rather than in the view so the
+screen and the screen reader always read the same list. `usageTips` is a list,
+not one string: four words in the 400 list carry two independent notes, and
+gluing them into one paragraph loses the fact that they are two.
+
+`TipMarkup` is the one piece of this with a non-obvious rule. A `'` opens a
+highlight only at a word boundary; otherwise the apostrophe in `"someone's
+'ability' to"` would open a quote, swallow `s ` and colour the wrong run. It is
+unit-tested on both platforms against the same cases, because the two apps have
+to highlight the same words.
 
 `VocabID` is `book/section/category/term` — a single string, human-readable in
 the saved file. Scoping by all four matters: `abandon`, `circulate`, `feature`
@@ -168,14 +190,14 @@ recaps and session history so Reports keeps its history.
 | 1 | **Library** (root) | Title with total word count · "continue where you left off" card · one card per book: gradient spine, intro excerpt, progress meter, section/word chips |
 | 2 | **Book intro** | Gradient hero (title, author, progress ring, words/seen/mastered) · full intro copy · section list: kind icon, progress meter, word count, "n need work" chip, completion seal |
 | 3 | **Section intro** | Section title, kind, intro copy · Main/Extra picker cards with counts and weak-word chips (Extra hidden with an explanatory line where the section has none) · **queue preview** showing the first three words that will actually come up · Begin |
-| 4 | **Practice** | Top bar: quit ✕, title, `3 of 12`, progress meter · Word card: large serif term, pronunciation control (speaker + US/UK/AU badge), five-box checklist with caption, first-time / tally chips · Answer: **Didn't know** / **I knew it** · then meaning revealed + **Next word** |
+| 4 | **Practice** | Top bar: quit ✕, title, `3 of 12`, progress meter · Word card: large serif term, pronunciation control (speaker + US/UK/AU badge), five-box checklist with caption, first-time / tally chips · Answer: **Didn't know** / **I knew it** · then the meaning revealed — numbered one per line where the book gives several — plus a tip card with one lightbulb per usage note, and **Next word** |
 | 5 | **Summary** | Accuracy ring, answered, cycles completed · drill-loop notice or global-restart notice when applicable · **Next section** / **Practise again** / **Back to menu** |
 | 6 | **Reports** | Overview card (mastery ring, accuracy, seen, needs-work) · drill launcher with scope picker · per book: accuracy, meter, **section heat grid** · "needs the most work" list with tallies and compact checklists · recent-session bar chart · main/extra/drill split · run number |
 | 7 | **Settings** | Theme · Language · Accent · Speed slider with audible preview · auto-speak · haptics · reset progress (confirmed) · privacy footer · About · version |
 | 8 | **About** | App card, word-list credits, privacy statement, per-book word counts |
 
-The section **heat grid** is the answer to "not a long list": seventeen sections
-across two books would be an unreadable stack of rows. As a 6-column grid of
+The section **heat grid** is the answer to "not a long list": ninety-five
+sections across three books would be an unreadable stack of rows. As a 6-column grid of
 cells shaded by accuracy — neutral where untouched, so "not started" never reads
 as "doing badly" — it is one glance.
 
@@ -365,10 +387,25 @@ out.
 - **Widgets, notifications, iCloud.** Push and iCloud need paid-tier
   entitlements; the free Apple ID cannot use them.
 
-## 12. Known content issues
+## 12. Content corrections
 
-`vocabs.json` carries a handful of typos from the original transcription —
-`smoething`, `imporment`, `loswest`, `annoint`, `liquiad`, `further tought`,
-`one promsising source`. They are in definition text, so fixing them is safe and
-does not touch word identity or reset any progress. The validator does not flag
-them; a spell-check pass over the definitions would be a reasonable follow-up.
+The transcription the content came from carried a long tail of typos. As of 2.0
+they have been corrected in one pass: **152** spelling fixes across terms and
+definitions (`smoething`, `imporment`, `loswest`, `annoint`, `liquiad`,
+`machinary`, `philantrophies` and so on), plus **15** tip markers that had been
+typed as `—-` or `--` instead of `---` and were therefore never recognised as
+tips at all — their advice was being shown as part of the meaning.
+
+Fourteen of those fixes touch a **term** rather than a definition
+(`salughter` → `slaughter`, `cloack` → `cloak`, `elsusive` → `elusive`,
+`further tought` → `further thought` and others). A term is part of a word's
+identity, so those words start their progress history over. That was judged the
+right trade: a misspelled word is worse than practised.
+
+The validator still does not spell-check — it checks shape, duplicates and
+catalog agreement. A spelling regression would get in the same way this batch
+did, so the content pass is worth repeating whenever a large block of new words
+is pasted in. Two things were deliberately left alone, since they are wording
+rather than spelling: the `generation` tip in 400/day_3 ends on a dangling
+"and", and the `exclusive` tip in 400/day_33 has a close parenthesis with no
+opening one.
