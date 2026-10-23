@@ -41,7 +41,13 @@ struct LibraryView: View {
             Text(strings[.libraryTitle])
                 .font(AppFont.screenTitle)
                 .foregroundStyle(Palette.textPrimary)
-            Text(strings.format(.librarySubtitle, content.catalog.totalWordCount))
+            Text(
+                strings.format(
+                    .librarySubtitle,
+                    content.catalog.totalWordCount,
+                    content.catalog.books.count
+                )
+            )
                 .font(AppFont.body)
                 .foregroundStyle(Palette.textSecondary)
         }
