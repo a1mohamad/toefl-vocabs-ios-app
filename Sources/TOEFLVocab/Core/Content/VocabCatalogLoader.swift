@@ -34,7 +34,8 @@ enum ContentError: LocalizedError, Equatable {
 ///   alphabetically, with a console warning.
 ///
 /// Definitions are also split here: everything after a `---` marker is a usage
-/// note rather than part of the meaning, and is lifted into `usageTip`.
+/// note rather than part of the meaning, and each marker lifts one entry into
+/// `usageTips`.
 ///
 /// Anything present in `vocabs.json` but missing from `catalog.json` is still
 /// shown — appended at the end with a generated title — so adding a day and
@@ -180,7 +181,7 @@ enum VocabCatalogLoader {
 
             for word in list.words {
                 let term = word.term.trimmingCharacters(in: .whitespacesAndNewlines)
-                let (definition, usageTip) = splitUsageTip(from: word.definition)
+                let (definition, usageTips) = splitDefinition(from: word.definition)
 
                 // Skip rather than throw: one bad row should never cost the user
                 // the whole library.
@@ -199,7 +200,7 @@ enum VocabCatalogLoader {
                         id: VocabID(bookID: bookID, sectionID: sectionID, category: category, term: term),
                         term: term,
                         definition: definition,
-                        usageTip: usageTip,
+                        usageTips: usageTips,
                         orderIndex: items.count
                     )
                 )
@@ -228,30 +229,34 @@ enum VocabCatalogLoader {
     /// The marker the source data uses to append a usage note to a definition.
     static let usageTipSeparator = "---"
 
-    /// Splits `"meaning --- usage note"` into its two halves.
+    /// Splits `"meaning --- note --- note"` into the meaning and its notes.
     ///
-    /// The note is grammar advice ("followed by in", "usually comes before the
+    /// A note is grammar advice ("followed by 'in'", "usually comes before the
     /// noun it describes"), not part of what the word means, so it must not be
     /// read as the answer during practice.
     ///
+    /// Each marker starts a new note rather than extending the previous one:
+    /// several words in the 400 list carry two independent pieces of advice
+    /// ("is often in the 'passive' voice --- often followed by 'of'"), and
+    /// gluing them into one paragraph loses the fact that they are two.
+    ///
     /// A row that is *only* a note, or only whitespace either side of the
-    /// marker, keeps its original text and reports no tip — losing the meaning
-    /// would be a far worse outcome than showing an unsplit line.
-    static func splitUsageTip(from raw: String) -> (definition: String, usageTip: String?) {
+    /// marker, keeps its original text and reports no notes — losing the
+    /// meaning would be a far worse outcome than showing an unsplit line.
+    static func splitDefinition(from raw: String) -> (definition: String, usageTips: [String]) {
         let whole = raw.trimmingCharacters(in: .whitespacesAndNewlines)
 
         let parts = whole.components(separatedBy: usageTipSeparator)
-        guard parts.count > 1 else { return (whole, nil) }
+        guard parts.count > 1 else { return (whole, []) }
 
         let definition = parts[0].trimmingCharacters(in: .whitespacesAndNewlines)
-        // Any further markers belong to the note, not to another field.
-        let tip = parts
+        let tips = parts
             .dropFirst()
-            .joined(separator: usageTipSeparator)
-            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty }
 
-        guard !definition.isEmpty else { return (whole, nil) }
-        return (definition, tip.isEmpty ? nil : tip)
+        guard !definition.isEmpty else { return (whole, []) }
+        return (definition, tips)
     }
 
     /// `day_9` -> `Day 9`, `review_1` -> `Review 1`, `504` -> `504`.
