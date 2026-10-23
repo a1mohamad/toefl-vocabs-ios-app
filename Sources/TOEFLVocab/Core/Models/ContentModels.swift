@@ -115,10 +115,11 @@ struct VocabItem: Identifiable, Hashable {
     let id: VocabID
     let term: String
     let definition: String
-    /// Usage note that the source data appends to the definition after ` --- `,
-    /// e.g. "followed by in". Not part of the meaning, so it is carried
-    /// separately and presented as a hint rather than as dictionary text.
-    let usageTip: String?
+    /// Usage notes that the source data appends to the definition after ` --- `,
+    /// e.g. "followed by 'in'". One entry per marker, because a word can carry
+    /// more than one note. None of this is part of the meaning, so it is kept
+    /// apart and shown as advice rather than as dictionary text.
+    let usageTips: [String]
     /// Position within its category, straight from the source array. This is
     /// what makes a never-practised section play back in book order.
     let orderIndex: Int
@@ -127,19 +128,43 @@ struct VocabItem: Identifiable, Hashable {
         id: VocabID,
         term: String,
         definition: String,
-        usageTip: String? = nil,
+        usageTips: [String] = [],
         orderIndex: Int
     ) {
         self.id = id
         self.term = term
         self.definition = definition
-        self.usageTip = usageTip
+        self.usageTips = usageTips
         self.orderIndex = orderIndex
     }
 
     var bookID: String { id.bookID }
     var sectionID: String { id.sectionID }
     var category: VocabCategory { id.category }
+
+    /// The definition as a list of separate meanings.
+    ///
+    /// The source data writes every sense of a word on one `;`-separated line
+    /// ("keep; keep up; carry on; uphold"), which is dense to read in the
+    /// middle of a drill — six meanings arrive as one grey paragraph and none
+    /// of them stands out. Splitting them lets the practice screen number them
+    /// one per line.
+    ///
+    /// The split lives here rather than in the view so that the screen and
+    /// VoiceOver always read the same list. A definition with no `;` comes back
+    /// as a single element, so a caller can treat this as *the* meaning list
+    /// and only check `count > 1` to decide whether to number it.
+    var meanings: [String] { VocabItem.splitMeanings(definition) }
+
+    static func splitMeanings(_ definition: String) -> [String] {
+        let parts = definition
+            .components(separatedBy: ";")
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty }
+        // A definition of only semicolons would otherwise come back empty and
+        // leave the practice screen with no answer on it at all.
+        return parts.isEmpty ? [definition] : parts
+    }
 }
 
 // MARK: - Section
