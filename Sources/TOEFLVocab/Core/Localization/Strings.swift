@@ -67,6 +67,7 @@ enum StringKey: String, CaseIterable {
     case practiceCycleComplete, practiceQuitTitle, practiceQuitMessage
     case practiceTapToHear, practiceNewWord, practiceCorrectTally, practiceWrongTally
     case practiceSpeakLabel, practiceChecklistLabel, practiceTip
+    case practiceTips, practiceTipPosition, practiceMeanings
 
     // Summary
     case summaryTitle, summaryAccuracy, summaryAnswered, summaryNextSection
@@ -162,6 +163,7 @@ struct Strings {
         .practiceKnewIt: "I knew it",
         .practiceDidntKnow: "Didn't know",
         .practiceMeaning: "Meaning",
+        .practiceMeanings: "Meanings",
         .practiceNextWord: "Next word",
         .practiceFinish: "Finish",
         .practiceProgress: "%d of %d",
@@ -177,6 +179,8 @@ struct Strings {
         .practiceSpeakLabel: "Pronounce %@",
         .practiceChecklistLabel: "%d of %d answered, %d correct",
         .practiceTip: "Tip",
+        .practiceTips: "Tips",
+        .practiceTipPosition: "Tip %d of %d",
 
         .summaryTitle: "Section complete",
         .summaryAccuracy: "Accuracy",
@@ -303,6 +307,7 @@ struct Strings {
         .practiceKnewIt: "بلد بودم",
         .practiceDidntKnow: "بلد نبودم",
         .practiceMeaning: "معنی",
+        .practiceMeanings: "معنی‌ها",
         .practiceNextWord: "واژه بعدی",
         .practiceFinish: "پایان",
         .practiceProgress: "%d از %d",
@@ -318,6 +323,8 @@ struct Strings {
         .practiceSpeakLabel: "تلفظ %@",
         .practiceChecklistLabel: "%d از %d پاسخ، %d درست",
         .practiceTip: "نکته",
+        .practiceTips: "نکته‌ها",
+        .practiceTipPosition: "نکته %d از %d",
 
         .summaryTitle: "بخش کامل شد",
         .summaryAccuracy: "دقت",
