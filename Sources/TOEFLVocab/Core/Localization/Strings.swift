@@ -137,7 +137,7 @@ struct Strings {
         .tabSettings: "Settings",
 
         .libraryTitle: "Library",
-        .librarySubtitle: "%d words across two books",
+        .librarySubtitle: "%d words across %d books",
         .libraryContinue: "Pick up where you left off",
         .libraryEmpty: "No vocabulary found",
         .libraryEmptyHint: "The bundled content files could not be read. This is a packaging problem, not something you did.",
@@ -281,7 +281,7 @@ struct Strings {
         .tabSettings: "تنظیمات",
 
         .libraryTitle: "کتابخانه",
-        .librarySubtitle: "%d واژه در دو کتاب",
+        .librarySubtitle: "%d واژه در %d کتاب",
         .libraryContinue: "ادامه از جایی که بودید",
         .libraryEmpty: "واژه‌ای پیدا نشد",
         .libraryEmptyHint: "فایل‌های محتوا خوانده نشدند. این یک مشکل بسته‌بندی برنامه است.",
