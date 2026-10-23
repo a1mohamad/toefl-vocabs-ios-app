@@ -464,11 +464,12 @@ Runnable only inside CI or on a real Mac — there is no local target for it her
 ## Releasing to a Device
 
 Regular pushes only run the free Simulator check. A real installable build needs
-a version tag:
+a version tag. Tags here are annotated, and `<next>` is the version being
+shipped:
 
 ```bash
-git tag v2.0
-git push origin v2.0
+git tag -a v<next> -m "v<next>"
+git push origin v<next>
 ```
 
 Download the unsigned `.ipa` artifact from the workflow run, then sign and

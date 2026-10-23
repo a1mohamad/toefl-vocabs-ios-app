@@ -339,9 +339,11 @@ Then push. CI does the rest.
 
 ### Cutting a device build
 
+Tags are annotated; `<next>` is the version being shipped.
+
 ```bash
-git tag -a v2.1 -m "v2.1"
-git push origin v2.1
+git tag -a v<next> -m "v<next>"
+git push origin v<next>
 ```
 
 Download the `.ipa` artifact, sign and install with Sideloadly.
