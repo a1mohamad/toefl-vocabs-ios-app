@@ -172,7 +172,7 @@ jobs:
           set -e
           UDID="${{ steps.sim.outputs.udid }}"
           BUNDLE=io.github.a1mohamad.toeflvocab
-          SCREENS="library book section practice practice-revealed summary reports settings about"
+          SCREENS="library book section practice practice-revealed practice-tip summary reports settings about"
           mkdir -p screenshots
 
           for appearance in light dark; do
@@ -192,8 +192,8 @@ jobs:
           # A crash on launch still yields a screenshot — of the home screen —
           # so a plausible file count is not proof, but a short count is proof
           # of failure.
-          if [ "$COUNT" -lt 18 ]; then
-            echo "::error::expected 18 screenshots, got $COUNT"
+          if [ "$COUNT" -lt 20 ]; then
+            echo "::error::expected 20 screenshots, got $COUNT"
             exit 1
           fi
 
