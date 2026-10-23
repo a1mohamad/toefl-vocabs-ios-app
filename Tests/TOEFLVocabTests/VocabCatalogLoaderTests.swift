@@ -222,40 +222,98 @@ final class VocabCatalogLoaderTests: XCTestCase {
         let items = try XCTUnwrap(result.section(bookID: "504", sectionID: "day_1")).items(in: .main)
 
         XCTAssertEqual(items[0].definition, "naturally characteristic", "The marker and everything after it is not the meaning")
-        XCTAssertEqual(items[0].usageTip, "followed by in")
-        XCTAssertNil(items[1].usageTip, "A plain definition must not grow an empty tip")
+        XCTAssertEqual(items[0].usageTips, ["followed by in"])
+        XCTAssertTrue(items[1].usageTips.isEmpty, "A plain definition must not grow an empty tip")
     }
 
     func testSplittingUsageTips() {
         XCTAssertEqual(
-            VocabCatalogLoader.splitUsageTip(from: "a strong influence --- followed by on or of").definition,
+            VocabCatalogLoader.splitDefinition(from: "a strong influence --- followed by on or of").definition,
             "a strong influence"
         )
         XCTAssertEqual(
-            VocabCatalogLoader.splitUsageTip(from: "a strong influence --- followed by on or of").usageTip,
-            "followed by on or of"
+            VocabCatalogLoader.splitDefinition(from: "a strong influence --- followed by on or of").usageTips,
+            ["followed by on or of"]
         )
 
         // No marker at all — the whole string is the meaning.
-        let plain = VocabCatalogLoader.splitUsageTip(from: "  a dead body  ")
+        let plain = VocabCatalogLoader.splitDefinition(from: "  a dead body  ")
         XCTAssertEqual(plain.definition, "a dead body")
-        XCTAssertNil(plain.usageTip)
+        XCTAssertTrue(plain.usageTips.isEmpty)
 
-        // A second marker belongs to the note, not to a third field.
-        let doubled = VocabCatalogLoader.splitUsageTip(from: "meaning --- first --- second")
+        // Each marker starts a new note. Several words in the 400 list carry two
+        // independent pieces of advice, and joining them would hide that.
+        let doubled = VocabCatalogLoader.splitDefinition(from: "meaning --- first --- second")
         XCTAssertEqual(doubled.definition, "meaning")
-        XCTAssertEqual(doubled.usageTip, "first --- second")
+        XCTAssertEqual(doubled.usageTips, ["first", "second"])
+
+        // An empty stretch between two markers is dropped rather than becoming
+        // a blank tip row.
+        let hollow = VocabCatalogLoader.splitDefinition(from: "meaning --- --- second")
+        XCTAssertEqual(hollow.usageTips, ["second"])
 
         // Nothing before the marker: keep the row readable rather than blanking
         // the meaning and getting the whole word skipped on load.
-        let headless = VocabCatalogLoader.splitUsageTip(from: "--- followed by to")
+        let headless = VocabCatalogLoader.splitDefinition(from: "--- followed by to")
         XCTAssertEqual(headless.definition, "--- followed by to")
-        XCTAssertNil(headless.usageTip)
+        XCTAssertTrue(headless.usageTips.isEmpty)
 
         // Nothing after it either.
-        let empty = VocabCatalogLoader.splitUsageTip(from: "a dead body ---")
+        let empty = VocabCatalogLoader.splitDefinition(from: "a dead body ---")
         XCTAssertEqual(empty.definition, "a dead body")
-        XCTAssertNil(empty.usageTip)
+        XCTAssertTrue(empty.usageTips.isEmpty)
+    }
+
+    // MARK: Meanings and tip markup
+
+    func testDefinitionsSplitIntoNumberedMeanings() {
+        // The source data writes every sense of a word on one `;`-separated
+        // line; the practice screen numbers them, so the split has to be here.
+        XCTAssertEqual(
+            VocabItem.splitMeanings("keep; keep up; carry on; uphold"),
+            ["keep", "keep up", "carry on", "uphold"]
+        )
+
+        // One meaning stays one meaning — the screen keeps it as a centred line
+        // rather than a list of one.
+        XCTAssertEqual(VocabItem.splitMeanings("a dead body"), ["a dead body"])
+
+        // A trailing separator must not produce an empty numbered row.
+        XCTAssertEqual(VocabItem.splitMeanings("empty; not filled;"), ["empty", "not filled"])
+
+        // And a definition of nothing but separators keeps its text, because an
+        // empty list would leave the practice screen with no answer on it.
+        XCTAssertEqual(VocabItem.splitMeanings(";;"), [";;"])
+    }
+
+    func testTipMarkupFindsTheQuotedWords() {
+        let segments = TipMarkup.segments(of: "followed by 'of'")
+        XCTAssertEqual(segments.count, 2)
+        XCTAssertEqual(segments[0], TipMarkup.Segment(text: "followed by ", highlightIndex: nil))
+        XCTAssertEqual(segments[1], TipMarkup.Segment(text: "of", highlightIndex: 0))
+
+        // Several quoted words in one tip are numbered in order, which is what
+        // gives each of them a different colour.
+        let two = TipMarkup.segments(of: "cast is 'singular', elsewhere it is 'plural'")
+        XCTAssertEqual(two.filter(\.isHighlighted).map(\.text), ["singular", "plural"])
+        XCTAssertEqual(two.filter(\.isHighlighted).compactMap(\.highlightIndex), [0, 1])
+
+        // The apostrophe in a possessive must not open a quote and swallow the
+        // word that genuinely deserves the colour.
+        let possessive = TipMarkup.segments(of: "the object of 'impair' is often someone's 'ability' to")
+        XCTAssertEqual(possessive.filter(\.isHighlighted).map(\.text), ["impair", "ability"])
+
+        // An unclosed quote is prose: the tip renders whole rather than losing
+        // its tail.
+        let unclosed = TipMarkup.segments(of: "comes from 'a latin word")
+        XCTAssertEqual(unclosed.count, 1)
+        XCTAssertFalse(unclosed[0].isHighlighted)
+
+        // What VoiceOver reads: the same sentence without the quote marks.
+        XCTAssertEqual(
+            TipMarkup.plainText(of: "notice the root 'certain', meaning 'sure'"),
+            "notice the root certain, meaning sure"
+        )
     }
 
     // MARK: Identity
