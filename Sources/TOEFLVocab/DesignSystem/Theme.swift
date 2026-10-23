@@ -41,6 +41,28 @@ enum Palette {
     static let successSoft = dynamic(light: 0xE3F5EC, dark: 0x14312A)
     static let dangerSoft = dynamic(light: 0xFCE9EC, dark: 0x36181F)
     static let warningSoft = dynamic(light: 0xFDF2E0, dark: 0x342612)
+
+    /// Inline colours for the `'quoted'` words inside a usage tip.
+    ///
+    /// The quotes in the source data mark the word that the tip is really
+    /// about — "followed by 'of'", "cast is 'singular'" — and a tip can carry
+    /// up to six of them. One colour for all would make a multi-part tip read
+    /// as a single long emphasis, so highlights cycle through this list in the
+    /// order they appear.
+    ///
+    /// Each entry is dark enough to read on `warningSoft` in light mode and
+    /// light enough in dark mode. The highlight is always paired with a bolder
+    /// weight, so the colour is never the only thing marking the word, and
+    /// `success`/`danger` are deliberately not in the list — they mean
+    /// right/wrong everywhere else in the app.
+    static let tipHighlights: [Color] = [
+        dynamic(light: 0x4338CA, dark: 0xA5B4FC),   // indigo
+        dynamic(light: 0x0F766E, dark: 0x5EEAD4),   // teal
+        dynamic(light: 0xBE123C, dark: 0xFDA4AF),   // rose
+        dynamic(light: 0x7E22CE, dark: 0xD8B4FE),   // violet
+        dynamic(light: 0x166534, dark: 0x86EFAC),   // green
+        dynamic(light: 0x1D4ED8, dark: 0x93C5FD),   // blue
+    ]
 }
 
 extension UIColor {
