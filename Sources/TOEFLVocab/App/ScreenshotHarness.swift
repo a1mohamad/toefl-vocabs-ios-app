@@ -97,6 +97,21 @@ enum ScreenshotHarness {
               let section = book.sections.first
         else { return }
 
+        // The tip card is only worth photographing on a word that actually has
+        // tips, which the first section of the first book does not.
+        if screen == "practice-tip" {
+            if let exemplar = tipExemplar(in: catalog) {
+                router.startPractice(
+                    .section(
+                        bookID: exemplar.bookID,
+                        sectionID: exemplar.sectionID,
+                        category: exemplar.category
+                    )
+                )
+            }
+            return
+        }
+
         switch screen {
         case "book":
             router.studyPath = [.book(bookID: book.id)]
@@ -122,13 +137,53 @@ enum ScreenshotHarness {
         }
     }
 
-    /// Drives a live session far enough to photograph the revealed and summary
-    /// states. Called from `PracticeView`, which owns the view model.
+    /// The first word in the library carrying more than one usage tip, falling
+    /// back to any word with one. Found by searching rather than hardcoded, so
+    /// reordering the content cannot leave this pointing at a word with nothing
+    /// to show.
+    private static func tipExemplar(in catalog: VocabCatalog) -> VocabItem? {
+        catalog.allItems.first { $0.usageTips.count > 1 }
+            ?? catalog.allItems.first { !$0.usageTips.isEmpty }
+    }
+
+    /// The same choice again, narrowed to the session that is actually running.
+    @MainActor
+    private static func tipTerm(for viewModel: PracticeViewModel) -> String? {
+        let queue = viewModel.queue
+        let item = queue.first { $0.usageTips.count > 1 }
+            ?? queue.first { !$0.usageTips.isEmpty }
+        return item?.term
+    }
+
+    /// Drives a live session far enough to photograph the revealed, tip and
+    /// summary states. Called from `PracticeView`, which owns the view model.
     @MainActor
     static func advance(_ viewModel: PracticeViewModel) {
         switch requestedScreen {
         case "practice-revealed":
             viewModel.answer(correct: false)
+
+        case "practice-tip":
+            // The session opens on whichever word the adaptive queue ranks
+            // first, which is not necessarily the one with the tips, so step
+            // forward until it comes up and then reveal it.
+            guard let target = tipTerm(for: viewModel) else {
+                viewModel.answer(correct: true)
+                return
+            }
+            var tipSteps = 0
+            while viewModel.phase != .finished, tipSteps < 500 {
+                tipSteps += 1
+                if viewModel.currentItem?.term == target {
+                    if viewModel.revealedAnswer == nil { viewModel.answer(correct: true) }
+                    return
+                }
+                if viewModel.revealedAnswer == nil {
+                    viewModel.answer(correct: true)
+                } else {
+                    viewModel.advance()
+                }
+            }
 
         case "summary":
             // Bounded rather than `while true`: a logic slip here would hang the
