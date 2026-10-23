@@ -40,10 +40,11 @@
 
 </div>
 
-**TOEFL Vocab** is an offline vocabulary trainer built on two classic word
-lists — **504 Absolutely Essential Words** (Barron's) and **400 Must-Have Words
-for the TOEFL** (McGraw-Hill). No account, no server, no subscription: the
-content ships inside the app and progress is a single file on the device.
+**TOEFL Vocab** is an offline vocabulary trainer built on three word lists —
+**504 Absolutely Essential Words** (Barron's), its **125 Hard but Essential
+Words** appendix, and **400 Must-Have Words for the TOEFL** (McGraw-Hill). 1,762
+words in all. No account, no server, no subscription: the content ships inside
+the app and progress is a single file on the device.
 
 The unusual part is how it is built. Every commit is compiled, tested and
 screenshotted by **GitHub Actions' free macOS runners**, because the developer
@@ -54,6 +55,7 @@ on every run by **XcodeGen** from `project.yml` and is not committed at all.
 
 ## Table of Contents
 
+- [What's New in 2.0](#whats-new-in-20)
 - [Screenshots](#screenshots)
 - [How It Works](#how-it-works)
 - [Why This Project Is Interesting](#why-this-project-is-interesting)
@@ -72,6 +74,26 @@ on every run by **XcodeGen** from `project.yml` and is not committed at all.
 
 ---
 
+## What's New in 2.0
+
+- **A third book.** *125 Hard but Essential Words*, the hard list from the back
+  of the 504, is now its own section alongside the other two. It has no days —
+  the words are grouped by first letter — and it is still being filled in, so
+  letters appear as they are written.
+- **Numbered meanings.** The books write every sense of a word on one line
+  (`keep; keep up; carry on; uphold`). Those are now split and numbered, one per
+  line, instead of arriving as a single grey paragraph.
+- **Highlighted usage tips.** A tip gets a lightbulb of its own, and the
+  `'quoted'` words inside it — the part the tip is actually about — are coloured
+  and bolded. A tip with three of them gets three different colours.
+- **The whole library.** All 42 days and 7 reviews of the 504, and all 41 days of
+  the 400, with titles, order and intro copy for every one of the 95 sections.
+- **A spelling pass.** 152 transcription typos corrected across the definitions,
+  plus 15 tip markers that had been typed as `—-` and so were never being
+  recognised as tips at all.
+
+---
+
 ## Screenshots
 
 Every screen below is captured automatically by CI on each push — see
@@ -79,13 +101,18 @@ Every screen below is captured automatically by CI on each push — see
 
 | Library | Section |
 |:---:|:---:|
-| <img src="assets/screenshots/library-dark.png" alt="Library screen listing both vocabulary books with progress meters" width="270"> | <img src="assets/screenshots/section-dark.png" alt="Section screen with Main and Extra list pickers and a preview of the first queued words" width="270"> |
-| Both books, with progress at a glance | Main / Extra picker, with the adaptive queue previewed |
+| <img src="assets/screenshots/library-dark.png" alt="Library screen listing all three vocabulary books with progress meters" width="270"> | <img src="assets/screenshots/section-dark.png" alt="Section screen with Main and Extra list pickers and a preview of the first queued words" width="270"> |
+| All three books, with progress at a glance | Main / Extra picker, with the adaptive queue previewed |
 
-| Meaning Revealed | Section Complete |
+| Meaning Revealed | Usage Tips |
 |:---:|:---:|
-| <img src="assets/screenshots/practice-revealed-dark.png" alt="Practice screen after answering, showing the revealed definition" width="270"> | <img src="assets/screenshots/summary-dark.png" alt="Session summary showing accuracy ring and next-step options" width="270"> |
-| Self-grade, then the definition appears | Accuracy, cycles completed, and where to go next |
+| <img src="assets/screenshots/practice-revealed-dark.png" alt="Practice screen after answering, showing the revealed definition numbered one meaning per line" width="270"> | <img src="assets/screenshots/practice-tip-dark.png" alt="Practice screen showing a word with two usage tips, each with a lightbulb and coloured quoted words" width="270"> |
+| Several meanings, numbered one per line | One lightbulb per tip, quoted words coloured |
+
+| Section Complete |
+|:---:|
+| <img src="assets/screenshots/summary-dark.png" alt="Session summary showing accuracy ring and next-step options" width="270"> |
+| Accuracy, cycles completed, and where to go next |
 
 ### Light and Dark
 
@@ -139,10 +166,15 @@ fast feedback that exists before a full CI round trip.
 
 ### Study Flow
 
-- Separate books, with an introduction before each book and each section.
+- Three books, with an introduction before each book and each section.
 - Words presented one at a time, in adaptive order.
 - Two-choice self-grading (**I knew it** / **Didn't know**), with the meaning
   revealed immediately after.
+- A word with several meanings shows them **numbered, one per line**, rather
+  than as one semicolon-separated run.
+- **Usage tips** appear under the meaning, one lightbulb per tip, with the
+  `'quoted'` words inside each tip coloured and bolded — those quotes are the
+  source data's way of marking the word the tip is really about.
 - A five-box checklist per word tracks recent accuracy; a completed cycle stays
   visible as a "last 5" recap before resetting.
 - Section-complete screen offers **Next section**, **Practise again**, or
@@ -204,9 +236,31 @@ guaranteed key order:
 }
 ```
 
+Three books live in that file: `504` (42 days and 7 reviews), `125` (the hard
+list from the back of the 504, grouped by first letter instead of by day) and
+`400` (41 days, grouped by subject). 1,762 words in total.
+
 Each section carries two lists: **main**, the book's own words, and **extras**,
 additional words collected alongside them. Either may be absent — a review
 section with no extras simply does not offer that list.
+
+A definition string carries more than the meaning, and two markers inside it are
+read by the loader rather than shown raw:
+
+| Marker | Means | Shown as |
+|---|---|---|
+| `;` | this word has another meaning | a numbered list, one meaning per line |
+| ` --- ` | everything after it is a usage tip, not a meaning | a lightbulb row under the meaning |
+| `'word'` *(inside a tip)* | the word the tip is really about | coloured and bolded inline |
+
+```json
+{ "term": "accuse",
+  "definition": "to say that someone did something wrong --- is often in the 'passive' voice --- often followed by 'of'" }
+```
+
+That row renders as one meaning plus two separate tips, with `passive` and `of`
+highlighted in two different colours. Every `---` starts a new tip, so a word can
+carry as many as the book gives it.
 
 A second file, `Resources/VocabData/catalog.json`, supplies **book and section
 order**, titles and intro copy — the same ordering problem one level up. Without
@@ -229,7 +283,7 @@ Sources/TOEFLVocab/
     Navigation/      Router, Route, PracticeConfiguration
     Core/
         Models/        content and progress data types
-        Content/       VocabCatalogLoader
+        Content/       VocabCatalogLoader, TipMarkup
         Persistence/   ProgressStore, SettingsStore
         Engine/        AdaptiveOrdering, StatsAggregator
         Audio/         PronunciationService, Haptics
@@ -253,7 +307,8 @@ round trip just to observe.
 
 | Module | Responsibility |
 |---|---|
-| `Core/Content/VocabCatalogLoader.swift` | Merges `vocabs.json` and `catalog.json` into an ordered, indexed catalog |
+| `Core/Content/VocabCatalogLoader.swift` | Merges `vocabs.json` and `catalog.json` into an ordered, indexed catalog; splits definitions from their usage tips |
+| `Core/Content/TipMarkup.swift` | Finds the `'quoted'` words inside a usage tip so the design system can colour them |
 | `Core/Engine/AdaptiveOrdering.swift` | Scores and orders words by weakness; drives both study and the drill |
 | `Core/Engine/StatsAggregator.swift` | Rolls per-word history up into the Reports screen |
 | `Core/Persistence/ProgressStore.swift` | Atomic, debounced persistence of all practice history |
@@ -375,7 +430,7 @@ before a CI round trip, so they target the logic that a screenshot cannot show:
 |---|---|
 | `WordStatsCycleTests.swift` | The five-answer cycle rule, recap display, and persistence resilience against a hand-edited or truncated save file |
 | `AdaptiveOrderingTests.swift` | The weakness-scoring formula, ordering determinism, and the Extra Practice queue |
-| `VocabCatalogLoaderTests.swift` | Book/section ordering against `catalog.json`, legacy word-format fallback, and graceful degradation on missing content |
+| `VocabCatalogLoaderTests.swift` | Book/section ordering against `catalog.json`, legacy word-format fallback, graceful degradation on missing content, definition/tip splitting, meaning numbering, and the quoted-word scanner |
 | `ReportingAndStringsTests.swift` | Stats aggregation, run-completion logic, and bilingual string-table coverage |
 
 ```bash
@@ -412,8 +467,8 @@ Regular pushes only run the free Simulator check. A real installable build needs
 a version tag:
 
 ```bash
-git tag v1.2
-git push origin v1.2
+git tag v2.0
+git push origin v2.0
 ```
 
 Download the unsigned `.ipa` artifact from the workflow run, then sign and
@@ -430,7 +485,7 @@ install it with **Sideloadly** using a free Apple ID.
 Current scope:
 
 - Offline, single-device vocabulary practice
-- Bundled word lists, English content, English/Persian UI
+- Three bundled word lists, English content, English/Persian UI
 - Sideloaded distribution via Sideloadly, not the App Store
 
 Current limitations:
@@ -453,6 +508,6 @@ This project is licensed under the MIT License.
 
 See the [LICENSE](LICENSE) file for details. The license covers the source code,
 build configuration and tooling. It does not cover the vocabulary word lists,
-whose selections derive from the two published books and remain the property of
+whose selections derive from the published books and remain the property of
 their publishers — the definitions here are the author's own study notes. See
 [NOTICE](NOTICE) for the full wording.
