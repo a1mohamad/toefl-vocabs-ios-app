@@ -155,13 +155,45 @@ enum ScreenshotHarness {
         return item?.term
     }
 
+    /// Steps the session forward until `matches` is true of the current word,
+    /// then reveals it. Bounded rather than `while true`: a logic slip here
+    /// would hang the app on the main thread and the capture step would time
+    /// out with nothing useful to show.
+    ///
+    /// Falls back to revealing whatever is on screen, because a screenshot of
+    /// the wrong word is still a screenshot; an empty one is not.
+    @MainActor
+    private static func driveTo(
+        _ viewModel: PracticeViewModel,
+        revealAs knewIt: Bool = true,
+        where matches: (VocabItem) -> Bool
+    ) {
+        var steps = 0
+        while viewModel.phase != .finished, steps < 500 {
+            steps += 1
+            if let item = viewModel.currentItem, matches(item) {
+                if viewModel.revealedAnswer == nil { viewModel.answer(correct: knewIt) }
+                return
+            }
+            if viewModel.revealedAnswer == nil {
+                viewModel.answer(correct: true)
+            } else {
+                viewModel.advance()
+            }
+        }
+    }
+
     /// Drives a live session far enough to photograph the revealed, tip and
     /// summary states. Called from `PracticeView`, which owns the view model.
     @MainActor
     static func advance(_ viewModel: PracticeViewModel) {
         switch requestedScreen {
         case "practice-revealed":
-            viewModel.answer(correct: false)
+            // Drive to a word the book gives several meanings, so the screen
+            // that exists to show the numbered list actually shows one. The
+            // adaptive queue decides what comes first, and that is often a
+            // single-meaning word.
+            driveTo(viewModel, revealAs: false) { $0.meanings.count > 1 }
 
         case "practice-tip":
             // The session opens on whichever word the adaptive queue ranks
@@ -171,19 +203,7 @@ enum ScreenshotHarness {
                 viewModel.answer(correct: true)
                 return
             }
-            var tipSteps = 0
-            while viewModel.phase != .finished, tipSteps < 500 {
-                tipSteps += 1
-                if viewModel.currentItem?.term == target {
-                    if viewModel.revealedAnswer == nil { viewModel.answer(correct: true) }
-                    return
-                }
-                if viewModel.revealedAnswer == nil {
-                    viewModel.answer(correct: true)
-                } else {
-                    viewModel.advance()
-                }
-            }
+            driveTo(viewModel) { $0.term == target }
 
         case "summary":
             // Bounded rather than `while true`: a logic slip here would hang the
