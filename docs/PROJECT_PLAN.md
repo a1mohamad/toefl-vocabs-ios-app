@@ -340,8 +340,8 @@ Then push. CI does the rest.
 ### Cutting a device build
 
 ```bash
-git tag v1.2
-git push origin v1.2
+git tag -a v2.1 -m "v2.1"
+git push origin v2.1
 ```
 
 Download the `.ipa` artifact, sign and install with Sideloadly.
