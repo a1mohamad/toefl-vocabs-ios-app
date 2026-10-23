@@ -7,11 +7,13 @@
     "'review_1' belongs between day_6 and day_7 — no sort function would guess that).",
     "This file supplies the order, the display titles, and the intro/preview copy.",
     "",
-    "Adding a new day: append the words to vocabs.json, then add one line here.",
+    "Adding a new day: append the words to vocabs.json, then add one entry here.",
     "If you forget, the app still works — unlisted sections are appended at the end",
-    "with an auto-generated title ('day_9' -> 'Day 9') and a default intro."
+    "with an auto-generated title ('day_9' -> 'Day 9') and no intro.",
+    "",
+    "The 125 book is the hard list from the back of the 504 and has no days: its",
+    "sections are single letters in alphabetical order, and it is still being filled in."
   ],
-
   "books": [
     {
       "id": "504",
@@ -31,49 +33,329 @@
           "id": "day_2",
           "title": "Day 2",
           "kind": "lesson",
-          "intro": "A darker set: cold, danger, and things hidden. Useful in narrative and descriptive passages."
+          "intro": "A darker set: cold, danger and things hidden. 'Corpse', 'peril' and 'sinister' turn up all through narrative passages."
         },
         {
           "id": "day_3",
           "title": "Day 3",
           "kind": "lesson",
-          "intro": "Measurement and judgement — 'minimum', 'scarce', 'essential'. These turn up constantly in test questions themselves, not just the passages."
+          "intro": "Measurement and judgement — 'minimum', 'scarce', 'essential'. These appear in the test questions themselves, not only in the passages."
         },
         {
           "id": "day_4",
           "title": "Day 4",
           "kind": "lesson",
-          "intro": "Words for effort and obligation. Several are close cousins in meaning, so read the definitions carefully before you self-grade."
+          "intro": "Weather and physical science: 'vapor', 'humid', 'dense', 'circulate'. Reading passages lean on this set constantly."
         },
         {
           "id": "day_5",
           "title": "Day 5",
           "kind": "lesson",
-          "intro": "Abstract nouns and verbs of change. This is where vocabulary starts feeling academic rather than everyday."
+          "intro": "Campus and civic life — 'campus', 'majority', 'debate', 'reform'. Common in the conversation sections."
         },
         {
           "id": "day_6",
           "title": "Day 6",
           "kind": "lesson",
-          "intro": "The last set before your first review. If a word here feels shaky, mark it wrong — it will come back sooner."
+          "intro": "The last set before your first review. Work and honesty: 'employee', 'deceive', 'defraud'. If a word feels shaky, mark it wrong — it will come back sooner."
         },
         {
           "id": "review_1",
           "title": "Review 1",
           "kind": "review",
-          "intro": "A consolidation round pulling together the ground covered so far. Eighteen words, no new extras — this one is purely about retention."
+          "intro": "Eighteen words drawn from the ground you have covered, with no new extras. This one is purely about retention."
         },
         {
           "id": "day_7",
           "title": "Day 7",
           "kind": "lesson",
-          "intro": "Back to new material. Watch for words with a formal register — these are the ones that lift a writing score."
+          "intro": "Back to new material. Several words here carry a formal register, and those are the ones that lift a writing score."
         },
         {
           "id": "day_8",
           "title": "Day 8",
           "kind": "lesson",
-          "intro": "Precision words. Several have a near-synonym you already know, and the difference between them is the whole point."
+          "intro": "Judging quality and size: 'mediocre', 'prominent', 'bulky'. Each has a near-synonym you already know, and the difference is the whole point."
+        },
+        {
+          "id": "day_9",
+          "title": "Day 9",
+          "kind": "lesson",
+          "intro": "Time and place, plus words for giving up and holding on — 'vicinity', 'decade', 'resist', 'ignore'."
+        },
+        {
+          "id": "day_10",
+          "title": "Day 10",
+          "kind": "lesson",
+          "intro": "Competition: 'excel', 'compete', 'victorious', 'underestimate', with 'masculine' and 'feminine' alongside them."
+        },
+        {
+          "id": "day_11",
+          "title": "Day 11",
+          "kind": "lesson",
+          "intro": "Seeing and thinking — 'evidence', 'vision', 'glimpse', 'hesitate'. Short words with precise academic uses."
+        },
+        {
+          "id": "day_12",
+          "title": "Day 12",
+          "kind": "lesson",
+          "intro": "Cities and rules: 'urban', 'population', 'pollute', 'prohibit'. Eleven words — this day is one short in the book itself."
+        },
+        {
+          "id": "review_2",
+          "title": "Review 2",
+          "kind": "review",
+          "intro": "Ten words, no extras. A quick consolidation round before the next six days."
+        },
+        {
+          "id": "day_13",
+          "title": "Day 13",
+          "kind": "lesson",
+          "intro": "News and movement — 'journalist', 'migrate', 'revive', 'persist'. Verbs that often carry a lecture summary."
+        },
+        {
+          "id": "day_14",
+          "title": "Day 14",
+          "kind": "lesson",
+          "intro": "Conflict: 'rival', 'brutal', 'opponent', 'brawl'. Strong feelings, so the shades between them matter."
+        },
+        {
+          "id": "day_15",
+          "title": "Day 15",
+          "kind": "lesson",
+          "intro": "Growth and promises — 'expand', 'mature', 'pledge', 'unanimous'. Useful whenever you write about change."
+        },
+        {
+          "id": "day_16",
+          "title": "Day 16",
+          "kind": "lesson",
+          "intro": "Size, doubt and care: 'vast', 'capacity', 'accurate', 'cautious'. Precision words for describing evidence."
+        },
+        {
+          "id": "day_17",
+          "title": "Day 17",
+          "kind": "lesson",
+          "intro": "Need and risk — 'addict', 'wary', 'avoid', 'nourish'. 'Keg' is the odd one out; learn it and move on."
+        },
+        {
+          "id": "day_18",
+          "title": "Day 18",
+          "kind": "lesson",
+          "intro": "Streets and money: 'pedestrian', 'budget', 'reckless', 'economical'. Everyday nouns that carry academic weight."
+        },
+        {
+          "id": "review_3",
+          "title": "Review 3",
+          "kind": "review",
+          "intro": "Nine words, no extras. The shortest review in the book, so make the marks honest."
+        },
+        {
+          "id": "day_19",
+          "title": "Day 19",
+          "kind": "lesson",
+          "intro": "Food, numbers and limits — 'harvest', 'estimate', 'quota', 'ban'. Common around charts and data."
+        },
+        {
+          "id": "day_20",
+          "title": "Day 20",
+          "kind": "lesson",
+          "intro": "Survival: 'emerge', 'ambush', 'perish', 'devour'. Vivid verbs, easy to picture and easy to keep."
+        },
+        {
+          "id": "day_21",
+          "title": "Day 21",
+          "kind": "lesson",
+          "intro": "Agreement and trouble — 'collide', 'confirm', 'verify', 'dilemma'. 'Verify' and 'confirm' are not the same; read both."
+        },
+        {
+          "id": "day_22",
+          "title": "Day 22",
+          "kind": "lesson",
+          "intro": "Crime and family law: 'warden', 'justice', 'spouse', 'homicide'. Formal register throughout."
+        },
+        {
+          "id": "day_23",
+          "title": "Day 23",
+          "kind": "lesson",
+          "intro": "Rules and showing — 'forbid', 'logical', 'exhibit', 'proceed'. Several arrive with a fixed preposition."
+        },
+        {
+          "id": "day_24",
+          "title": "Day 24",
+          "kind": "lesson",
+          "intro": "Strong feeling: 'fierce', 'detest', 'sneer', 'scowl'. Four ways to show dislike, each one slightly different."
+        },
+        {
+          "id": "review_4",
+          "title": "Review 4",
+          "kind": "review",
+          "intro": "Ten words, no extras. Half the book is behind you."
+        },
+        {
+          "id": "day_25",
+          "title": "Day 25",
+          "kind": "lesson",
+          "intro": "Travel and ruin — 'architect', 'baggage', 'squander', 'calamity'. 'Matrimony' and 'bigamy' belong together."
+        },
+        {
+          "id": "day_26",
+          "title": "Day 26",
+          "kind": "lesson",
+          "intro": "Daring and calming: 'compel', 'venture', 'quench', 'pacify'. Verbs of pushing and of soothing."
+        },
+        {
+          "id": "day_27",
+          "title": "Day 27",
+          "kind": "lesson",
+          "intro": "Speed and thrift — 'rapid', 'rash', 'exhaust', 'thrifty', 'miserly'. 'Thrifty' is praise; 'miserly' is not."
+        },
+        {
+          "id": "day_28",
+          "title": "Day 28",
+          "kind": "lesson",
+          "intro": "Harm and law: 'outlaw', 'disclose', 'censor', 'culprit'. Common in argument passages."
+        },
+        {
+          "id": "day_29",
+          "title": "Day 29",
+          "kind": "lesson",
+          "intro": "Work and loss — 'toil', 'blunder', 'mourn', 'subside'. Quiet words, mostly from narrative."
+        },
+        {
+          "id": "day_30",
+          "title": "Day 30",
+          "kind": "lesson",
+          "intro": "Describing and naming: 'depict', 'novel', 'quote', 'verse'. 'Novel' as an adjective catches people out."
+        },
+        {
+          "id": "review_5",
+          "title": "Review 5",
+          "kind": "review",
+          "intro": "Only five words, no extras. Treat it as a warm-up rather than a day."
+        },
+        {
+          "id": "day_31",
+          "title": "Day 31",
+          "kind": "lesson",
+          "intro": "Travel and belief — 'commuter', 'patriotic', 'valor', 'lunatic'. Watch 'idle' and 'idol', which sound alike."
+        },
+        {
+          "id": "day_32",
+          "title": "Day 32",
+          "kind": "lesson",
+          "intro": "Less and more: 'diminish', 'maximum', 'flee', 'vulnerable'. Thirteen words — one over the usual twelve."
+        },
+        {
+          "id": "day_33",
+          "title": "Day 33",
+          "kind": "lesson",
+          "intro": "Voice and attitude — 'shrill', 'witty', 'mumble', 'mute'. Words for how people speak."
+        },
+        {
+          "id": "day_34",
+          "title": "Day 34",
+          "kind": "lesson",
+          "intro": "School and medicine: 'candidate', 'coeducational', 'vaccinate', 'temperate'. Long words, but regular ones."
+        },
+        {
+          "id": "day_35",
+          "title": "Day 35",
+          "kind": "lesson",
+          "intro": "Money and film — 'lottery', 'finance', 'cinema', 'soar'. 'Stationary' is not 'stationery'."
+        },
+        {
+          "id": "day_36",
+          "title": "Day 36",
+          "kind": "lesson",
+          "intro": "Heat and calm: 'scorch', 'tempest', 'soothe', 'harmony'. 'Resume' has two meanings; learn both."
+        },
+        {
+          "id": "review_6",
+          "title": "Review 6",
+          "kind": "review",
+          "intro": "Five words, no extras. The last of the short reviews."
+        },
+        {
+          "id": "day_37",
+          "title": "Day 37",
+          "kind": "lesson",
+          "intro": "Power and shortage — 'heir', 'majestic', 'dwindle', 'surplus', 'drought'."
+        },
+        {
+          "id": "day_38",
+          "title": "Day 38",
+          "kind": "lesson",
+          "intro": "Crowds and feeling: 'swarm', 'tumult', 'dejected', 'tyrant'. Strong images, useful in writing."
+        },
+        {
+          "id": "day_39",
+          "title": "Day 39",
+          "kind": "lesson",
+          "intro": "Clear and hidden — 'unearth', 'legible', 'transparent', 'contagious'. 'Clergy' and 'placard' are nouns worth picturing."
+        },
+        {
+          "id": "day_40",
+          "title": "Day 40",
+          "kind": "lesson",
+          "intro": "Health and the city: 'epidemic', 'obesity', 'ventilate', 'municipal'. Formal, and common in lectures."
+        },
+        {
+          "id": "day_41",
+          "title": "Day 41",
+          "kind": "lesson",
+          "intro": "Second chances — 'rehabilitate', 'parole', 'nominate', 'potential'. Most of this set comes from civic life."
+        },
+        {
+          "id": "day_42",
+          "title": "Day 42",
+          "kind": "lesson",
+          "intro": "The last day: 'maintain', 'endure', 'ponder', 'amend', 'ballot'. A fitting set to finish on."
+        },
+        {
+          "id": "review_7",
+          "title": "Review 7",
+          "kind": "review",
+          "intro": "Seventeen words to close the book, no extras. Nothing new here — just proof."
+        }
+      ]
+    },
+    {
+      "id": "125",
+      "title": "125 Hard but Essential Words",
+      "shortTitle": "125 Hard",
+      "author": "Barron's",
+      "theme": "rose",
+      "intro": "The hard list from the back of the 504 — the words the book keeps for last. There are no days here: the list is alphabetical, so you take one letter at a time. It is still being filled in, and letters appear as they are written.",
+      "sections": [
+        {
+          "id": "A",
+          "title": "A",
+          "kind": "lesson",
+          "intro": "Eleven words, 'abate' to 'avid'. 'Aegis' and 'adage' are rare but easy to remember once they land."
+        },
+        {
+          "id": "B",
+          "title": "B",
+          "kind": "lesson",
+          "intro": "Only four, and three of them open the same way — 'belligerent', 'benevolent', 'benign'. Read all three together."
+        },
+        {
+          "id": "C",
+          "title": "C",
+          "kind": "lesson",
+          "intro": "The biggest letter so far: fifteen words, 'cajole' to 'cursory'. 'Covert' and 'clandestine' are near twins."
+        },
+        {
+          "id": "D",
+          "title": "D",
+          "kind": "lesson",
+          "intro": "Five words about decline and pressure — 'decadent', 'dormant', 'duress'."
+        },
+        {
+          "id": "E",
+          "title": "E",
+          "kind": "lesson",
+          "intro": "Seven words, 'egotist' to 'expedite'. 'Exacerbate' and 'exhort' are worth extra passes."
         }
       ]
     },
@@ -83,55 +365,253 @@
       "shortTitle": "400 Must-Have",
       "author": "McGraw-Hill",
       "theme": "teal",
-      "intro": "Built specifically around what the TOEFL actually tests. Ten words a day, weighted toward academic lectures and campus conversations. Shorter days than the 504 — good for a second pass later in a study session.",
+      "intro": "Built around what the TOEFL actually tests, and grouped by subject rather than by difficulty — farming, geology, medicine, law, art. Ten words a day, weighted toward academic lectures and campus conversations. Shorter days than the 504, which makes this a good second pass later in a study session.",
       "sections": [
         {
           "id": "day_1",
           "title": "Day 1",
           "kind": "lesson",
-          "intro": "Opening set. Academic verbs that carry a lot of weight in listening sections."
+          "intro": "Farming and plants — 'cultivation', 'fertilize', 'irrigation', 'photosynthesis'."
         },
         {
           "id": "day_2",
           "title": "Day 2",
           "kind": "lesson",
-          "intro": "Words for cause and consequence — the connective tissue of every argument passage."
+          "intro": "Disasters: 'catastrophic', 'eruption', 'famine', 'flood', 'unleash'."
         },
         {
           "id": "day_3",
           "title": "Day 3",
           "kind": "lesson",
-          "intro": "Description and comparison. Expect these in questions that ask how two things differ."
+          "intro": "Evolution and change — 'adapt', 'evolve', 'inherent', 'migration', 'survive'."
         },
         {
           "id": "day_4",
           "title": "Day 4",
           "kind": "lesson",
-          "intro": "Process and method vocabulary, common in science lectures."
+          "intro": "The environment: 'contamination', 'deplete', 'emission', 'extinction', 'reservoir'."
         },
         {
           "id": "day_5",
           "title": "Day 5",
           "kind": "lesson",
-          "intro": "Halfway. A mix of formal verbs and the noun forms that go with them."
+          "intro": "Mathematics — 'denominator', 'exponentially', 'infinitesimal', 'proportion', 'sequence'."
         },
         {
           "id": "day_6",
           "title": "Day 6",
           "kind": "lesson",
-          "intro": "Words about limits, conditions, and exceptions — precise meanings matter here."
+          "intro": "Measurement and materials: 'accuracy', 'adjacent', 'compress', 'overlap', 'seep'."
         },
         {
           "id": "day_7",
           "title": "Day 7",
           "kind": "lesson",
-          "intro": "Research and evidence vocabulary. Heavy overlap with academic writing prompts."
+          "intro": "Engineering and upkeep — 'corrode', 'implement', 'installation', 'maintenance', 'simulation'."
         },
         {
           "id": "day_8",
           "title": "Day 8",
           "kind": "lesson",
-          "intro": "Final set. If your accuracy holds here, run an Extra Practice pass across both books."
+          "intro": "Physics and chemistry: 'combustion', 'component', 'nucleus', 'permeate', 'rotate'."
+        },
+        {
+          "id": "day_9",
+          "title": "Day 9",
+          "kind": "lesson",
+          "intro": "Research words — 'acquisition', 'anomaly', 'intervene', 'retrieve'. Nine words; this day is one short."
+        },
+        {
+          "id": "day_10",
+          "title": "Day 10",
+          "kind": "lesson",
+          "intro": "Religion and belief: 'agnostic', 'atheist', 'deify', 'ecclesiastical', 'pious'."
+        },
+        {
+          "id": "day_11",
+          "title": "Day 11",
+          "kind": "lesson",
+          "intro": "Illness and injury — 'decrepit', 'fatally', 'forensics', 'prognosis', 'wound'. Nine words."
+        },
+        {
+          "id": "day_12",
+          "title": "Day 12",
+          "kind": "lesson",
+          "intro": "Treatment: 'anesthesia', 'implant', 'inject', 'obese', 'procedure'."
+        },
+        {
+          "id": "day_13",
+          "title": "Day 13",
+          "kind": "lesson",
+          "intro": "The supernatural — 'astrological', 'divination', 'phantom', 'psychic'."
+        },
+        {
+          "id": "day_14",
+          "title": "Day 14",
+          "kind": "lesson",
+          "intro": "Culture and what it leaves behind: 'assimilate', 'cremation', 'folklore', 'fossilize', 'relic'."
+        },
+        {
+          "id": "day_15",
+          "title": "Day 15",
+          "kind": "lesson",
+          "intro": "Fairness and bias — 'biased', 'discriminate', 'oppress', 'paradigm', 'prejudiced'."
+        },
+        {
+          "id": "day_16",
+          "title": "Day 16",
+          "kind": "lesson",
+          "intro": "Education: 'curriculum', 'erudite', 'parochial', 'rigor', 'secular'."
+        },
+        {
+          "id": "day_17",
+          "title": "Day 17",
+          "kind": "lesson",
+          "intro": "War — 'allegiance', 'artillery', 'hierarchy', 'mobilize', 'strategic'."
+        },
+        {
+          "id": "day_18",
+          "title": "Day 18",
+          "kind": "lesson",
+          "intro": "Conquest and collapse: 'annex', 'apex', 'conquest', 'prevailing', 'violation'."
+        },
+        {
+          "id": "day_19",
+          "title": "Day 19",
+          "kind": "lesson",
+          "intro": "History and place — 'chronologically', 'longitude', 'milieu', 'Orwellian'."
+        },
+        {
+          "id": "day_20",
+          "title": "Day 20",
+          "kind": "lesson",
+          "intro": "Economics: 'commodity', 'equity', 'inflation', 'per capita', 'subsidy'."
+        },
+        {
+          "id": "day_21",
+          "title": "Day 21",
+          "kind": "lesson",
+          "intro": "Wealth and class — 'affluence', 'elite', 'impoverish', 'nobility', 'prestige'."
+        },
+        {
+          "id": "day_22",
+          "title": "Day 22",
+          "kind": "lesson",
+          "intro": "Property and risk: 'asset', 'hazardous', 'lease', 'liability', 'proprietor'."
+        },
+        {
+          "id": "day_23",
+          "title": "Day 23",
+          "kind": "lesson",
+          "intro": "Work and reward — 'compensate', 'incentive', 'industrious', 'marginal', 'resign'."
+        },
+        {
+          "id": "day_24",
+          "title": "Day 24",
+          "kind": "lesson",
+          "intro": "Trade: 'distill', 'haggle', 'merchant', 'prototype', 'shuttle'."
+        },
+        {
+          "id": "day_25",
+          "title": "Day 25",
+          "kind": "lesson",
+          "intro": "Politics — 'advocate', 'coalition', 'inaugurate', 'policy', 'poll'."
+        },
+        {
+          "id": "day_26",
+          "title": "Day 26",
+          "kind": "lesson",
+          "intro": "The courtroom: 'accuse', 'allegedly', 'convict', 'verdict', 'witness'."
+        },
+        {
+          "id": "day_27",
+          "title": "Day 27",
+          "kind": "lesson",
+          "intro": "Policing and watching — 'apprehend', 'implicate', 'seize', 'surveillance'."
+        },
+        {
+          "id": "day_28",
+          "title": "Day 28",
+          "kind": "lesson",
+          "intro": "Argument: 'analyze', 'hypothesize', 'inference', 'objectively', 'versus'."
+        },
+        {
+          "id": "day_29",
+          "title": "Day 29",
+          "kind": "lesson",
+          "intro": "Corruption — 'bribery', 'erode', 'integrity', 'scandal', 'unmask'."
+        },
+        {
+          "id": "day_30",
+          "title": "Day 30",
+          "kind": "lesson",
+          "intro": "Crime: 'abduction', 'coerce', 'detain', 'piracy', 'smuggle'."
+        },
+        {
+          "id": "day_31",
+          "title": "Day 31",
+          "kind": "lesson",
+          "intro": "Drugs and distortion — 'addictive', 'cartel', 'interdict', 'potent', 'subtly'."
+        },
+        {
+          "id": "day_32",
+          "title": "Day 32",
+          "kind": "lesson",
+          "intro": "Family: 'ancestral', 'descendant', 'kin', 'paternal', 'sibling'."
+        },
+        {
+          "id": "day_33",
+          "title": "Day 33",
+          "kind": "lesson",
+          "intro": "Friendship — 'affection', 'bond', 'clique', 'confide', 'solidarity'."
+        },
+        {
+          "id": "day_34",
+          "title": "Day 34",
+          "kind": "lesson",
+          "intro": "Love and conflict: 'devotion', 'dilemma', 'loyal', 'passion', 'reciprocity'."
+        },
+        {
+          "id": "day_35",
+          "title": "Day 35",
+          "kind": "lesson",
+          "intro": "Contempt — 'berate', 'despise', 'humiliation', 'obnoxious', 'vitriolic'. Harsh words with precise meanings."
+        },
+        {
+          "id": "day_36",
+          "title": "Day 36",
+          "kind": "lesson",
+          "intro": "Independence and fear: 'autonomy', 'dire', 'hover', 'novice', 'plummet'."
+        },
+        {
+          "id": "day_37",
+          "title": "Day 37",
+          "kind": "lesson",
+          "intro": "Young people — 'adolescent', 'delinquency', 'hedonistic', 'rebel', 'status quo'."
+        },
+        {
+          "id": "day_38",
+          "title": "Day 38",
+          "kind": "lesson",
+          "intro": "Art and seeing: 'abstract', 'depict', 'perspective', 'realism', 'spectrum'."
+        },
+        {
+          "id": "day_39",
+          "title": "Day 39",
+          "kind": "lesson",
+          "intro": "Writing and signs — 'ambiguous', 'connotation', 'decipher', 'phonetic', 'symbolic'."
+        },
+        {
+          "id": "day_40",
+          "title": "Day 40",
+          "kind": "lesson",
+          "intro": "Performance: 'cast', 'charismatic', 'gala', 'improvisation', 'skit'."
+        },
+        {
+          "id": "day_41",
+          "title": "Day 41",
+          "kind": "lesson",
+          "intro": "The last day: 'bulk', 'capricious', 'cumbersome', 'exotic', 'vanity'. A mixed set to finish on."
         }
       ]
     }
