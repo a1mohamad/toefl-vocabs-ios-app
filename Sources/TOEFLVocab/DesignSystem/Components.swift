@@ -339,51 +339,141 @@ struct PronunciationControl: View {
     }
 }
 
-// MARK: - Usage tip
+// MARK: - Meanings
 
-/// The grammar note that some words carry after the `---` marker in the source
-/// data — "followed by in", "usually comes before the noun it describes".
+/// The revealed definition.
+///
+/// The source data packs every sense of a word onto one `;`-separated line
+/// ("keep; keep up; carry on; uphold; support"), which arrives as a single grey
+/// paragraph where no individual meaning stands out. So one meaning stays a
+/// centred line, exactly as before, and two or more become a numbered list —
+/// the list is what tells the learner at a glance that this word has five
+/// senses, not one long one.
+///
+/// Left-aligned inside a centred block on purpose: numbers that do not share a
+/// left edge are much harder to scan down.
+struct MeaningListView: View {
+    let meanings: [String]
+
+    var body: some View {
+        if meanings.count <= 1 {
+            Text(meanings.first ?? "")
+                .font(AppFont.definition)
+                .foregroundStyle(Palette.textPrimary)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+        } else {
+            VStack(alignment: .leading, spacing: 7) {
+                ForEach(Array(meanings.enumerated()), id: \.offset) { index, meaning in
+                    row(number: index + 1, meaning: meaning)
+                }
+            }
+            .accessibilityElement(children: .combine)
+        }
+    }
+
+    private func row(number: Int, meaning: String) -> some View {
+        HStack(alignment: .firstTextBaseline, spacing: 9) {
+            Text("\(number).")
+                .font(AppFont.definition.monospacedDigit())
+                .foregroundStyle(Palette.textTertiary)
+            Text(meaning)
+                .font(AppFont.definition)
+                .foregroundStyle(Palette.textPrimary)
+                .multilineTextAlignment(.leading)
+                .fixedSize(horizontal: false, vertical: true)
+            Spacer(minLength: 0)
+        }
+    }
+}
+
+// MARK: - Usage tips
+
+/// The grammar notes that some words carry after the `---` markers in the
+/// source data — "followed by 'in'", "usually comes before the noun it
+/// describes".
 ///
 /// Deliberately styled as an aside rather than as more definition text: it is
 /// advice about *using* the word, and a learner who reads it as part of the
 /// meaning is memorising the wrong thing. The lightbulb and the warm tint are
-/// the conventional "tip" pairing, and the label repeats what the icon says so
-/// the emoji is never the only cue.
-struct UsageTipView: View {
-    let tip: String
+/// the conventional "tip" pairing, and the heading repeats what the icon says
+/// so the emoji is never the only cue.
+///
+/// Several words carry two independent notes, so every note gets its own
+/// lightbulb and its own line inside one card — one shared heading, because
+/// repeating "TIP" three times is noise rather than structure.
+///
+/// Inside each note, the `'quoted'` words are coloured: those quotes are the
+/// data's way of marking the word the note is really about, and a note with
+/// three of them gets three different colours so they do not merge into one
+/// long emphasis. See `TipMarkup` and `Palette.tipHighlights`.
+struct UsageTipsView: View {
+    let tips: [String]
 
     @Environment(\.strings) private var strings
 
     var body: some View {
-        HStack(alignment: .top, spacing: 10) {
-            Text(verbatim: "💡")
-                .font(.system(size: 18))
-                .accessibilityHidden(true)
-
-            VStack(alignment: .leading, spacing: 3) {
-                Text(strings[.practiceTip].uppercased())
+        if !tips.isEmpty {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(strings[tips.count > 1 ? .practiceTips : .practiceTip].uppercased())
                     .font(AppFont.badge)
                     .tracking(0.6)
                     .foregroundStyle(Palette.warning)
-                Text(tip)
-                    .font(AppFont.body)
-                    .foregroundStyle(Palette.textSecondary)
-                    .multilineTextAlignment(.leading)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
 
+                ForEach(Array(tips.enumerated()), id: \.offset) { index, tip in
+                    row(tip, position: index + 1, total: tips.count)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 13)
+            .padding(.vertical, 11)
+            .background(Palette.warningSoft)
+            .clipShape(RoundedRectangle(cornerRadius: Metrics.controlRadius, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: Metrics.controlRadius, style: .continuous)
+                    .strokeBorder(Palette.warning.opacity(0.28), lineWidth: 1)
+            )
+        }
+    }
+
+    private func row(_ tip: String, position: Int, total: Int) -> some View {
+        HStack(alignment: .top, spacing: 9) {
+            Text(verbatim: "💡")
+                .font(.system(size: 16))
+                .accessibilityHidden(true)
+            Text(highlighted(tip))
+                .multilineTextAlignment(.leading)
+                .fixedSize(horizontal: false, vertical: true)
             Spacer(minLength: 0)
         }
-        .padding(.horizontal, 13)
-        .padding(.vertical, 11)
-        .background(Palette.warningSoft)
-        .clipShape(RoundedRectangle(cornerRadius: Metrics.controlRadius, style: .continuous))
-        .overlay(
-            RoundedRectangle(cornerRadius: Metrics.controlRadius, style: .continuous)
-                .strokeBorder(Palette.warning.opacity(0.28), lineWidth: 1)
-        )
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(strings[.practiceTip]): \(tip)")
+        .accessibilityLabel(accessibilityLabel(tip, position: position, total: total))
+    }
+
+    /// The tip as coloured text. Highlights are bold as well as coloured, so a
+    /// colourblind reader still sees which word is marked.
+    private func highlighted(_ tip: String) -> AttributedString {
+        var result = AttributedString()
+        for segment in TipMarkup.segments(of: tip) {
+            var run = AttributedString(segment.text)
+            if let index = segment.highlightIndex, !Palette.tipHighlights.isEmpty {
+                run.foregroundColor = Palette.tipHighlights[index % Palette.tipHighlights.count]
+                run.font = AppFont.body.weight(.bold)
+            } else {
+                run.foregroundColor = Palette.textSecondary
+                run.font = AppFont.body
+            }
+            result.append(run)
+        }
+        return result
+    }
+
+    /// Spoken without the quote marks, and numbered only when there is more
+    /// than one note to tell apart.
+    private func accessibilityLabel(_ tip: String, position: Int, total: Int) -> String {
+        let spoken = TipMarkup.plainText(of: tip)
+        guard total > 1 else { return "\(strings[.practiceTip]): \(spoken)" }
+        return "\(strings.format(.practiceTipPosition, position, total)): \(spoken)"
     }
 }
 
