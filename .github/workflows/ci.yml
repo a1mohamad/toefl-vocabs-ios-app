@@ -42,7 +42,7 @@ jobs:
   # ---------------------------------------------------------------------------
   unit-tests:
     name: Run unit tests
-    runs-on: macos-14
+    runs-on: macos-15
     needs: content-lint
     steps:
       - name: Checkout repo
@@ -81,7 +81,7 @@ jobs:
   # ---------------------------------------------------------------------------
   simulator-check:
     name: Build & screenshot in Simulator (no signing needed)
-    runs-on: macos-14
+    runs-on: macos-15
     needs: content-lint
     steps:
       - name: Checkout repo
@@ -209,7 +209,7 @@ jobs:
   device-build:
     name: Build unsigned .ipa for Sideloadly
     if: startsWith(github.ref, 'refs/tags/v')
-    runs-on: macos-14
+    runs-on: macos-15
     needs: [content-lint, unit-tests, simulator-check]
     steps:
       - name: Checkout repo

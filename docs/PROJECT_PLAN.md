@@ -357,9 +357,9 @@ Download the `.ipa` artifact, sign and install with [Sideloadly](https://sideloa
 | Job | Runs on | When | Does |
 |---|---|---|---|
 | `content-lint` | ubuntu | every push/PR | `validate_content.py --strict`. ~15s, gates everything else so a bad JSON edit never costs a macOS runner. |
-| `unit-tests` | macos-14 | every push/PR | XcodeGen → `xcodebuild test`. Own job, so a test failure still lets the screenshot job produce a picture. |
-| `simulator-check` | macos-14 | every push/PR | Build → **verify `vocabs.json`, `catalog.json` and the compiled icon are actually inside the `.app`** → install → launch → screenshot in **light and dark**. |
-| `device-build` | macos-14 | tags `v*` only | Release build, `CODE_SIGNING_ALLOWED=NO`, zips `Payload/` into an unsigned `.ipa` artifact. |
+| `unit-tests` | macos-15 | every push/PR | XcodeGen → `xcodebuild test`. Own job, so a test failure still lets the screenshot job produce a picture. |
+| `simulator-check` | macos-15 | every push/PR | Build → **verify `vocabs.json`, `catalog.json` and the compiled icon are actually inside the `.app`** → install → launch → screenshot in **light and dark**. |
+| `device-build` | macos-15 | tags `v*` only | Release build, `CODE_SIGNING_ALLOWED=NO`, zips `Payload/` into an unsigned `.ipa` artifact. |
 
 The bundle-content check exists because a dropped `buildPhase: resources` entry
 in `project.yml` produces an app that builds, launches and screenshots fine — it
