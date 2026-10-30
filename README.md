@@ -13,7 +13,6 @@
 [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-CI%2FCD-2088FF?logo=githubactions&logoColor=white)](.github/workflows/ci.yml)
 [![Platform](https://img.shields.io/badge/Platform-iPhone-lightgrey?logo=apple&logoColor=white)](https://www.apple.com/ios/)
 [![Sideloadly](https://img.shields.io/badge/Sideloadly-Install%20on%20iPhone-FF7139?logo=apple&logoColor=white)](https://sideloadly.io/)
-[![IPASide](https://img.shields.io/badge/Sideloadly-Install%20on%20iPhone-FF7139?logo=apple&logoColor=white)](https://ipaside.com/)
 [![CI](https://img.shields.io/github/actions/workflow/status/a1mohamad/toefl-vocabs-ios-app/ci.yml?branch=main&label=CI)](https://github.com/a1mohamad/toefl-vocabs-ios-app/actions)
 [![License](https://img.shields.io/github/license/a1mohamad/toefl-vocabs-ios-app)](LICENSE)
 
