@@ -2,8 +2,8 @@
 
 Offline vocabulary trainer built around three word lists: **504 Absolutely
 Essential Words** (Barron's), its **125 Hard but Essential Words** appendix,
-and **400 Must-Have Words for the TOEFL** (McGraw-Hill) — 1,762 words across
-95 sections. No account, no network, no subscription.
+and **400 Must-Have Words for the TOEFL** (McGraw-Hill) — 1,917 words across
+111 sections. No account, no network, no subscription.
 
 Built under fixed constraints: Windows-only development, no Xcode GUI, no local
 Simulator, no paid Apple Developer Program, public GitHub repo, `.xcodeproj`
@@ -346,7 +346,7 @@ git tag -a v<next> -m "v<next>"
 git push origin v<next>
 ```
 
-Download the `.ipa` artifact, sign and install with Sideloadly.
+Download the `.ipa` artifact, sign and install with [Sideloadly](https://sideloadly.io/) or [IPASide](https://ipaside.com/).
 
 ---
 
@@ -411,3 +411,11 @@ is pasted in. Two things were deliberately left alone, since they are wording
 rather than spelling: the `generation` tip in 400/day_3 ends on a dangling
 "and", and the `exclusive` tip in 400/day_33 has a close parenthesis with no
 opening one.
+
+
+### 2.1.0 content update
+
+The 125 appendix is complete: 125 main words and 127 extras in 21 letter
+sections. The full library has 1,917 entries in 111 sections. New content
+was checked for spelling and meaning; existing IDs and prior corrections
+are retained so upgrading from 2.0 preserves study history.

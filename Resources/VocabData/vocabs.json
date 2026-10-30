@@ -4,7 +4,7 @@
       "main": [
         {
           "term": "abandon",
-          "definition": "desert;leave without planning to come back, quit"
+          "definition": "desert;leave without planning to come back; quit"
         },
         {
           "term": "keen",
@@ -20,7 +20,7 @@
         },
         {
           "term": "oath",
-          "definition": "a promise that something is true, a curse"
+          "definition": "a promise that something is true; a curse"
         },
         {
           "term": "vacant",
@@ -36,7 +36,7 @@
         },
         {
           "term": "data",
-          "definition": "facts, information"
+          "definition": "facts; information"
         },
         {
           "term": "unaccustomed",
@@ -322,7 +322,7 @@
       "main": [
         {
           "term": "vapor",
-          "definition": "moisture in the air that can be seen;fog;mist"
+          "definition": "moisture in the air that can be seen; fog; mist"
         },
         {
           "term": "eliminate",
@@ -4392,7 +4392,7 @@
         },
         {
           "term": "bizarre",
-          "definition": "fantastically out the ordinary; odd"
+          "definition": "fantastically out of the ordinary; odd"
         }
       ],
       "extras": [
@@ -4488,11 +4488,11 @@
         },
         {
           "term": "coax",
-          "definition": "to persuade someone gently to do something with patient"
+          "definition": "to persuade someone gently and patiently to do something"
         },
         {
           "term": "corrosive",
-          "definition": "caused damage by chemical action; harmful and causing bad feeling"
+          "definition": "causing damage by chemical action; harmful and causing bad feelings"
         },
         {
           "term": "placid",
@@ -4532,7 +4532,7 @@
         },
         {
           "term": "choke",
-          "definition": "block or stop something; be unable to breath"
+          "definition": "block or stop something; be unable to breathe"
         },
         {
           "term": "collar",
@@ -4544,7 +4544,7 @@
         },
         {
           "term": "obsolete",
-          "definition": "no longer used or useful"
+          "definition": "no longer in use; out of date"
         },
         {
           "term": "armored",
@@ -4580,13 +4580,13 @@
         },
         {
           "term": "duress",
-          "definition": "forcible restrain; coercion"
+          "definition": "forcible restraint; coercion"
         }
       ],
       "extras": [
         {
           "term": "reindeer",
-          "definition": "a snowy animal with horns that pulls Santa's sleds"
+          "definition": "a deer with antlers that lives in cold northern regions; traditionally pulls Santa's sleigh"
         },
         {
           "term": "steer",
@@ -4618,7 +4618,7 @@
         },
         {
           "term": "bud",
-          "definition": "small, light part of a plant the will become a flower"
+          "definition": "a small part of a plant that will develop into a leaf or flower"
         },
         {
           "term": "fine",
@@ -4668,7 +4668,7 @@
         },
         {
           "term": "funeral",
-          "definition": "ceremony when after someone dies"
+          "definition": "a ceremony held after someone dies"
         },
         {
           "term": "inauguration",
@@ -4676,7 +4676,7 @@
         },
         {
           "term": "incite",
-          "definition": "to provoke or trigger action or behavior; encourage or persuade someone to act in a violent or unlawful way"
+          "definition": "to provoke or encourage action, especially violent or unlawful behavior"
         },
         {
           "term": "initiative",
@@ -4685,6 +4685,718 @@
         {
           "term": "dam",
           "definition": "a barrier built across a river to hold back water"
+        }
+      ]
+    },
+    "F": {
+      "main": [
+        {
+          "term": "fallacious",
+          "definition": "deceiving or misleading"
+        },
+        {
+          "term": "fracas",
+          "definition": "a noisy quarrel; brawl"
+        },
+        {
+          "term": "furtive",
+          "definition": "underhanded; secret; stealthy"
+        }
+      ],
+      "extras": [
+        {
+          "term": "rests solely upon",
+          "definition": "is based only on"
+        },
+        {
+          "term": "bump",
+          "definition": "to hit or knock against something usually accidentally"
+        },
+        {
+          "term": "stealth",
+          "definition": "doing something quietly and secretly so that no one notices"
+        }
+      ]
+    },
+    "G": {
+      "main": [
+        {
+          "term": "garrulous",
+          "definition": "talkative; wordy"
+        },
+        {
+          "term": "gesticulate",
+          "definition": "to make gestures especially when speaking"
+        }
+      ],
+      "extras": [
+        {
+          "term": "take a nap",
+          "definition": "have a short sleep"
+        },
+        {
+          "term": "chopping",
+          "definition": "cutting"
+        }
+      ]
+    },
+    "H": {
+      "main": [
+        {
+          "term": "heterogeneous",
+          "definition": "consisting of dissimilar ingredients; mixed"
+        }
+      ],
+      "extras": [
+        {
+          "term": "entomologist",
+          "definition": "scientist who studies insects"
+        }
+      ]
+    },
+    "I": {
+      "main": [
+        {
+          "term": "imbibe",
+          "definition": "to receive into the mind and retain; drink"
+        },
+        {
+          "term": "impasse",
+          "definition": "no obvious escape; deadlock"
+        },
+        {
+          "term": "impeccable",
+          "definition": "free from fault or blame; flawless"
+        },
+        {
+          "term": "incarcerate",
+          "definition": "to put in prison"
+        },
+        {
+          "term": "incriminate",
+          "definition": "to show evidence of involvement in a crime"
+        },
+        {
+          "term": "incumbent",
+          "definition": "the holder of an office; occupant"
+        },
+        {
+          "term": "indigent",
+          "definition": "poor; impoverished"
+        },
+        {
+          "term": "indolent",
+          "definition": "disliking activity; habitually lazy"
+        },
+        {
+          "term": "inept",
+          "definition": "lacking in fitness or aptitude; incompetent"
+        },
+        {
+          "term": "innocuous",
+          "definition": "harmless"
+        },
+        {
+          "term": "insolent",
+          "definition": "exhibiting boldness; impudent; arrogant"
+        },
+        {
+          "term": "intrepid",
+          "definition": "fearless; brave; bold"
+        },
+        {
+          "term": "inundate",
+          "definition": "to cover with a flood; overflow; overwhelm"
+        },
+        {
+          "term": "irrelevant",
+          "definition": "not relating to the subject at hand"
+        },
+        {
+          "term": "itinerary",
+          "definition": "a travel plan; proposed route of a journey"
+        }
+      ],
+      "extras": [
+        {
+          "term": "ray",
+          "definition": "a line of light"
+        },
+        {
+          "term": "sunbather",
+          "definition": "a person who lies in the sun to relax or get a tan"
+        },
+        {
+          "term": "personnel",
+          "definition": "the people who work for a company, military and etc."
+        },
+        {
+          "term": "flawless",
+          "definition": "perfect; with no mistakes or defects"
+        },
+        {
+          "term": "pronounce",
+          "definition": "to announce and state officially"
+        },
+        {
+          "term": "welfare",
+          "definition": "government help for people in need"
+        },
+        {
+          "term": "exert",
+          "definition": "to put forth effort; to use power or influence"
+        },
+        {
+          "term": "aptitude",
+          "definition": "a natural ability to do something"
+        },
+        {
+          "term": "ram",
+          "definition": "to hit or crash into something with a lot of force"
+        },
+        {
+          "term": "pier",
+          "definition": "a structure extending from land over water, used for walking or docking boats"
+        },
+        {
+          "term": "spinach",
+          "definition": "a green leafy vegetable"
+        },
+        {
+          "term": "boldness",
+          "definition": "willingness to take risks; lack of fear"
+        },
+        {
+          "term": "impudent",
+          "definition": "rude and disrespectful, especially in a bold way"
+        },
+        {
+          "term": "steep",
+          "definition": "very sharp angle"
+        },
+        {
+          "term": "chagrin",
+          "definition": "feeling upset or embarrassed because something went wrong"
+        },
+        {
+          "term": "myriad",
+          "definition": "very large number of things or people"
+        },
+        {
+          "term": "testimony",
+          "definition": "formal statement given by a witness, usually in court"
+        }
+      ]
+    },
+    "J": {
+      "main": [
+        {
+          "term": "judicious",
+          "definition": "showing good judgement"
+        }
+      ]
+    },
+    "L": {
+      "main": [
+        {
+          "term": "lament",
+          "definition": "to mourn; express grief"
+        },
+        {
+          "term": "lethargy",
+          "definition": "lack of energy; drowsy inactivity"
+        },
+        {
+          "term": "lucid",
+          "definition": "easily understood; clear; mentally sound"
+        },
+        {
+          "term": "lucrative",
+          "definition": "profitable"
+        },
+        {
+          "term": "ludicrous",
+          "definition": "silly; absurd"
+        }
+      ],
+      "extras": [
+        {
+          "term": "genuine",
+          "definition": "real, true or sincere"
+        },
+        {
+          "term": "drowsy",
+          "definition": "very sleepy"
+        },
+        {
+          "term": "bankrupt",
+          "definition": "unable to pay your debts or having no money left"
+        },
+        {
+          "term": "flimsy",
+          "definition": "thin, weak or not well made; easily broken or not convincing"
+        }
+      ]
+    },
+    "M": {
+      "main": [
+        {
+          "term": "magnanimous",
+          "definition": "unselfish; generous"
+        },
+        {
+          "term": "malevolent",
+          "definition": "evil"
+        },
+        {
+          "term": "mediate",
+          "definition": "to bring about a settlement; resolve differences"
+        },
+        {
+          "term": "metaphor",
+          "definition": "figure of speech in which different things are compared without using the words as or like"
+        },
+        {
+          "term": "meticulous",
+          "definition": "very careful about the details"
+        },
+        {
+          "term": "militant",
+          "definition": "ready to fight; warlike"
+        },
+        {
+          "term": "morbid",
+          "definition": "unhealthy; pertaining to disease; gruesome"
+        },
+        {
+          "term": "mundane",
+          "definition": "concerned with the ordinary"
+        }
+      ],
+      "extras": [
+        {
+          "term": "sail into",
+          "definition": "to enter a place by boat/ship; criticize someone strongly"
+        },
+        {
+          "term": "prose",
+          "definition": "ordinary written or spoken language"
+        },
+        {
+          "term": "picketed",
+          "definition": "protesting"
+        },
+        {
+          "term": "spare",
+          "definition": "save someone from something unpleasant"
+        },
+        {
+          "term": "gruesome",
+          "definition": "extremely unpleasant"
+        }
+      ]
+    },
+    "N": {
+      "main": [
+        {
+          "term": "nefarious",
+          "definition": "evil; wicked; sinful"
+        },
+        {
+          "term": "nemesis",
+          "definition": "an unbeatable rival; person or thing that punishes"
+        },
+        {
+          "term": "nomad",
+          "definition": "wanderer"
+        },
+        {
+          "term": "nonchalant",
+          "definition": "cool; indifferent; calmly unconcerned"
+        },
+        {
+          "term": "nostalgia",
+          "definition": "yearning for the past"
+        }
+      ],
+      "extras": [
+        {
+          "term": "commit",
+          "definition": "carry out; do"
+        },
+        {
+          "term": "relentless",
+          "definition": "not giving up; without stopping"
+        },
+        {
+          "term": "whip",
+          "definition": "beat; defeat badly"
+        },
+        {
+          "term": "tribe",
+          "definition": "group of people sharing the same culture, language and history and etc."
+        },
+        {
+          "term": "mobile home",
+          "definition": "a house that can be moved from one place to another"
+        },
+        {
+          "term": "puff",
+          "definition": "smoke"
+        },
+        {
+          "term": "yearn",
+          "definition": "strong desire for something"
+        },
+        {
+          "term": "weep",
+          "definition": "cry in sorrow"
+        },
+        {
+          "term": "sweep over",
+          "definition": "the feeling came suddenly and strongly"
+        }
+      ]
+    },
+    "O": {
+      "main": [
+        {
+          "term": "oblivion",
+          "definition": "a state of being forgotten; unaware of what is going on"
+        },
+        {
+          "term": "obsolete",
+          "definition": "no longer in use; out of date"
+        },
+        {
+          "term": "odious",
+          "definition": "hateful; disgusting"
+        },
+        {
+          "term": "omnipotent",
+          "definition": "all-powerful"
+        },
+        {
+          "term": "onus",
+          "definition": "burden; obligation"
+        },
+        {
+          "term": "ostensible",
+          "definition": "apparent; on the surface; professed"
+        }
+      ],
+      "extras": [
+        {
+          "term": "auction",
+          "definition": "a sale to the highest bidder(offer prices)"
+        },
+        {
+          "term": "contender",
+          "definition": "competitor"
+        },
+        {
+          "term": "render",
+          "definition": "to give or provide; to make"
+        }
+      ]
+    },
+    "P": {
+      "main": [
+        {
+          "term": "panacea",
+          "definition": "cure-all; remedy for everything"
+        },
+        {
+          "term": "paradox",
+          "definition": "statement that seems to contradict itself"
+        },
+        {
+          "term": "pariah",
+          "definition": "outcast; person who is shunned by others"
+        },
+        {
+          "term": "parsimonious",
+          "definition": "stingy; cheap"
+        },
+        {
+          "term": "paucity",
+          "definition": "shortage; scarcity"
+        },
+        {
+          "term": "penitent",
+          "definition": "sorry for wrongdoing and willing to make amends"
+        },
+        {
+          "term": "pensive",
+          "definition": "thoughtful; thinking seriously"
+        },
+        {
+          "term": "perjury",
+          "definition": "lying under oath"
+        },
+        {
+          "term": "peruse",
+          "definition": "to read carefully"
+        },
+        {
+          "term": "phlegmatic",
+          "definition": "slow to respond; not easily excited"
+        },
+        {
+          "term": "plagiarize",
+          "definition": "using another's words as your own"
+        },
+        {
+          "term": "plausible",
+          "definition": "seemingly true; apparently believable"
+        },
+        {
+          "term": "posthumous",
+          "definition": "arising or occurring after one's death"
+        },
+        {
+          "term": "precocious",
+          "definition": "showing advanced development at an early age"
+        },
+        {
+          "term": "potpourri",
+          "definition": "mixture; medley"
+        },
+        {
+          "term": "procrastinate",
+          "definition": "delay"
+        },
+        {
+          "term": "prognosticate",
+          "definition": "predict"
+        },
+        {
+          "term": "prolific",
+          "definition": "producing much; fertile"
+        }
+      ],
+      "extras": [
+        {
+          "term": "contradict",
+          "definition": "be opposite; say opposite"
+        },
+        {
+          "term": "shun",
+          "definition": "avoid someone or something completely"
+        },
+        {
+          "term": "falsify",
+          "definition": "to make something false or fake"
+        },
+        {
+          "term": "sophomore",
+          "definition": "second year student"
+        },
+        {
+          "term": "sloppy",
+          "definition": "careless; messy"
+        },
+        {
+          "term": "faculty",
+          "definition": "the teachers or professors at a school or college"
+        },
+        {
+          "term": "half-baked",
+          "definition": "not finished; not ready; not fully developed"
+        },
+        {
+          "term": "medley",
+          "definition": "mixture of different things"
+        },
+        {
+          "term": "heighten",
+          "definition": "raise; increase; make stronger"
+        },
+        {
+          "term": "litter",
+          "definition": "animal babies born from a mother all at the same time"
+        },
+        {
+          "term": "adopt",
+          "definition": "to legally take a child into your family as your own; take an animal into your home"
+        },
+        {
+          "term": "irritate",
+          "definition": "to make someone angry or annoyed"
+        }
+      ]
+    },
+    "Q": {
+      "main": [
+        {
+          "term": "quandary",
+          "definition": "dilemma; condition of doubt"
+        }
+      ]
+    },
+    "R": {
+      "main": [
+        {
+          "term": "rabid",
+          "definition": "fanatical; furious; infected with rabies"
+        },
+        {
+          "term": "rendezvous",
+          "definition": "meeting place; meeting by arrangement"
+        },
+        {
+          "term": "rescind",
+          "definition": "to cancel; to repeal"
+        }
+      ],
+      "extras": [
+        {
+          "term": "fanatical",
+          "definition": "extremely radical and unreasonable about something"
+        },
+        {
+          "term": "infect",
+          "definition": "to pass a disease/germ to someone or something"
+        },
+        {
+          "term": "repeal",
+          "definition": "to officially cancel or end a rule or law"
+        },
+        {
+          "term": "appointment",
+          "definition": "a scheduled meeting at a set time"
+        },
+        {
+          "term": "withdraw",
+          "definition": "pulled back; took back; removed money"
+        }
+      ]
+    },
+    "S": {
+      "main": [
+        {
+          "term": "sanguine",
+          "definition": "confident; hopeful; optimistic"
+        },
+        {
+          "term": "simile",
+          "definition": "figure of speech using as or like in which two different things are compared"
+        },
+        {
+          "term": "skeptic",
+          "definition": "one who doubts consistently; one who is hard to convince"
+        },
+        {
+          "term": "slander",
+          "definition": "false oral statement designed to damage a person's reputation"
+        },
+        {
+          "term": "sporadic",
+          "definition": "occurring at irregular times"
+        },
+        {
+          "term": "superficial",
+          "definition": "not deep; on the surface only"
+        }
+      ],
+      "extras": [
+        {
+          "term": "overreliance",
+          "definition": "depending on something/someone too much more than is healthy or safe"
+        },
+        {
+          "term": "measles",
+          "definition": "a contagious viral disease with red spots on the skin"
+        },
+        {
+          "term": "graze",
+          "definition": "to scrape or scratch the skin lightly"
+        }
+      ]
+    },
+    "T": {
+      "main": [
+        {
+          "term": "taciturn",
+          "definition": "silent; reserved; uncommunicative"
+        },
+        {
+          "term": "terse",
+          "definition": "brief; to the point"
+        },
+        {
+          "term": "thwart",
+          "definition": "to hinder; block"
+        },
+        {
+          "term": "trite",
+          "definition": "overused; commonplace"
+        }
+      ],
+      "extras": [
+        {
+          "term": "endear",
+          "definition": "to make someone loved or liked"
+        },
+        {
+          "term": "bridegroom",
+          "definition": "the man who is getting married (on his wedding day)"
+        },
+        {
+          "term": "startled",
+          "definition": "suddenly surprised and a bit frightened; quick shock"
+        },
+        {
+          "term": "filibuster",
+          "definition": "a long speech or debate used to delay or block a vote"
+        }
+      ]
+    },
+    "U": {
+      "main": [
+        {
+          "term": "utopia",
+          "definition": "paradise; a place where everything is perfect"
+        }
+      ],
+      "extras": [
+        {
+          "term": "serpent",
+          "definition": "snake; sly or deceitful person"
+        }
+      ]
+    },
+    "V": {
+      "main": [
+        {
+          "term": "vacillate",
+          "definition": "to waver back and forth"
+        },
+        {
+          "term": "verbose",
+          "definition": "wordy; using more words than is necessary"
+        },
+        {
+          "term": "vindicate",
+          "definition": "clear; acquit; exonerate"
+        },
+        {
+          "term": "volatile",
+          "definition": "explosive; changeable"
+        }
+      ],
+      "extras": [
+        {
+          "term": "acquit",
+          "definition": "to decide officially that someone is not guilty of a crime"
+        },
+        {
+          "term": "exonerate",
+          "definition": "to clear someone of blame or accusation"
+        },
+        {
+          "term": "incite",
+          "definition": "to provoke or encourage action, especially violent or unlawful behavior"
         }
       ]
     }

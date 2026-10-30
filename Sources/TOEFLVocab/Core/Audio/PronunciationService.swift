@@ -16,6 +16,7 @@ final class PronunciationService: NSObject, ObservableObject {
 
     private let synthesizer = AVSpeechSynthesizer()
     private var hasConfiguredSession = false
+    private var currentUtterance: AVSpeechUtterance?
 
     override init() {
         super.init()
@@ -28,11 +29,11 @@ final class PronunciationService: NSObject, ObservableObject {
         let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return }
 
-        configureSessionIfNeeded()
-
         if synthesizer.isSpeaking {
             synthesizer.stopSpeaking(at: .immediate)
         }
+
+        configureSessionIfNeeded()
 
         let utterance = AVSpeechUtterance(string: trimmed)
         utterance.voice = Self.voice(for: accent)
@@ -41,12 +42,16 @@ final class PronunciationService: NSObject, ObservableObject {
         utterance.postUtteranceDelay = 0
 
         speakingText = trimmed
+        currentUtterance = utterance
         synthesizer.speak(utterance)
     }
 
     func stop() {
-        guard synthesizer.isSpeaking else { return }
         synthesizer.stopSpeaking(at: .immediate)
+        currentUtterance = nil
+        isSpeaking = false
+        speakingText = nil
+        deactivateSession()
     }
 
     // MARK: Voice selection
@@ -71,7 +76,6 @@ final class PronunciationService: NSObject, ObservableObject {
 
     private func configureSessionIfNeeded() {
         guard !hasConfiguredSession else { return }
-        hasConfiguredSession = true
         do {
             let session = AVAudioSession.sharedInstance()
             // `.playback` so pronunciation still works with the ring/silent
@@ -79,11 +83,34 @@ final class PronunciationService: NSObject, ObservableObject {
             // `.duckOthers` lowers the user's music instead of stopping it.
             try session.setCategory(.playback, mode: .spokenAudio, options: [.duckOthers])
             try session.setActive(true)
+            hasConfiguredSession = true
         } catch {
             #if DEBUG
             print("[Speech] Audio session setup failed: \(error)")
             #endif
         }
+    }
+
+    private func deactivateSession() {
+        guard hasConfiguredSession else { return }
+        do {
+            try AVAudioSession.sharedInstance().setActive(false, options: [.notifyOthersOnDeactivation])
+            hasConfiguredSession = false
+        } catch {
+            #if DEBUG
+            print("[Speech] Audio session deactivation failed: \(error)")
+            #endif
+        }
+    }
+
+    private func finish(_ utterance: AVSpeechUtterance) {
+        // A cancelled older utterance can report completion after its
+        // replacement starts. Only the current one owns the audio session.
+        guard currentUtterance === utterance else { return }
+        currentUtterance = nil
+        isSpeaking = false
+        speakingText = nil
+        deactivateSession()
     }
 }
 
@@ -96,7 +123,8 @@ extension PronunciationService: AVSpeechSynthesizerDelegate {
         didStart utterance: AVSpeechUtterance
     ) {
         Task { @MainActor [weak self] in
-            self?.isSpeaking = true
+            guard let self, self.currentUtterance === utterance else { return }
+            self.isSpeaking = true
         }
     }
 
@@ -105,8 +133,7 @@ extension PronunciationService: AVSpeechSynthesizerDelegate {
         didFinish utterance: AVSpeechUtterance
     ) {
         Task { @MainActor [weak self] in
-            self?.isSpeaking = false
-            self?.speakingText = nil
+            self?.finish(utterance)
         }
     }
 
@@ -115,8 +142,7 @@ extension PronunciationService: AVSpeechSynthesizerDelegate {
         didCancel utterance: AVSpeechUtterance
     ) {
         Task { @MainActor [weak self] in
-            self?.isSpeaking = false
-            self?.speakingText = nil
+            self?.finish(utterance)
         }
     }
 }

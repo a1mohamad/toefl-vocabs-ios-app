@@ -12,7 +12,7 @@
     "with an auto-generated title ('day_9' -> 'Day 9') and no intro.",
     "",
     "The 125 book is the hard list from the back of the 504 and has no days: its",
-    "sections are single letters in alphabetical order, and it is still being filled in."
+    "sections are single letters in alphabetical order; all 125 main words are included."
   ],
   "books": [
     {
@@ -325,7 +325,7 @@
       "shortTitle": "125 Hard",
       "author": "Barron's",
       "theme": "rose",
-      "intro": "The hard list from the back of the 504 — the words the book keeps for last. There are no days here: the list is alphabetical, so you take one letter at a time. It is still being filled in, and letters appear as they are written.",
+      "intro": "The complete hard list from the back of the 504 — the words the book keeps for last. There are no days here: all 125 main words and their extras are grouped alphabetically, so you take one letter at a time.",
       "sections": [
         {
           "id": "A",
@@ -343,7 +343,7 @@
           "id": "C",
           "title": "C",
           "kind": "lesson",
-          "intro": "The biggest letter so far: fifteen words, 'cajole' to 'cursory'. 'Covert' and 'clandestine' are near twins."
+          "intro": "Fifteen words, 'cajole' to 'cursory'. 'Covert' and 'clandestine' are near twins."
         },
         {
           "id": "D",
@@ -356,6 +356,102 @@
           "title": "E",
           "kind": "lesson",
           "intro": "Seven words, 'egotist' to 'expedite'. 'Exacerbate' and 'exhort' are worth extra passes."
+        },
+        {
+          "id": "F",
+          "title": "F",
+          "kind": "lesson",
+          "intro": "Misleading and secretive: 'fallacious', 'fracas' and 'furtive'."
+        },
+        {
+          "id": "G",
+          "title": "G",
+          "kind": "lesson",
+          "intro": "Speech and gesture — 'garrulous' and 'gesticulate'."
+        },
+        {
+          "id": "H",
+          "title": "H",
+          "kind": "lesson",
+          "intro": "One main word: 'heterogeneous', for things made of dissimilar parts."
+        },
+        {
+          "id": "I",
+          "title": "I",
+          "kind": "lesson",
+          "intro": "Fifteen words, 'imbibe' to 'itinerary'. Contrast 'indigent', 'indolent' and 'inept'."
+        },
+        {
+          "id": "J",
+          "title": "J",
+          "kind": "lesson",
+          "intro": "One main word: 'judicious', for decisions made with good judgment."
+        },
+        {
+          "id": "L",
+          "title": "L",
+          "kind": "lesson",
+          "intro": "Five words, 'lament' to 'ludicrous'. Contrast the clarity of 'lucid' with the inactivity of 'lethargy'."
+        },
+        {
+          "id": "M",
+          "title": "M",
+          "kind": "lesson",
+          "intro": "Eight words, 'magnanimous' to 'mundane'. Generosity, conflict and careful attention to detail."
+        },
+        {
+          "id": "N",
+          "title": "N",
+          "kind": "lesson",
+          "intro": "Five words, 'nefarious' to 'nostalgia'. Watch the calm indifference of 'nonchalant'."
+        },
+        {
+          "id": "O",
+          "title": "O",
+          "kind": "lesson",
+          "intro": "Six words, 'oblivion' to 'ostensible'. Distinguish what is apparent from what is true."
+        },
+        {
+          "id": "P",
+          "title": "P",
+          "kind": "lesson",
+          "intro": "Eighteen words, 'panacea' to 'prolific'. A longer set about judgment, expression and action."
+        },
+        {
+          "id": "Q",
+          "title": "Q",
+          "kind": "lesson",
+          "intro": "One main word: 'quandary', a state of doubt about what to do."
+        },
+        {
+          "id": "R",
+          "title": "R",
+          "kind": "lesson",
+          "intro": "Three words: 'rabid', 'rendezvous' and 'rescind'."
+        },
+        {
+          "id": "S",
+          "title": "S",
+          "kind": "lesson",
+          "intro": "Six words, 'sanguine' to 'superficial'. 'Simile' is worth comparing with 'metaphor'."
+        },
+        {
+          "id": "T",
+          "title": "T",
+          "kind": "lesson",
+          "intro": "Four words, 'taciturn' to 'trite'. 'Terse' is brief; 'trite' is overused."
+        },
+        {
+          "id": "U",
+          "title": "U",
+          "kind": "lesson",
+          "intro": "One main word: 'utopia', an imagined perfect place."
+        },
+        {
+          "id": "V",
+          "title": "V",
+          "kind": "lesson",
+          "intro": "The last four: 'vacillate', 'verbose', 'vindicate' and 'volatile'. Finish with the difference between 'acquit' and 'convict'."
         }
       ]
     },

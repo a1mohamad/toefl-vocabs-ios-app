@@ -13,6 +13,8 @@
 [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-CI%2FCD-2088FF?logo=githubactions&logoColor=white)](.github/workflows/ci.yml)
 [![Platform](https://img.shields.io/badge/Platform-iPhone-lightgrey?logo=apple&logoColor=white)](https://www.apple.com/ios/)
 [![Sideloadly](https://img.shields.io/badge/Sideloadly-Install%20on%20iPhone-FF7139?logo=apple&logoColor=white)](https://sideloadly.io/)
+[![IPASide](https://img.shields.io/badge/IPASide-Install%20on%20iPhone-147EFB?logo=apple&logoColor=white)](https://ipaside.com/)
+[![Release](https://img.shields.io/github/v/release/a1mohamad/toefl-vocabs-ios-app?label=Release)](https://github.com/a1mohamad/toefl-vocabs-ios-app/releases/latest)
 [![CI](https://img.shields.io/github/actions/workflow/status/a1mohamad/toefl-vocabs-ios-app/ci.yml?branch=main&label=CI)](https://github.com/a1mohamad/toefl-vocabs-ios-app/actions)
 [![License](https://img.shields.io/github/license/a1mohamad/toefl-vocabs-ios-app)](LICENSE)
 
@@ -42,7 +44,7 @@
 
 **TOEFL Vocab** is an offline vocabulary trainer built on three word lists —
 **504 Absolutely Essential Words** (Barron's), its **125 Hard but Essential
-Words** appendix, and **400 Must-Have Words for the TOEFL** (McGraw-Hill). 1,762
+Words** appendix, and **400 Must-Have Words for the TOEFL** (McGraw-Hill). 1,917
 words in all. No account, no server, no subscription: the content ships inside
 the app and progress is a single file on the device.
 
@@ -55,7 +57,7 @@ on every run by **XcodeGen** from `project.yml` and is not committed at all.
 
 ## Table of Contents
 
-- [What's New in 2.0](#whats-new-in-20)
+- [What's New in 2.1.0](#whats-new-in-210)
 - [Screenshots](#screenshots)
 - [How It Works](#how-it-works)
 - [Why This Project Is Interesting](#why-this-project-is-interesting)
@@ -74,23 +76,15 @@ on every run by **XcodeGen** from `project.yml` and is not committed at all.
 
 ---
 
-## What's New in 2.0
+## What's New in 2.1.0
 
-- **A third book.** *125 Hard but Essential Words*, the hard list from the back
-  of the 504, is now its own section alongside the other two. It has no days —
-  the words are grouped by first letter — and it is still being filled in, so
-  letters appear as they are written.
-- **Numbered meanings.** The books write every sense of a word on one line
-  (`keep; keep up; carry on; uphold`). Those are now split and numbered, one per
-  line, instead of arriving as a single grey paragraph.
-- **Highlighted usage tips.** A tip gets a lightbulb of its own, and the
-  `'quoted'` words inside it — the part the tip is actually about — are coloured
-  and bolded. A tip with three of them gets three different colours.
-- **The whole library.** All 42 days and 7 reviews of the 504, and all 41 days of
-  the 400, with titles, order and intro copy for every one of the 95 sections.
-- **A spelling pass.** 152 transcription typos corrected across the definitions,
-  plus 15 tip markers that had been typed as `—-` and so were never being
-  recognised as tips at all.
+- **The 125 list is complete.** All 125 main words, plus 127 extras, across
+  21 letter sections. The library now contains 1,917 entries in 111 sections.
+- **Checked spelling and meanings.** Corrected the new 125 content, including
+  `incarcerate`, `ludicrous`, and the definition of `acquit`. Existing word
+  identities and the spelling corrections from 2.0 are preserved.
+- **Pronunciation releases audio when finished.** Other audio returns to normal
+  volume after speech ends or is stopped.
 
 ---
 
@@ -238,7 +232,7 @@ guaranteed key order:
 
 Three books live in that file: `504` (42 days and 7 reviews), `125` (the hard
 list from the back of the 504, grouped by first letter instead of by day) and
-`400` (41 days, grouped by subject). 1,762 words in total.
+`400` (41 days, grouped by subject). 1,917 words in total.
 
 Each section carries two lists: **main**, the book's own words, and **extras**,
 additional words collected alongside them. Either may be absent — a review
@@ -398,7 +392,7 @@ tag matching v*
 device-build           (macOS, Release, CODE_SIGNING_ALLOWED=NO)
         |
         v
-unsigned .ipa artifact  -> downloaded, signed and installed with Sideloadly
+unsigned .ipa artifact  -> downloaded, signed and installed with Sideloadly or IPASide
 ```
 
 | Job | Runs on | Trigger | Purpose |
@@ -473,7 +467,7 @@ git push origin v<next>
 ```
 
 Download the unsigned `.ipa` artifact from the workflow run, then sign and
-install it with **Sideloadly** using a free Apple ID.
+install it with **[Sideloadly](https://sideloadly.io/)** or **[IPASide](https://ipaside.com/)** using a free Apple ID.
 
 > Known free-tier limits, not bugs: installed apps expire after about 7 days and
 > need periodic re-signing, and a free account can only register a small number
@@ -487,7 +481,7 @@ Current scope:
 
 - Offline, single-device vocabulary practice
 - Three bundled word lists, English content, English/Persian UI
-- Sideloaded distribution via Sideloadly, not the App Store
+- Sideloaded distribution via [Sideloadly](https://sideloadly.io/) or [IPASide](https://ipaside.com/), not the App Store
 
 Current limitations:
 
