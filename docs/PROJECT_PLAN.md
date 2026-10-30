@@ -413,7 +413,7 @@ rather than spelling: the `generation` tip in 400/day_3 ends on a dangling
 opening one.
 
 
-### 2.1.0 content update
+### 2.1 content update
 
 The 125 appendix is complete: 125 main words and 127 extras in 21 letter
 sections. The full library has 1,917 entries in 111 sections. New content

@@ -14,7 +14,7 @@
 [![Platform](https://img.shields.io/badge/Platform-iPhone-lightgrey?logo=apple&logoColor=white)](https://www.apple.com/ios/)
 [![Sideloadly](https://img.shields.io/badge/Sideloadly-Install%20on%20iPhone-FF7139?logo=apple&logoColor=white)](https://sideloadly.io/)
 [![IPASide](https://img.shields.io/badge/IPASide-Install%20on%20iPhone-147EFB?logo=apple&logoColor=white)](https://ipaside.com/)
-[![Release](https://img.shields.io/github/v/release/a1mohamad/toefl-vocabs-ios-app?label=Release)](https://github.com/a1mohamad/toefl-vocabs-ios-app/releases/latest)
+[![Release](https://img.shields.io/badge/Release-v2.1-blue)](https://github.com/a1mohamad/toefl-vocabs-ios-app/releases/tag/v2.1)
 [![CI](https://img.shields.io/github/actions/workflow/status/a1mohamad/toefl-vocabs-ios-app/ci.yml?branch=main&label=CI)](https://github.com/a1mohamad/toefl-vocabs-ios-app/actions)
 [![License](https://img.shields.io/github/license/a1mohamad/toefl-vocabs-ios-app)](LICENSE)
 
@@ -57,7 +57,7 @@ on every run by **XcodeGen** from `project.yml` and is not committed at all.
 
 ## Table of Contents
 
-- [What's New in 2.1.0](#whats-new-in-210)
+- [What's New in 2.1](#whats-new-in-21)
 - [Screenshots](#screenshots)
 - [How It Works](#how-it-works)
 - [Why This Project Is Interesting](#why-this-project-is-interesting)
@@ -76,7 +76,7 @@ on every run by **XcodeGen** from `project.yml` and is not committed at all.
 
 ---
 
-## What's New in 2.1.0
+## What's New in 2.1
 
 - **The 125 list is complete.** All 125 main words, plus 127 extras, across
   21 letter sections. The library now contains 1,917 entries in 111 sections.
